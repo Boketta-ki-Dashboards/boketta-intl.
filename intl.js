@@ -1,5 +1,5 @@
 // Pace is an independent deployment, never a route on the Intl. site.
-document.querySelectorAll('.pace-external').forEach(a=>{a.href='https://pace.netlify.app/';a.target='_blank';a.rel='noopener'});
+document.querySelectorAll('.pace-external').forEach(a=>{a.href='https://paceios.netlify.app/';a.target='_blank';a.rel='noopener'});
 const carousel=document.getElementById('toolCarousel');
 if(carousel){
  const prev=document.getElementById('toolsPrev'),next=document.getElementById('toolsNext'),position=document.getElementById('toolPosition');
@@ -15,3 +15,11 @@ if(carousel){
  carousel.addEventListener('focusin',e=>{if(e.target.matches('.tool:focus-visible'))carousel.scrollTo({left:e.target.offsetLeft+e.target.offsetWidth/2-carousel.clientWidth/2,behavior:'instant'})});
  document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>{carousel.scrollTo({left:0,behavior:'instant'});requestAnimationFrame(render)}));render();
 }
+// Only consume wheel input while the pointer is over the tool strip.
+carousel?.addEventListener('wheel',e=>{
+ if(e.ctrlKey||Math.abs(e.deltaX)>Math.abs(e.deltaY))return;
+ const delta=e.deltaY*(e.deltaMode===1?16:e.deltaMode===2?carousel.clientWidth:1);
+ const max=carousel.scrollWidth-carousel.clientWidth;
+ if(!delta||max<=0||(delta<0&&carousel.scrollLeft<=1)||(delta>0&&carousel.scrollLeft>=max-1))return;
+ e.preventDefault();carousel.scrollBy({left:delta*2.6,behavior:'instant'});
+},{passive:false});
