@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -706,62 +706,124 @@ body{padding-top:76px;}
   .list-line{padding:8px;font-size:9px}
 }
 </style>
+<script>try{document.documentElement.dataset.theme=localStorage.getItem("boketta-intl-theme")==="light"?"light":"dark"}catch{}</script>
+<link rel="stylesheet" href="hub.css">
 </head>
 <body>
-<header>
-  <div class="wrap nav">
-    <a class="brand" href="#home">
-      <div class="brand-mark">B</div>
-      <div class="brand-name">Boketta <span>Intl.</span></div>
-    </a>
-    <nav aria-label="Hauptnavigation">
-      <a href="#about">Über diese Webseite</a>
-      <a href="#ai">AI</a>
-      <a href="#tools">Tools</a>
-      <a href="#games">Games</a>
-      <a href="#projects">Projects</a>
-      <button class="nav-menu-btn" id="menuOpen" aria-label="Menü öffnen" aria-expanded="false"><span></span><span></span><span></span></button>
-    </nav>
-  </div>
-</header>
-
+<a class="skip-link" href="#collection">Zum Inhalt</a>
+<header><div class="wrap nav">
+<a class="brand brand-logo" href="#home" aria-label="Boketta Intl. Startseite"><img class="logo-ready" src="assets/boketta-logo.png" alt="Boketta Intl."></a>
+<nav aria-label="Hauptnavigation"><a href="#collection">Entdecken</a><a href="#tools">Tools</a><a href="#games">Games</a></nav>
+<div class="hud-actions"><button class="icon-btn theme-toggle" type="button" aria-label="Helles Design aktivieren" title="Design wechseln"><i data-icon="sun"></i></button><span class="hud-divider"></span><button class="nav-menu-btn" id="menuOpen" aria-label="Menü öffnen" aria-controls="siteMenu" aria-expanded="false"><span></span><span></span><span></span></button></div>
+</div></header>
 <main id="home">
   <div class="wrap">
-    <section class="hero">
-      <div>
-        <div class="eyebrow"><i></i>Independent digital products</div>
-        <h1>Build ideas.<span>Make them real.</span></h1>
-        <p class="hero-copy">
-          Boketta Intl. bündelt digitale Tools, Games, AI-Produkte und eigene Experimente
-          an einem Ort — von kleinen Browser-Utilities bis zu größeren Software-Projekten.
-        </p>
-        <div class="actions">
-          <a class="btn primary" href="#tools">Tools entdecken ↗</a>
-        </div>
-        <div class="hero-note">Schnelle Tools · eigene Projekte · klare Interfaces</div>
+<section class="hero hub-hero">
+<div class="hero-text"><div class="eyebrow"><i></i> Das Boketta Universum</div><h1>Eine Idee.<br>Viele <span>Möglichkeiten.</span></h1><p class="hero-copy">Kreieren. Entdecken. Einfach machen.<br>Deine nächste Idee beginnt hier.</p><div class="actions"><a class="btn primary" href="#collection">Projekte entdecken <i data-icon="arrow"></i></a><a class="btn text-btn" href="#tools">Direkt zu den Tools <i data-icon="grid"></i></a></div><div class="hero-note"><span><i data-icon="spark"></i> Independent built</span><span><i data-icon="globe"></i> Alles an einem Ort</span></div></div>
+<div class="universe" aria-label="Boketta verbindet Social Media, KI, Tools, Games und Pace">
+<div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="universe-core"><i data-icon="layers"></i><strong>Boketta</strong><span>Deine Ideen. Verbunden.</span></div>
+<a class="satellite sat-social" href="https://boketta-sm.netlify.app/" target="_blank" rel="noopener"><span class="app-icon mint"><i data-icon="video"></i></span><span><small>CREATE</small><strong>Social Media</strong></span><i data-icon="arrow"></i></a>
+<a class="satellite sat-ai" href="https://boketta-ki-dashboard.netlify.app/" target="_blank" rel="noopener"><span class="app-icon lilac"><i data-icon="spark"></i></span><span><small>EXPLORE</small><strong>AI Dashboard</strong></span></a>
+<a class="satellite sat-pace" href="pace.html"><img src="assets/pace-icon.png" alt="" class="app-icon"><span><small>MOVE</small><strong>Pace</strong></span><i data-icon="arrow"></i></a>
+<a class="satellite sat-games" href="#games"><span class="app-icon peach"><i data-icon="game"></i></span><span><small>PLAY</small><strong>Games & Arcade</strong></span></a>
+<span class="orbit-caption">IDEAS INTO EXPERIENCES</span></div>
+</section>
+<section id="collection" class="collection"><div class="section-head"><div><div class="kicker">01 / ENTDECKEN</div><h2>Ein Zuhause für alle Projekte.</h2></div><span class="section-intro">Wohin geht’s als Nächstes?</span></div>
+<div class="collection-grid">
+<a class="product-card social-card" href="https://boketta-sm.netlify.app/" target="_blank" rel="noopener"><div class="product-top"><span class="app-icon mint"><i data-icon="video"></i></span><span class="pill">WEB APP <i data-icon="external"></i></span></div><div class="product-art social-art" aria-hidden="true"><div class="mini-post post-back"><i data-icon="image"></i></div><div class="mini-post post-front"><span>MAKE IT</span><strong>your<br>story.</strong><div class="post-wave"></div><small>BOKETTA / CREATE</small></div><div class="mini-timeline"><i data-icon="play"></i><span></span><span></span><span></span><span></span></div></div><div class="product-copy"><small>CREATE & ORGANIZE</small><h3>Social Media<br>Management</h3><p>Aus Ideen wird Content. Aus Content dein nächster Schritt.</p><div class="product-tags"><span>Creator</span><span>Editor</span><span>Planer</span></div><span class="product-link">Workspace öffnen <i data-icon="arrow"></i></span></div></a>
+<a class="product-card pace-card" href="pace.html"><div class="product-top"><img class="app-icon" src="assets/pace-icon.png" alt=""><span class="pill">iOS · IN ENTWICKLUNG</span></div><div class="product-art pace-art" aria-hidden="true"><div class="step-ring"><div><i data-icon="activity"></i><strong>8.420</strong><small>SCHRITTE</small></div></div><span class="pace-streak"><i data-icon="flame"></i> Dein Rhythmus. Dein Ziel.</span></div><div class="product-copy"><small>MOVE & CONNECT</small><span class="pace-wordmark" role="img" aria-label="Pace"></span><p>Jeder Schritt zählt. Gemeinsam noch mehr.</p><div class="product-tags"><span>Bewegung</span><span>Rankings</span><span>Freunde</span></div><span class="product-link">Pace entdecken <i data-icon="arrow"></i></span></div></a>
+<a class="product-card ai-card" id="ai" href="https://boketta-ki-dashboard.netlify.app/" target="_blank" rel="noopener"><div class="product-top"><span class="app-icon lilac"><i data-icon="spark"></i></span><span class="pill">WEB APP <i data-icon="external"></i></span></div><div class="ai-art" aria-hidden="true"><span></span><span></span><span></span><i data-icon="spark"></i></div><div class="product-copy"><small>THINK & EXPLORE</small><h3>Boketta AI</h3><p>Ein Einstieg. Neue Möglichkeiten mit KI.</p><span class="product-link">Dashboard öffnen <i data-icon="arrow"></i></span></div></a>
+</div></section>
+    <section id="tools">
+      <div class="section-head">
+        <div><div class="kicker">02 / DEIN WERKZEUGKASTEN</div><h2>Kleine Tools. Große Abkürzung.</h2></div>
+        <p class="section-intro">Berechnen, planen, vereinfachen. Direkt hier im Browser.</p>
       </div>
 
-      <div class="hero-panel" aria-hidden="true">
-        <div class="orb one"></div><div class="orb two"></div>
-        <div class="hub-card">
-          <div class="hub-top"><div class="hub-title">BOKETTA / PRODUCT HUB</div><div class="live">● ONLINE</div></div>
-          <div class="hub-stats">
-            <div class="stat"><small>ABOUT</small><strong>01</strong></div>
-            <div class="stat"><small>AI</small><strong>02</strong></div>
-            <div class="stat"><small>TOOLS</small><strong>03</strong></div>
-            <div class="stat"><small>GAMES</small><strong>04</strong></div>
-            <div class="stat stat-wide"><small>PROJECTS</small><strong>05</strong></div>
-          </div>
-          <div class="list-line"><span><b class="hub-index">01</b> Central platform</span><span>ABOUT →</span></div>
-          <div class="list-line"><span><b class="hub-index">02</b> AI Dashboard</span><span>OPEN →</span></div>
-          <div class="list-line"><span><b class="hub-index">03</b> Practical tools</span><span>USE →</span></div>
-          <div class="list-line"><span><b class="hub-index">04</b> Games &amp; Arcade</span><span>PLAY →</span></div>
-          <div class="list-line"><span><b class="hub-index">05</b> Projects in development</span><span>BUILD →</span></div>
+      <div class="tool-bar">
+        <button class="filter-btn active" data-filter="all">Alle</button>
+        <button class="filter-btn" data-filter="business">Business</button>
+        <button class="filter-btn" data-filter="marketing">Marketing</button>
+        <button class="filter-btn" data-filter="utility">Utility</button>
+        <button class="filter-btn" data-filter="media">Media</button>
+      </div>
+
+      <div class="tool-grid">
+        <div class="tool" data-cat="business" data-tool="vat"><div class="tool-name">VAT Calculator</div><small>Netto, USt. & Brutto</small></div>
+        <div class="tool" data-cat="business" data-tool="invoice"><div class="tool-name">Invoice Calculator</div><small>Positionen, USt. & Rechnungsbetrag</small></div>
+        <div class="tool" data-cat="business" data-tool="skonto"><div class="tool-name">Skonto Calculator</div><small>Skonto, Zahlungsziel & Ersparnis</small></div>
+        <div class="tool" data-cat="business" data-tool="margin"><div class="tool-name">Margin & Markup</div><small>Marge, Aufschlag & Gewinn</small></div>
+        <div class="tool" data-cat="business" data-tool="breakeven"><div class="tool-name">Break-even Calculator</div><small>Fixkosten, Preis & Gewinnschwelle</small></div>
+        <div class="tool" data-cat="business" data-tool="percentage"><div class="tool-name">Percentage</div><small>Prozentwerte & Veränderungen</small></div>
+        <div class="tool" data-cat="business" data-tool="discount"><div class="tool-name">Discount Calculator</div><small>Rabatt, Ersparnis & Endpreis</small></div>
+        <div class="tool" data-cat="marketing" data-tool="roas"><div class="tool-name">ROAS / ROI Calculator</div><small>Werbeeffizienz & Kampagnenrendite</small></div>
+        <div class="tool" data-cat="marketing" data-tool="admetrics"><div class="tool-name">Ad Metrics Calculator</div><small>CTR, CPC, CPM, CPA & ROAS</small></div>
+        <div class="tool" data-cat="marketing" data-tool="utm"><div class="tool-name">UTM Builder</div><small>Kampagnen-Links erstellen</small></div>
+        <div class="tool" data-cat="marketing" data-tool="seo"><div class="tool-name">SEO Preview</div><small>Google-Snippet simulieren</small></div>
+        <div class="tool" data-cat="marketing" data-tool="characters"><div class="tool-name">Character Counter</div><small>Texte, Zeichen & Wörter prüfen</small></div>
+        <div class="tool" data-cat="media" data-tool="compressor"><div class="tool-name">Image Compressor</div><small>Bilder lokal verkleinern</small></div>
+        <div class="tool" data-cat="utility" data-tool="unit"><div class="tool-name">Unit Converter</div><small>Länge, Gewicht & Temperatur</small></div>
+        <div class="tool" data-cat="utility" data-tool="date"><div class="tool-name">Date Difference</div><small>Tage zwischen Terminen berechnen</small></div>
+        <div class="tool" data-cat="utility" data-tool="worktime"><div class="tool-name">Working Time Calculator</div><small>Arbeitszeit, Pause & Dezimalstunden</small></div>
+      </div>
+
+      <div class="demo-grid tools-demo-closed" aria-hidden="true">
+        <div class="panel">
+          <h3>VAT Calculator</h3>
+          <div class="field"><label>Netto-Betrag</label><input id="vatAmount" type="number" min="0" step="0.01" value="100"></div>
+          <div class="field"><label>USt.-Satz</label><select id="vatRate"><option value="0.19">19 %</option><option value="0.07">7 %</option><option value="0">0 %</option></select></div>
+          <button class="btn primary" style="width:100%" id="vatBtn">Berechnen</button>
+          <div class="result"><div class="big" id="vatGross">119,00 €</div><span id="vatInfo">100,00 € netto + 19,00 € USt.</span></div>
+        </div>
+
+        <div class="panel">
+          <h3>Character Counter</h3>
+          <div class="field"><label>Text</label><textarea id="charText" rows="7" placeholder="Text hier eingeben..."></textarea></div>
+          <div class="result"><div class="big" id="charCount">0</div><span>Zeichen · Wörter: <b id="wordCount">0</b></span></div>
         </div>
       </div>
     </section>
 
-    <section id="about">
+    <section id="games">
+  <div class="section-head">
+    <div><div class="kicker">03 / PLAY</div><h2>Eine Pause. Ein neues Level.</h2></div>
+    <p class="section-intro">Deine nächste Runde wartet schon.</p>
+  </div>
+
+  <div class="games games-equal">
+    <a class="game game-equal" href="https://boketta-games.netlify.app" target="_blank" rel="noopener">
+      <div class="game-icon game-icon-block" aria-hidden="true"><span class="cube-top"></span><span class="cube-face"></span><span class="cube-side"></span></div>
+      <small>MAIN GAME</small><h3>Blockbuster</h3>
+      <p>Das größere Browsergame mit eigenem Fortschrittssystem und eigener Spielwelt.</p>
+      <span class="arrow">Blockbuster spielen →</span>
+    </a>
+    <button class="game game-equal" style="text-align:left;cursor:pointer" id="arcadeOpen" type="button">
+      <div class="game-icon game-icon-controller" aria-hidden="true"><span class="controller-body"></span><i class="controller-stick"></i><i class="controller-dot"></i></div>
+      <small>BOKETTA ARCADE</small><h3>Classic games, redesigned.</h3>
+      <p>Mahjong, UNO, Poker, Blackjack, Boketta Jump und Flappy Red.</p>
+      <span class="arrow">Arcade öffnen →</span>
+    </button>
+  </div>
+</section>
+
+    <section id="projects">
+      <div class="section-head">
+        <div><div class="kicker">04 / IN ARBEIT</div><h2>Was als Nächstes kommt.</h2></div>
+        <p class="section-intro">Hier landen größere Experimente, Software-Ideen und kommende Releases.</p>
+      </div>
+      <div class="projects-grid">
+        <button class="project project-card" id="horrorProjectOpen" type="button">
+          <div>
+            <div class="tag">COMING SOON · PC PROJECT</div>
+            <h3><span class="clean-number">3</span>D Horror Game</h3>
+            <p>Ein eigenständiges 3D-Horrorspiel befindet sich aktuell in Entwicklung. Klicke hier, um den aktuellen Stand und die geplanten nächsten Schritte zu sehen.</p>
+          </div>
+          <div class="project-card-side"><span class="status-dot"></span><strong>In Entwicklung</strong><span class="arrow">Projekt ansehen →</span></div>
+        </button>
+      </div>
+    </section>
+
+    <section id="about" class="about-archive"><details><summary>Die Idee hinter Boketta Intl. <span>Vision, Hintergründe & nächste Schritte</span><i data-icon="plus"></i></summary>
       <div class="section-head">
         <div><div class="kicker">01 — Über diese Webseite</div><h2>Eine Plattform für digitale Ideen.</h2></div>
         <p class="section-intro">Boketta Intl. bündelt digitale Tools, Games, AI-Produkte und eigene Projekte an einem Ort. Die Seite wächst mit jedem neuen Experiment und soll dabei übersichtlich, schnell und einfach zugänglich bleiben.</p>
@@ -812,123 +874,14 @@ body{padding-top:76px;}
         </div>
       </div>
 
-      <div class="project about-quote">
+      <div class="card"><div class="tag">AI · DASHBOARD & LAB</div><h3>AI als eigener Produktbereich</h3><p>Das Boketta AI Dashboard ist ein eigenständiges KI-Produkt. Account-, Daten- und Premium-Funktionen sind mögliche nächste Schritte. Boketta Agents ist eine Idee für spezialisierte AI-Workflows und kleine Agenten für konkrete Aufgaben.</p></div><div class="project about-quote">
         <div>
           <div class="tag">CURRENT DIRECTION</div>
           <h3>Von kleinen Experimenten zu echten digitalen Produkten.</h3>
           <p>Wer weiter nach unten scrollt, findet Tools, Games und Projects — und kann sehen, was bereits verfügbar ist und was als Nächstes entsteht.</p>
         </div>
       </div>
-    </section>
-
-    <section id="ai">
-      <div class="section-head">
-        <div><div class="kicker">02 — AI</div><h2>One serious platform.</h2></div>
-        <p class="section-intro">Das komplexere Produkt darf seine eigene Infrastruktur haben. Diese Hauptseite bleibt davon bewusst unabhängig.</p>
-      </div>
-      <div class="grid">
-        <a class="card featured" href="https://boketta-ki-dashboard.netlify.app" target="_blank" rel="noopener">
-          <div class="card-meta"><div class="card-icon">✦</div><div class="tag">Flagship</div></div>
-          <h3>Boketta AI Dashboard</h3>
-          <p>Dein zentrales KI-Produkt mit eigener Anwendung und künftig möglichen Account-, Daten- und Premium-Funktionen.</p>
-          <span class="arrow">Dashboard öffnen →</span>
-        </a>
-        <div class="card">
-          <div class="card-meta"><div class="card-icon">⌁</div><div class="tag">Lab</div></div>
-          <h3>Boketta Agents</h3>
-          <p>Spezialisierte AI-Workflows und kleine Agenten für konkrete Aufgaben.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="tools">
-      <div class="section-head">
-        <div><div class="kicker">03 — Tools</div><h2>Simple. Useful. Fast.</h2></div>
-        <p class="section-intro">Kostenlose Utility-Tools als große Produktbibliothek. Die Verarbeitung erfolgt bei diesen Tools möglichst direkt im Browser.</p>
-      </div>
-
-      <div class="tool-bar">
-        <button class="filter-btn active" data-filter="all">Alle</button>
-        <button class="filter-btn" data-filter="business">Business</button>
-        <button class="filter-btn" data-filter="marketing">Marketing</button>
-        <button class="filter-btn" data-filter="utility">Utility</button>
-        <button class="filter-btn" data-filter="media">Media</button>
-      </div>
-
-      <div class="tool-grid">
-        <div class="tool" data-cat="business" data-tool="vat"><div class="tool-name">VAT Calculator</div><small>Netto, USt. & Brutto</small></div>
-        <div class="tool" data-cat="business" data-tool="invoice"><div class="tool-name">Invoice Calculator</div><small>Positionen, USt. & Rechnungsbetrag</small></div>
-        <div class="tool" data-cat="business" data-tool="skonto"><div class="tool-name">Skonto Calculator</div><small>Skonto, Zahlungsziel & Ersparnis</small></div>
-        <div class="tool" data-cat="business" data-tool="margin"><div class="tool-name">Margin & Markup</div><small>Marge, Aufschlag & Gewinn</small></div>
-        <div class="tool" data-cat="business" data-tool="breakeven"><div class="tool-name">Break-even Calculator</div><small>Fixkosten, Preis & Gewinnschwelle</small></div>
-        <div class="tool" data-cat="business" data-tool="percentage"><div class="tool-name">Percentage</div><small>Prozentwerte & Veränderungen</small></div>
-        <div class="tool" data-cat="business" data-tool="discount"><div class="tool-name">Discount Calculator</div><small>Rabatt, Ersparnis & Endpreis</small></div>
-        <div class="tool" data-cat="marketing" data-tool="roas"><div class="tool-name">ROAS / ROI Calculator</div><small>Werbeeffizienz & Kampagnenrendite</small></div>
-        <div class="tool" data-cat="marketing" data-tool="admetrics"><div class="tool-name">Ad Metrics Calculator</div><small>CTR, CPC, CPM, CPA & ROAS</small></div>
-        <div class="tool" data-cat="marketing" data-tool="utm"><div class="tool-name">UTM Builder</div><small>Kampagnen-Links erstellen</small></div>
-        <div class="tool" data-cat="marketing" data-tool="seo"><div class="tool-name">SEO Preview</div><small>Google-Snippet simulieren</small></div>
-        <div class="tool" data-cat="marketing" data-tool="characters"><div class="tool-name">Character Counter</div><small>Texte, Zeichen & Wörter prüfen</small></div>
-        <div class="tool" data-cat="media" data-tool="compressor"><div class="tool-name">Image Compressor</div><small>Bilder lokal verkleinern</small></div>
-        <div class="tool" data-cat="utility" data-tool="unit"><div class="tool-name">Unit Converter</div><small>Länge, Gewicht & Temperatur</small></div>
-        <div class="tool" data-cat="utility" data-tool="date"><div class="tool-name">Date Difference</div><small>Tage zwischen Terminen berechnen</small></div>
-        <div class="tool" data-cat="utility" data-tool="worktime"><div class="tool-name">Working Time Calculator</div><small>Arbeitszeit, Pause & Dezimalstunden</small></div>
-      </div>
-
-      <div class="demo-grid tools-demo-closed <div class="demo-grid tools-demo-closed" aria-hidden="true">
-        <div class="panel">
-          <h3>VAT Calculator</h3>
-          <div class="field"><label>Netto-Betrag</label><input id="vatAmount" type="number" min="0" step="0.01" value="100"></div>
-          <div class="field"><label>USt.-Satz</label><select id="vatRate"><option value="0.19">19 %</option><option value="0.07">7 %</option><option value="0">0 %</option></select></div>
-          <button class="btn primary" style="width:100%" id="vatBtn">Berechnen</button>
-          <div class="result"><div class="big" id="vatGross">119,00 €</div><span id="vatInfo">100,00 € netto + 19,00 € USt.</span></div>
-        </div>
-
-        <div class="panel">
-          <h3>Character Counter</h3>
-          <div class="field"><label>Text</label><textarea id="charText" rows="7" placeholder="Text hier eingeben..."></textarea></div>
-          <div class="result"><div class="big" id="charCount">0</div><span>Zeichen · Wörter: <b id="wordCount">0</b></span></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="games">
-  <div class="section-head">
-    <div><div class="kicker">04 — Games</div><h2>Play the projects.</h2></div>
-    <p class="section-intro">Blockbuster bleibt dein großes Projekt. Die Arcade ist ein kleiner Teil der Plattform und öffnet sich ausschließlich über die Boketta-Arcade-Box.</p>
-  </div>
-
-  <div class="games games-equal">
-    <a class="game game-equal" href="https://boketta-games.netlify.app" target="_blank" rel="noopener">
-      <div class="game-icon game-icon-block" aria-hidden="true"><span class="cube-top"></span><span class="cube-face"></span><span class="cube-side"></span></div>
-      <small>MAIN GAME</small><h3>Blockbuster</h3>
-      <p>Das größere Browsergame mit eigenem Fortschrittssystem und eigener Spielwelt.</p>
-      <span class="arrow">Blockbuster spielen →</span>
-    </a>
-    <button class="game game-equal" style="text-align:left;cursor:pointer" id="arcadeOpen" type="button">
-      <div class="game-icon game-icon-controller" aria-hidden="true"><span class="controller-body"></span><i class="controller-stick"></i><i class="controller-dot"></i></div>
-      <small>BOKETTA ARCADE</small><h3>Classic games, redesigned.</h3>
-      <p>Mahjong, UNO, Poker, Blackjack, Boketta Jump und Flappy Red.</p>
-      <span class="arrow">Arcade öffnen →</span>
-    </button>
-  </div>
-</section>
-
-    <section id="projects">
-      <div class="section-head">
-        <div><div class="kicker">05 — Projects</div><h2>More than one idea.</h2></div>
-        <p class="section-intro">Hier landen größere Experimente, Software-Ideen und kommende Releases.</p>
-      </div>
-      <div class="projects-grid">
-        <button class="project project-card" id="horrorProjectOpen" type="button">
-          <div>
-            <div class="tag">COMING SOON · PC PROJECT</div>
-            <h3><span class="clean-number">3</span>D Horror Game</h3>
-            <p>Ein eigenständiges 3D-Horrorspiel befindet sich aktuell in Entwicklung. Klicke hier, um den aktuellen Stand und die geplanten nächsten Schritte zu sehen.</p>
-          </div>
-          <div class="project-card-side"><span class="status-dot"></span><strong>In Entwicklung</strong><span class="arrow">Projekt ansehen →</span></div>
-        </button>
-      </div>
-    </section>
+    </details></section>
 
 
   </div>
@@ -949,10 +902,10 @@ body{padding-top:76px;}
 </footer>
 
 
-<div class="site-menu" id="siteMenu" aria-hidden="true">
+<div class="site-menu" id="siteMenu" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Navigation">
   <div class="site-menu-panel">
     <div class="site-menu-head"><div><div class="modal-kicker">Boketta Intl.</div><div class="menu-title">Menu</div></div><button class="close" id="menuClose" aria-label="Menü schließen">×</button></div>
-    <div class="menu-links">
+    <div class="menu-links"><div class="menu-label">ENTDECKEN</div><a class="menu-destination" href="#collection"><i data-icon="layers"></i> Alle Projekte <i data-icon="arrow"></i></a><a class="menu-destination" href="https://boketta-sm.netlify.app/" target="_blank" rel="noopener"><i data-icon="video"></i> Social Media Management <i data-icon="external"></i></a><a class="menu-destination" href="pace.html"><i data-icon="activity"></i> Pace <i data-icon="arrow"></i></a><a class="menu-destination" href="#games"><i data-icon="game"></i> Games & Arcade <i data-icon="arrow"></i></a><div class="menu-label">MEHR VON BOKETTA</div>
       <button type="button" data-menu-view="about-personal"><span>Über mich</span><small>Persönliche Vorstellung</small></button>
       <button type="button" data-menu-view="profile"><span>Profil</span><small>Creator · Builder · Marketing</small></button>
       <div class="menu-tools">
@@ -1458,7 +1411,7 @@ body{padding-top:76px;}
   }
   function mPct(){const p=Number(document.getElementById('pPct').value)||0,b=Number(document.getElementById('pBase').value)||0;document.getElementById('pOut').textContent=(p*b/100).toLocaleString('de-DE',{maximumFractionDigits:4})}
   function mDiscount(){const p=Number(document.getElementById('dPrice').value)||0,r=Math.min(100,Math.max(0,Number(document.getElementById('dRate').value)||0));const save=p*r/100;document.getElementById('dOut').textContent=euro(p-save);document.getElementById('dSub').textContent=`Du sparst ${euro(save)}`}
-  function mUTM(){const u=document.getElementById('uBase').value.trim()||'https://example.com';const params=new URLSearchParams();const vals=[['utm_source','uSource'],['utm_medium','uMedium'],['utm_campaign','uCampaign']];vals.forEach(([key,id])=>{const v=document.getElementById(id).value.trim();if(v)params.set(key,v)});document.getElementById('uOut').value=u+(params.toString()?((u.includes('?')?'&':'?')+params.toString()):'');document.getElementById('uOut').type='text'}
+  function mUTM(){const u=document.getElementById('uBase').value.trim()||'https://example.com';try{new URL(u)}catch{document.getElementById('uOut').textContent='Bitte eine vollständige URL mit https:// eingeben.';return}const params=new URLSearchParams();const vals=[['utm_source','uSource'],['utm_medium','uMedium'],['utm_campaign','uCampaign']];vals.forEach(([key,id])=>{const v=document.getElementById(id).value.trim();if(v)params.set(key,v)});const url=new URL(u);params.forEach((v,k)=>url.searchParams.set(k,v));document.getElementById('uOut').textContent=url.toString()}
 
   const money=n=>euro(Number.isFinite(n)?n:0);
   function mInvoice(){
@@ -1542,7 +1495,7 @@ body{padding-top:76px;}
   }
 
   function mPassword(){const len=Math.min(128,Math.max(6,Number(document.getElementById('pwLen').value)||20));const preset=document.getElementById('pwPreset').value;let pool='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';if(preset!=='letters')pool+='0123456789';if(preset==='all')pool+='!@#$%^&*()-_=+[]{}?';const arr=new Uint32Array(len);crypto.getRandomValues(arr);let out='';for(let i=0;i<len;i++)out+=pool[arr[i]%pool.length];document.getElementById('pwOut').value=out}
-  async function copyValue(id){const el=document.getElementById(id);const value=el.value??el.textContent??'';try{await navigator.clipboard.writeText(value);const b=event.currentTarget;if(b){const old=b.textContent;b.textContent='Kopiert';setTimeout(()=>b.textContent=old,1000)}}catch{}}
+  async function copyValue(id){const el=document.getElementById(id);const value=el.value??el.textContent??'';try{await navigator.clipboard.writeText(value);const b=document.activeElement;if(b){const old=b.textContent;b.textContent='Kopiert';setTimeout(()=>b.textContent=old,1000)}}catch{}}
   async function copyText(id){const el=document.getElementById(id);try{await navigator.clipboard.writeText(el.textContent||'')}catch{}}
   function previewImage(e){const file=e.target.files[0];if(!file)return;const url=URL.createObjectURL(file);document.getElementById('imgPreview').src=url;document.getElementById('imgResult').style.display='block';document.getElementById('imgInfo').textContent=`Original: ${(file.size/1024/1024).toFixed(2)} MB · ${file.type}`}
   async function compressImage(){const input=document.getElementById('imgInput'),file=input.files[0];if(!file)return;const img=new Image();img.src=URL.createObjectURL(file);await img.decode();const max=2400,scale=Math.min(1,max/Math.max(img.width,img.height));const canvas=document.createElement('canvas');canvas.width=Math.round(img.width*scale);canvas.height=Math.round(img.height*scale);canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);const q=(Number(document.getElementById('quality').value)||80)/100;canvas.toBlob(blob=>{if(!blob)return;const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='boketta-compressed.jpg';a.click();document.getElementById('imgInfo').textContent=`Original ${(file.size/1024/1024).toFixed(2)} MB → ${(blob.size/1024/1024).toFixed(2)} MB · lokal verarbeitet`},'image/jpeg',q)}
@@ -1882,8 +1835,8 @@ const menuOpen=document.getElementById("menuOpen");
 const menuClose=document.getElementById("menuClose");
 const projectModal=document.getElementById("projectModal");
 const projectClose=document.getElementById("projectClose");
-function openSiteMenu(){siteMenu.classList.add("open");siteMenu.setAttribute("aria-hidden","false");menuOpen?.setAttribute("aria-expanded","true")}
-function closeSiteMenu(){siteMenu.classList.remove("open");siteMenu.setAttribute("aria-hidden","true");menuOpen?.setAttribute("aria-expanded","false")}
+function openSiteMenu(){siteMenu.classList.add("open");document.body.style.overflow="hidden";menuClose.focus();siteMenu.setAttribute("aria-hidden","false");menuOpen?.setAttribute("aria-expanded","true")}
+function closeSiteMenu(){const wasOpen=siteMenu.classList.contains("open");siteMenu.classList.remove("open");document.body.style.overflow="";if(wasOpen)menuOpen.focus();siteMenu.setAttribute("aria-hidden","true");menuOpen?.setAttribute("aria-expanded","false")}
 menuOpen?.addEventListener("click",openSiteMenu);menuClose?.addEventListener("click",closeSiteMenu);
 siteMenu?.addEventListener("click",e=>{if(e.target===siteMenu)closeSiteMenu()});
 
@@ -1907,7 +1860,7 @@ document.querySelectorAll("[data-tool-jump]").forEach(btn=>btn.addEventListener(
 document.querySelectorAll("[data-menu-view]").forEach(btn=>btn.addEventListener("click",()=>{
   const v=btn.dataset.menuView; closeSiteMenu();
   if(v==="privacy"){legalTitle.textContent="Datenschutzerklärung";legalBody.innerHTML=legalPages.privacy;legalModal.classList.add("open");return}
-  if(v==="settings"){legalTitle.textContent="Einstellungen";legalBody.innerHTML=`<p class="modal-tool-intro">Einfache Einstellungen für diese Webseite.</p><div class="result"><strong>Darstellung</strong><span>Die aktuelle Oberfläche ist für Desktop und mobile Nutzung optimiert. Deine Spiele speichern lokale Bestwerte nur dort, wo die jeweilige Funktion dies benötigt.</span></div>`;legalModal.classList.add("open");return}
+  if(v==="settings"){legalTitle.textContent="Einstellungen";legalBody.innerHTML=`<p class="modal-tool-intro">Einfache Einstellungen für diese Webseite.</p><div class="result"><strong>Darstellung</strong><span>Wähle dein Design direkt oben in der Navigation. Dunkel ist der Standard; deine Auswahl wird auf diesem Gerät gespeichert. Deine Spiele speichern lokale Bestwerte nur dort, wo die jeweilige Funktion dies benötigt.</span></div>`;legalModal.classList.add("open");return}
   if(v==="profile"||v==="about-personal"){
     legalTitle.textContent="Über mich";
     legalBody.innerHTML=`<div class="about-personal-modal"><p class="modal-tool-intro">Creator · Builder · Marketing</p><h3>Vom ersten Projekt bis zu Boketta Intl.</h3><p>Ich verbinde Wirtschaft, Marketing, Technologie und Kreativität. Daraus entstehen Websites, KI-Produkte, Browser-Tools, Games und eigene digitale Experimente.</p><div class="about-tags"><span>Wirtschaft & Verwaltung</span><span>Marketing</span><span>Web</span><span>AI</span><span>Games</span><span>Design</span></div><div class="result"><strong>Education</strong><span>Fachabitur im Bereich Wirtschaft & Verwaltung und Ausbildung im Büromanagement.</span></div><div class="result"><strong>Digitaler Stack</strong><span>Praxis mit SEO, Google Ads, Google Analytics, Meta Business Manager, WordPress, GitHub, Netlify, Supabase und KI-Tools.</span></div><div class="result"><strong>Eigene Projekte</strong><span>Boketta AI Dashboard, Blockbuster, Browser-Utilities, Arcade-Projekte und das kommende 3D-Horror-Projekt.</span></div></div>`;
@@ -1961,7 +1914,7 @@ function setupBlackjackPro(){
 }
 
 /* escape */
-document.addEventListener("keydown",e=>{if(e.key==="Escape"){toolModal.classList.remove("open");legalModal.classList.remove("open");arcadeModal.classList.remove("open");projectModal?.classList.remove("open");closeSiteMenu?.()}});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){modal.classList.remove("open");legalModal.classList.remove("open");arcadeModal.classList.remove("open");projectModal?.classList.remove("open");closeSiteMenu?.()}});
 
 
 /* Scroll reveal — plays again when entering the viewport from either direction */
@@ -1981,5 +1934,6 @@ document.querySelectorAll("section,.card,.tool,.game,.project,.panel").forEach((
 });
 
 </script>
+<script src="hub.js"></script>
 </body>
 </html>
