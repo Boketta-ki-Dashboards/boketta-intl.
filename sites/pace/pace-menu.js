@@ -1,0 +1,4 @@
+const siteMenu=document.getElementById('siteMenu'),menuOpen=document.getElementById('menuOpen'),menuClose=document.getElementById('menuClose');
+function openSiteMenu(){siteMenu.classList.add('open');siteMenu.setAttribute('aria-hidden','false');menuOpen.setAttribute('aria-expanded','true');menuClose.focus()}
+function closeSiteMenu(){siteMenu.classList.remove('open');siteMenu.setAttribute('aria-hidden','true');menuOpen.setAttribute('aria-expanded','false');document.querySelectorAll('header,main,footer').forEach(el=>el.inert=false);menuOpen.focus()}
+menuOpen.addEventListener('click',openSiteMenu);menuClose.addEventListener('click',closeSiteMenu);siteMenu.addEventListener('click',e=>{if(e.target===siteMenu)closeSiteMenu()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&siteMenu.classList.contains('open'))closeSiteMenu()});
