@@ -1,0 +1,1985 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Boketta Intl. — digitale Tools, Games, AI-Produkte und eigene Projekte.">
+  <meta name="theme-color" content="#07111f">
+  <title>Boketta Intl. — Digital Products</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#07111f;
+      --bg2:#0a1728;
+      --surface:#0d1c30;
+      --surface2:#11253d;
+      --text:#f6f9ff;
+      --muted:#91a4ba;
+      --line:rgba(164,193,226,.14);
+      --blue:#4ca8ff;
+      --blue2:#176cff;
+      --cyan:#59e0ff;
+      --good:#66e3a4;
+      --warning:#ffc96b;
+      --shadow:0 24px 80px rgba(0,0,0,.34);
+      --radius:22px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;color:var(--text);font-family:"Manrope",sans-serif;
+      background:
+        radial-gradient(circle at 88% 0%,rgba(23,108,255,.18),transparent 28%),
+        radial-gradient(circle at 3% 20%,rgba(89,224,255,.07),transparent 22%),
+        linear-gradient(180deg,#07111f 0%,#081321 55%,#07111f 100%);
+      min-height:100vh;
+    }
+    body:before{
+      content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;
+      background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+      background-size:44px 44px;
+      mask-image:linear-gradient(to bottom,black,transparent 70%);
+    }
+    a{text-decoration:none;color:inherit}
+    button,input,textarea,select{font:inherit}
+    .wrap{width:min(1180px,calc(100% - 40px));margin:auto}
+    header{
+      position:sticky;top:0;z-index:100;width:100%;backdrop-filter:blur(18px);
+      background:rgba(7,17,31,.76);border-bottom:1px solid var(--line);
+    }
+    .nav{height:76px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+    .brand{display:flex;align-items:center;gap:11px;font-family:"Syne",sans-serif;font-weight:800;letter-spacing:-.045em}
+    .brand-mark{
+      width:36px;height:36px;border-radius:11px;display:grid;place-items:center;
+      color:#fff;background:linear-gradient(145deg,var(--blue2),var(--blue));
+      box-shadow:0 8px 26px rgba(23,108,255,.28)
+    }
+    .brand-name{font-size:16px}.brand-name span{color:#7e94ad;font-weight:600}
+    nav{display:flex;gap:4px;align-items:center}
+    nav a{font-size:13px;color:#b9c8d8;padding:10px 12px;border-radius:11px}
+    nav a:hover{background:rgba(255,255,255,.045);color:#fff}
+    nav .nav-cta{border:1px solid rgba(76,168,255,.35);color:#bfe4ff}
+    main{position:relative}
+    section{padding:96px 0}
+    .hero{min-height:calc(100vh - 76px);display:grid;grid-template-columns:1.06fr .94fr;align-items:center;gap:60px;padding-top:65px}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(76,168,255,.25);
+      background:rgba(76,168,255,.06);border-radius:999px;padding:8px 11px;color:#a9d9ff;
+      text-transform:uppercase;font-size:10px;font-weight:800;letter-spacing:.15em
+    }
+    .eyebrow i{width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 15px rgba(89,224,255,.9)}
+    h1,h2,h3{font-family:"Syne",sans-serif}
+    h1{
+      font-size:clamp(55px,8vw,94px);line-height:.9;letter-spacing:-.075em;margin:22px 0;
+    }
+    h1 span{display:block;color:#80c5ff}
+    .hero-copy{max-width:650px;color:#a9b9ca;line-height:1.7;font-size:18px}
+    .actions{display:flex;gap:11px;flex-wrap:wrap;margin-top:30px}
+    .btn{
+      border:1px solid var(--line);background:rgba(255,255,255,.035);color:#eaf3fc;
+      padding:13px 17px;border-radius:13px;display:inline-flex;justify-content:center;align-items:center;
+      gap:8px;cursor:pointer;transition:.2s ease
+    }
+    .btn:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.22)}
+    .btn.primary{border:0;background:linear-gradient(135deg,var(--blue2),var(--blue));font-weight:800;box-shadow:0 14px 32px rgba(23,108,255,.22)}
+    .hero-note{margin-top:18px;color:#6f8196;font-size:12px}
+    .hero-panel{
+      min-height:500px;border:1px solid var(--line);border-radius:30px;position:relative;overflow:hidden;
+      background:
+        radial-gradient(circle at 75% 15%,rgba(76,168,255,.15),transparent 27%),
+        linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.015));
+      box-shadow:var(--shadow)
+    }
+    .orb{position:absolute;border:1px solid rgba(76,168,255,.18);border-radius:50%}
+    .orb.one{width:340px;height:340px;right:-110px;top:-80px}
+    .orb.two{width:220px;height:220px;left:-80px;bottom:-85px}
+    .hub-card{
+      position:absolute;left:38px;right:38px;top:40px;border:1px solid var(--line);border-radius:20px;
+      background:rgba(6,15,27,.78);padding:18px;backdrop-filter:blur(12px)
+    }
+    .hub-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+    .hub-title{font-family:"Syne";font-weight:700}.live{font-size:10px;color:var(--good);padding:6px 9px;border:1px solid rgba(102,227,164,.2);border-radius:999px}
+    .hub-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    .stat{padding:17px;border-radius:15px;background:rgba(255,255,255,.035);border:1px solid var(--line)}
+    .stat small{display:block;color:#72869d;font-size:10px;text-transform:uppercase;letter-spacing:.1em}
+    .stat strong{display:block;font:700 28px "DM Sans";font-variant-numeric:tabular-nums;margin-top:5px}
+    .list-line{margin-top:13px;padding:13px 14px;border:1px solid var(--line);border-radius:13px;color:#afc0d3;font-size:12px;display:flex;justify-content:space-between}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:30px}
+    .kicker{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#62b7ff;font-weight:800}
+    h2{font-size:clamp(34px,4vw,54px);line-height:.98;letter-spacing:-.06em;margin:9px 0 0}
+    .section-intro{max-width:550px;color:var(--muted);line-height:1.65;font-size:14px;margin:0}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .card{
+      border:1px solid var(--line);border-radius:var(--radius);padding:22px;
+      background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.015));
+      min-height:220px;transition:.22s ease;position:relative;overflow:hidden
+    }
+    .card:hover{transform:translateY(-3px);border-color:rgba(76,168,255,.3);box-shadow:0 18px 50px rgba(0,0,0,.22)}
+    .featured{grid-column:span 2;min-height:280px;background:
+      radial-gradient(circle at 92% 14%,rgba(76,168,255,.13),transparent 26%),
+      linear-gradient(145deg,rgba(255,255,255,.05),rgba(255,255,255,.015))}
+    .card-icon{width:43px;height:43px;border-radius:13px;display:grid;place-items:center;border:1px solid rgba(76,168,255,.18);background:rgba(76,168,255,.06);color:#a9dbff}
+    .card-meta{display:flex;justify-content:space-between;align-items:center}
+    .tag{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#8497ad}
+    .card h3{font-size:25px;letter-spacing:-.04em;margin:21px 0 8px}
+    .featured h3{font-size:34px}
+    .card p{color:var(--muted);line-height:1.6;font-size:13px;max-width:650px}
+    .arrow{display:inline-flex;margin-top:15px;color:#8dcbff;font-size:13px;font-weight:800}
+    .tool-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+    .filter-btn{
+      border:1px solid var(--line);background:rgba(255,255,255,.03);color:#9fb0c2;
+      padding:9px 12px;border-radius:999px;cursor:pointer;font-size:11px
+    }
+    .filter-btn.active{background:#eaf6ff;color:#07111f;border-color:transparent;font-weight:800}
+    .tool-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
+    .tool{
+      border:1px solid var(--line);background:rgba(255,255,255,.025);padding:18px;border-radius:18px;cursor:pointer;transition:.2s
+    }
+    .tool:hover{transform:translateY(-2px);border-color:rgba(76,168,255,.28);background:rgba(76,168,255,.04)}
+    .tool-name{font:700 17px "Syne";letter-spacing:-.025em}.tool small{display:block;color:#7f93a9;line-height:1.45;margin-top:6px;font-size:11px}
+    .demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+    .panel{border:1px solid var(--line);border-radius:22px;padding:22px;background:rgba(255,255,255,.025)}
+    .panel h3{margin:0;font-size:23px}
+    .field{display:grid;gap:7px;margin:12px 0}
+    label{font-size:11px;color:#8296ad}
+    input,textarea,select{
+      width:100%;border:1px solid var(--line);background:#07111f;color:white;border-radius:12px;
+      padding:12px 13px;outline:none
+    }
+    textarea{resize:vertical}
+    input:focus,textarea:focus,select:focus{border-color:rgba(76,168,255,.5);box-shadow:0 0 0 3px rgba(76,168,255,.07)}
+    .result{margin-top:14px;padding:17px;border-radius:15px;border:1px solid rgba(76,168,255,.18);background:rgba(76,168,255,.045)}
+    .result .big{font:700 30px "DM Sans";font-variant-numeric:tabular-nums;color:#91ceff;letter-spacing:-.04em}
+    .result span{display:block;color:#71869d;font-size:11px;margin-top:3px}
+    .games{display:grid;grid-template-columns:1.18fr .82fr;gap:14px}
+    .game{min-height:300px;padding:28px;border:1px solid var(--line);border-radius:24px;position:relative;overflow:hidden;background:linear-gradient(140deg,rgba(76,168,255,.09),rgba(255,255,255,.018))}
+    .game h3{font-size:36px;margin:18px 0 8px}.game p{color:var(--muted);line-height:1.6;max-width:560px}
+    .game small{color:#83c5ff;text-transform:uppercase;letter-spacing:.13em;font-size:10px;font-weight:800}
+    .games-side{display:grid;gap:14px}.game.small{min-height:143px}.game.small h3{font-size:25px;margin:15px 0 5px}.game.small p{font-size:12px;margin:0}
+    .project{
+      border:1px solid var(--line);border-radius:23px;padding:27px;display:flex;justify-content:space-between;align-items:center;gap:25px;
+      background:linear-gradient(100deg,rgba(255,255,255,.04),rgba(255,255,255,.015))
+    }
+    .project h3{font-size:27px;margin:8px 0 0}.project p{color:var(--muted);font-size:13px;margin:7px 0 0}
+    .legal-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .legal{border:1px solid var(--line);border-radius:20px;padding:22px;background:rgba(255,255,255,.02)}
+    .legal h3{font-size:23px;margin:0 0 12px}.legal h4{font-size:13px;margin:15px 0 5px}.legal p{font-size:11px;color:#8396ab;line-height:1.65;margin:6px 0}
+    .placeholder{color:#bfdcff;background:rgba(76,168,255,.08);border:1px solid rgba(76,168,255,.16);padding:2px 6px;border-radius:6px}
+    footer{border-top:1px solid var(--line);padding:30px 0 44px;color:#72869c;font-size:11px}
+    .footer-nav{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px}.footer-nav a:hover{color:#b9ddff}
+
+    .modal::before{
+      content:"";position:absolute;inset:0;pointer-events:none;
+      background:radial-gradient(circle at 50% 0%,rgba(76,168,255,.12),transparent 34%);
+    }
+    .modal-box{
+      position:relative;width:min(700px,100%);max-height:90vh;overflow:auto;
+      border:1px solid rgba(122,178,229,.16);border-radius:26px;
+      background:
+        linear-gradient(180deg,rgba(17,37,61,.98),rgba(8,20,35,.99));
+      padding:0;box-shadow:0 35px 110px rgba(0,0,0,.48);
+    }
+    .modal-shell-top{
+      padding:20px 23px 18px;border-bottom:1px solid var(--line);
+      display:flex;justify-content:space-between;align-items:center;gap:20px;
+      background:linear-gradient(180deg,rgba(255,255,255,.035),transparent);
+    }
+    .modal-kicker{
+      display:inline-flex;align-items:center;gap:7px;color:#9fd7ff;font-size:10px;
+      text-transform:uppercase;letter-spacing:.16em;font-weight:800
+    }
+    .modal-kicker-dot{width:7px;height:7px;border-radius:50%;background:var(--blue);box-shadow:0 0 13px rgba(76,168,255,.8)}
+    .modal-subtitle{margin-top:4px;color:#6f849b;font-size:11px}
+    .modal-content{padding:23px}
+    .modal-tool-intro{
+      color:#8598ad;font-size:12px;line-height:1.55;margin:0 0 18px;
+      max-width:560px
+    }
+    .modal-divider{height:1px;background:var(--line);margin:18px 0}
+    .modal-box .result{background:linear-gradient(145deg,rgba(76,168,255,.08),rgba(76,168,255,.02));}
+    .tool-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:13px}
+    .tool-actions .btn{min-width:115px}
+    .mini-label{font-size:10px;color:#6f849b;text-transform:uppercase;letter-spacing:.11em}
+    .split-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .format-output{
+      min-height:165px;border:1px solid var(--line);border-radius:15px;background:#07111f;
+      padding:14px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;
+      line-height:1.55;white-space:pre-wrap;word-break:break-word;color:#cfe5f8
+    }
+    .score-badge{
+      display:inline-flex;align-items:center;justify-content:center;width:74px;height:74px;border-radius:50%;
+      border:6px solid rgba(76,168,255,.16);font:800 22px "Syne";color:#a8dcff;margin-bottom:10px
+    }
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,.72);backdrop-filter:blur(9px);z-index:200;display:none;align-items:center;justify-content:center;padding:18px}
+    .modal.open{display:flex}.modal-box{width:min(640px,100%);max-height:90vh;overflow:auto;border:1px solid var(--line);border-radius:23px;background:#0a1626;padding:23px;box-shadow:var(--shadow)}
+    .modal-head{display:flex;justify-content:space-between;align-items:start;gap:20px}.close{border:0;background:transparent;color:#8196ad;font-size:27px;cursor:pointer}
+    .notice{padding:12px 14px;border:1px solid rgba(102,227,164,.15);background:rgba(102,227,164,.04);border-radius:12px;color:#92cdb0;font-size:11px;margin-top:12px}
+    .copyrow{display:flex;gap:8px}.copyrow input{flex:1}.copyrow button{min-width:100px}
+    .color-output{height:130px;border-radius:15px;margin-top:13px;border:1px solid var(--line);display:flex;align-items:end;padding:13px;color:#07111f;font-weight:800}
+    .qr-box{text-align:center;padding:20px;border:1px dashed rgba(76,168,255,.24);border-radius:18px}
+    .qr-code{width:220px;height:220px;margin:0 auto 13px;background:white;display:grid;place-items:center;color:#111;font-weight:900;font-size:14px;letter-spacing:2px}
+    .drop{padding:32px;text-align:center;border:1px dashed rgba(76,168,255,.3);border-radius:18px;color:#8194aa}
+    .drop strong{display:block;color:#eef6ff;margin-bottom:7px}.drop input{margin-top:14px}
+    .image-result{display:none;margin-top:14px}.image-preview{max-width:100%;max-height:260px;border-radius:13px;display:block;margin:12px auto}
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}.grid,.tool-grid{grid-template-columns:1fr 1fr}.featured{grid-column:span 2}.games,.demo-grid,.legal-grid{grid-template-columns:1fr}
+      nav a:nth-child(-n+2){display:none}
+    }
+    @media (max-width:620px){
+      .wrap{width:calc(100% - 24px)}.nav{height:68px}.hero{padding-top:45px}h1{font-size:56px}.hero-panel{min-height:390px}
+      .hub-card{left:18px;right:18px;top:25px}.grid,.tool-grid{grid-template-columns:1fr}.featured{grid-column:span 1}.section-head{display:block}.section-intro{margin-top:12px}.actions .btn{width:100%}
+      .project{display:block}.project .btn{margin-top:18px;width:100%}
+    }
+  
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.7,.2,1)}
+    .reveal.is-visible{opacity:1;transform:none}
+    .delay-1{transition-delay:.06s}.delay-2{transition-delay:.12s}.delay-3{transition-delay:.18s}
+    @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+    .modal{align-items:flex-end;padding:0}
+    .modal-box{width:min(760px,100%);max-height:88vh;border-radius:20px 20px 0 0;border-bottom:0;background:#0b1727;padding:0;box-shadow:0 -20px 70px rgba(0,0,0,.42);animation:toolUp .18s ease-out forwards}
+    @keyframes toolUp{from{transform:translateY(14px)}to{transform:translateY(0)}}
+    .modal-shell-top{padding:17px 20px 15px;background:#0d1c2f;border-bottom:1px solid var(--line)}
+    .modal-kicker{font-size:9px;color:#7892ad;letter-spacing:.1em;text-transform:uppercase}
+    .modal-kicker-dot{display:none}
+    .modal-shell-top [id="modalTitle"]{font-family:"DM Sans",sans-serif!important;font-size:24px!important;font-weight:700!important;letter-spacing:-.035em!important}
+    .modal-content{padding:20px}
+    .modal-tool-intro{font-size:12px;color:#8195aa;line-height:1.55}
+    .modal-box input,.modal-box textarea,.modal-box select{border-radius:9px}
+    .modal-box .result{border-radius:12px;background:#0a1b2d}
+    @media (prefers-reduced-motion:reduce){.modal-box{animation:none}}
+
+/* Browser scrollbar — same Boketta palette */
+html{scrollbar-color:#2d78c9 #07111f;scrollbar-width:thin}
+::-webkit-scrollbar{width:11px;height:11px}
+::-webkit-scrollbar-track{background:#07111f}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#245f9f,#3d94e8);border-radius:999px;border:2px solid #07111f}
+::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#2f78c5,#5ba9f5)}
+
+/* Larger arcade selection */
+.arcade-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-top:14px}
+.arcade-card{appearance:none;text-align:left;min-height:154px;padding:18px;border:1px solid var(--line);border-radius:18px;
+background:linear-gradient(145deg,rgba(255,255,255,.042),rgba(255,255,255,.015));color:var(--text);cursor:pointer;transition:.2s}
+.arcade-card:hover{transform:translateY(-3px);border-color:rgba(76,168,255,.3);background:rgba(76,168,255,.04)}
+.arcade-card .game-icon{width:42px;height:42px;border-radius:12px;border:1px solid rgba(76,168,255,.18);display:grid;place-items:center;
+background:#0b1a2b;color:#a8d8ff;font-size:20px;margin-bottom:14px}
+.arcade-card strong{display:block;font:700 18px "Syne";letter-spacing:-.03em}.arcade-card small{display:block;color:#7f93a9;line-height:1.45;font-size:11px;margin-top:6px}
+.arcade-card.featured-arcade{grid-column:span 3;min-height:180px;background:linear-gradient(145deg,rgba(76,168,255,.08),rgba(255,255,255,.015))}
+.arcade-card.featured-arcade .game-icon{float:left;margin-right:14px}
+.game-board{border:1px solid var(--line);border-radius:16px;background:#081522;min-height:270px;padding:16px}
+.play-status{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:13px;font-size:11px;color:#8296ad}
+.play-status strong{color:#d8ecff}
+.play-table{border:1px solid rgba(115,176,224,.11);background:radial-gradient(circle at 50% 35%,rgba(38,124,205,.12),transparent 52%),#07131f;border-radius:18px;padding:18px;min-height:265px}
+.play-cards{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.play-card{position:relative;width:70px;height:98px;border-radius:10px;background:#f5f7fb;color:#0c1520;border:1px solid #b9c6d2;
+box-shadow:0 5px 16px rgba(0,0,0,.25);padding:7px;display:flex;flex-direction:column;justify-content:space-between;font:700 14px "DM Sans";cursor:pointer}
+.play-card.red{color:#b52942}.play-card.back{background:linear-gradient(145deg,#0e2238,#163554);color:#92cfff;border-color:#2b6597;align-items:center;justify-content:center}
+.play-card.back .card-logo{width:42px;height:42px;border-radius:10px;border:1px solid #4688c1;display:grid;place-items:center;font:800 22px "Syne";background:#0c1c2e}
+.play-card .center{font-size:28px;text-align:center;line-height:1}
+.play-card small{font-size:10px}
+.game-controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.maze{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;max-width:390px;margin:auto}.maze button{aspect-ratio:1;border-radius:9px;border:1px solid var(--line);background:#0a1a2b;cursor:pointer}
+.maze button.active{background:var(--blue);box-shadow:0 0 18px rgba(76,168,255,.3)}
+.uno-hand,.sol-hand{display:flex;gap:6px;flex-wrap:wrap}.uno-color{padding:10px 14px;border-radius:10px;border:1px solid var(--line);color:#fff;background:#0c2033;cursor:pointer}
+.poker-table{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;max-width:430px;margin:0 auto}.poker-slot{min-height:96px}
+.pixel-note{font:10px/1.4 ui-monospace,monospace;color:#7891aa;letter-spacing:.05em}
+@media(max-width:900px){.arcade-grid{grid-template-columns:1fr 1fr}.arcade-card.featured-arcade{grid-column:span 2}}
+@media(max-width:620px){.arcade-grid{grid-template-columns:1fr}.arcade-card.featured-arcade{grid-column:span 1}.play-card{width:62px;height:88px}}
+
+
+.arcade-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}.arcade-card{appearance:none;text-align:left;min-height:145px;padding:18px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,rgba(255,255,255,.043),rgba(255,255,255,.014));color:var(--text);cursor:pointer;transition:.2s;touch-action:manipulation}.arcade-card:hover{transform:translateY(-3px);border-color:rgba(76,168,255,.32);background:rgba(76,168,255,.045)}.arcade-card .game-icon{width:42px;height:42px;border-radius:12px;border:1px solid rgba(76,168,255,.18);display:grid;place-items:center;background:#0b1a2b;color:#a8d8ff;font-size:20px;margin-bottom:14px}.arcade-card strong{display:block;font:700 18px "Syne";letter-spacing:-.03em}.arcade-card small{display:block;color:#7f93a9;line-height:1.45;font-size:11px;margin-top:6px}.arcade-tabs{display:flex;gap:7px;overflow-x:auto;padding-bottom:3px}.arcade-stage{border:1px solid var(--line);border-radius:16px;background:#081522;padding:16px;min-height:295px;overflow:hidden}.play-status{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:13px;font-size:11px;color:#8296ad}.play-status strong{color:#d8ecff}.play-cards{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.play-card{width:70px;height:98px;border-radius:10px;background:#f6f8fc;color:#0d1520;border:1px solid #bac7d2;box-shadow:0 5px 15px rgba(0,0,0,.24);padding:7px;display:flex;flex-direction:column;justify-content:space-between;font:700 14px "DM Sans";cursor:pointer;user-select:none}.play-card.red{color:#b62b43}.play-card.back{background:linear-gradient(145deg,#0e2238,#183b5e);color:#91ccff;border-color:#2e71a8;align-items:center;justify-content:center}.card-logo{width:42px;height:42px;border:1px solid #4d8fca;border-radius:10px;display:grid;place-items:center;background:#0b1c2e;font:800 22px "Syne"}.play-card .center{font-size:27px;text-align:center;line-height:1}.play-card small{font-size:10px}.mah-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:430px;margin:16px auto}.mah-tile{min-height:60px;border:1px solid var(--line);border-radius:10px;background:#0b1b2c;color:#bfe0fb;font-size:22px;cursor:pointer;touch-action:manipulation}.mah-tile.open{background:#123455;border-color:#4ca8ff}.mah-tile.done{opacity:.14;pointer-events:none}.uno-hand{display:flex;flex-wrap:wrap;gap:7px}.uno-card{width:58px;height:82px;border-radius:10px;border:2px solid rgba(255,255,255,.4);display:flex;flex-direction:column;justify-content:space-between;padding:7px;color:#fff;cursor:pointer;font-weight:800;box-shadow:0 5px 13px rgba(0,0,0,.25);touch-action:manipulation}.uno-r{background:#ba2b3d}.uno-g{background:#1d8b5b}.uno-b{background:#276dd6}.uno-y{background:#cf9a16;color:#0e1a27}
+@media(max-width:900px){.arcade-grid{grid-template-columns:1fr 1fr}.modal.arcade-modal{padding:10px}}@media(max-width:620px){.arcade-grid{grid-template-columns:1fr}.arcade-card{min-height:120px}.play-card{width:61px;height:87px}.mah-grid{gap:6px}.mah-tile{min-height:52px;font-size:19px}.uno-card{width:52px;height:75px}.arcade-stage{padding:12px}.modal.arcade-modal{padding:6px}.modal.arcade-modal .modal-box{width:100%;max-height:96vh;border-radius:17px}}
+
+
+/* ===== Boketta Arcade · mobile-game shell ===== */
+.arcade-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:15px}
+.arcade-card{appearance:none;text-align:left;min-height:150px;padding:18px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.015));color:var(--text);cursor:pointer;transition:.22s ease;touch-action:manipulation}
+.arcade-card:hover{transform:translateY(-4px);border-color:rgba(76,168,255,.38);box-shadow:0 14px 35px rgba(0,0,0,.18)}
+.arcade-card .game-icon{width:44px;height:44px;border-radius:13px;border:1px solid rgba(76,168,255,.18);display:grid;place-items:center;background:#0b1a2b;color:#a8d8ff;font-size:20px;margin-bottom:14px}
+.arcade-card strong{display:block;font:700 18px "Syne";letter-spacing:-.03em}
+.arcade-card small{display:block;color:#7f93a9;line-height:1.45;font-size:11px;margin-top:6px}
+.arcade-modal{align-items:center!important;padding:16px!important}
+.arcade-modal .modal-box{width:min(1020px,100%)!important;max-height:min(94vh,920px)!important;border:1px solid rgba(122,178,229,.17)!important;border-radius:24px!important}
+.arcade-tabs{display:flex;gap:7px;overflow-x:auto;scrollbar-width:thin;padding:0 0 6px}
+.arcade-tabs .filter-btn{white-space:nowrap;flex:0 0 auto}
+.arcade-shell{min-height:560px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,#081522 0%,#07111d 100%);overflow:hidden}
+.arcade-topbar{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-bottom:1px solid var(--line);background:#0a1727}
+.arcade-topbar .left,.arcade-topbar .right{display:flex;align-items:center;gap:10px}
+.arcade-title{font:700 13px "DM Sans";letter-spacing:.02em}.arcade-caption{font-size:10px;color:#6d839b}
+.arcade-icon-btn{width:38px;height:38px;border:1px solid var(--line);border-radius:11px;background:#0b1b2d;color:#bcd7ef;cursor:pointer;touch-action:manipulation}
+.arcade-main{padding:15px;min-height:500px}
+.arcade-actionbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.arcade-actionbar .muted{color:#71869b;font-size:11px}
+.arcade-primary{background:linear-gradient(135deg,#176cff,#4ca8ff)!important;color:white!important;border:0!important}
+.arcade-secondary{background:#0a1b2d!important;border:1px solid var(--line)!important}
+.touch-card{width:78px;height:110px;border-radius:12px;background:#f6f8fc;color:#111a23;border:1px solid #b8c6d2;box-shadow:0 7px 17px rgba(0,0,0,.28);padding:8px;display:flex;flex-direction:column;justify-content:space-between;font:700 14px "DM Sans";cursor:pointer;user-select:none;transition:.16s;touch-action:manipulation}
+.touch-card.red{color:#b82a44}.touch-card.back{background:linear-gradient(145deg,#0d2035,#18446b);border-color:#2f73ac;color:#9cd3ff;align-items:center;justify-content:center}
+.touch-card.selected{transform:translateY(-8px);outline:2px solid #4ca8ff;box-shadow:0 14px 25px rgba(76,168,255,.2)}
+.touch-card .tc-center{text-align:center;font-size:31px;line-height:1}.touch-card small{font-size:10px}
+.card-stack{display:flex;gap:9px;flex-wrap:wrap;align-items:flex-start}
+.arcade-message{min-height:23px;color:#9ab0c5;font-size:12px;line-height:1.5;margin-top:12px}
+.score-panel{display:flex;gap:9px;flex-wrap:wrap}.score-chip{padding:9px 11px;border:1px solid var(--line);border-radius:11px;background:#0a1929;min-width:100px}.score-chip small{display:block;color:#70869e;font-size:9px;text-transform:uppercase;letter-spacing:.08em}.score-chip strong{display:block;font:700 20px "DM Sans";font-variant-numeric:tabular-nums;color:#dbeeff;margin-top:2px}
+/* Mahjong */
+.mj-layout{display:grid;grid-template-columns:1fr 260px;gap:14px;align-items:start}.mj-board{min-height:430px;border:1px solid rgba(76,168,255,.12);border-radius:18px;background:radial-gradient(circle at 50% 20%,rgba(76,168,255,.10),transparent 48%),#081624;padding:18px;display:grid;place-items:center}
+.mj-grid-pro{display:grid;grid-template-columns:repeat(4,72px);gap:10px}.mj-tile-pro{width:72px;height:72px;border-radius:12px;border:1px solid #1d4165;background:linear-gradient(145deg,#123554,#0b2238);color:#b9ddfb;display:grid;place-items:center;font-size:27px;cursor:pointer;box-shadow:0 6px 14px rgba(0,0,0,.2);touch-action:manipulation;transition:.16s}.mj-tile-pro.open{border-color:#4ca8ff;transform:translateY(-3px);background:#123d62}.mj-tile-pro.done{visibility:hidden}
+.mj-side{border:1px solid var(--line);border-radius:16px;padding:14px;background:#0a1828}.mj-side h4{margin:0 0 10px;font:700 15px "Syne"}.mj-rule{color:#748aa1;font-size:11px;line-height:1.55;margin-bottom:14px}
+/* UNO */
+.uno-layout-pro{display:grid;gap:13px}.uno-zone{border:1px solid var(--line);border-radius:15px;padding:13px;background:#0a1828}.uno-label{font-size:9px;text-transform:uppercase;letter-spacing:.11em;color:#70869d;margin-bottom:8px}.uno-mini{display:flex;gap:7px;flex-wrap:wrap}.uno-pro-card{width:58px;height:84px;border-radius:12px;border:2px solid rgba(255,255,255,.48);color:white;padding:7px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;font-weight:800;box-shadow:0 6px 14px rgba(0,0,0,.22);touch-action:manipulation;transition:.16s}.uno-pro-card:hover{transform:translateY(-5px)}.uno-pro-card.red{background:#c52a41}.uno-pro-card.green{background:#198e5d}.uno-pro-card.blue{background:#286fda}.uno-pro-card.yellow{background:#d1a019;color:#0d1924}.uno-pro-card.wild{background:#172838}.uno-color-picker{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}.uno-color-picker button{height:38px;border:0;border-radius:9px;cursor:pointer;touch-action:manipulation}
+/* Solitaire */
+.sol-layout{display:grid;gap:13px}.sol-top{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}.sol-slot{min-height:100px;border:1px dashed rgba(115,176,224,.2);border-radius:12px;background:#091827;display:grid;place-items:center;color:#6c849c}.sol-tableau-pro{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:7px}.sol-col-pro{min-height:300px;border:1px dashed rgba(115,176,224,.13);border-radius:11px;padding:5px;display:flex;flex-direction:column;align-items:center}.sol-col-pro .touch-card{margin-top:-49px}.sol-col-pro .touch-card:first-child{margin-top:0}
+/* Poker */
+.poker-pro{display:grid;gap:14px}.poker-center{display:grid;place-items:center;min-height:160px;border:1px solid rgba(76,168,255,.1);border-radius:18px;background:radial-gradient(circle at 50% 40%,rgba(76,168,255,.12),transparent 45%),#081522}.hold-card-wrap{display:flex;flex-direction:column;gap:6px}.hold-label{text-align:center;font-size:9px;text-transform:uppercase;letter-spacing:.09em;color:#6e849a;min-height:12px}
+/* Blackjack */
+.bj-pro{display:grid;gap:13px}.bj-table{min-height:410px;border-radius:20px;border:1px solid rgba(76,168,255,.12);background:radial-gradient(circle at 50% 50%,rgba(24,108,255,.13),transparent 55%),#071520;padding:18px;display:grid;grid-template-rows:auto 1fr auto;gap:15px}.bj-seat{display:grid;gap:8px}.bj-seat-title{font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:#7188a1}.bj-center{display:grid;place-items:center;color:#5d7894;font:600 12px "Syne";letter-spacing:.11em}
+/* Reaction */
+.reaction-pro{display:grid;gap:14px}.reaction-arena{min-height:420px;border:1px solid rgba(76,168,255,.12);border-radius:20px;background:#081522;display:grid;place-items:center;transition:background .18s,box-shadow .18s}.reaction-arena.go{background:radial-gradient(circle,#164b74 0%,#0a253a 45%,#081522 100%);box-shadow:inset 0 0 80px rgba(76,168,255,.15)}.reaction-button{width:230px;height:100px;border-radius:18px;border:1px solid rgba(255,255,255,.15);background:linear-gradient(145deg,#176cff,#4ca8ff);color:white;font:800 18px "DM Sans";cursor:pointer;touch-action:manipulation}
+
+/* ===== Premium table presentation + card motion ===== */
+.arcade-shell{position:relative}
+.table-felt{position:relative;overflow:hidden;border:1px solid rgba(99,176,235,.14);border-radius:26px;background:
+ radial-gradient(circle at 50% 42%,rgba(76,168,255,.18),transparent 34%),
+ radial-gradient(circle at 50% 50%,rgba(11,71,49,.68),rgba(5,28,24,.96) 62%,rgba(4,19,29,1) 100%);
+ box-shadow:inset 0 0 0 1px rgba(255,255,255,.02),inset 0 24px 60px rgba(0,0,0,.2),0 20px 55px rgba(0,0,0,.22);min-height:460px;padding:22px}
+.table-felt:before{content:"";position:absolute;inset:10px;border:1px solid rgba(205,240,255,.07);border-radius:22px;pointer-events:none}
+.table-felt:after{content:"";position:absolute;left:50%;top:50%;width:220px;height:220px;transform:translate(-50%,-50%);border:1px solid rgba(176,224,255,.06);border-radius:50%;box-shadow:0 0 90px rgba(76,168,255,.06);pointer-events:none}
+.table-center-logo{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font:800 12px "Syne";letter-spacing:.25em;color:rgba(188,226,255,.16);pointer-events:none}
+.uno-table{position:relative;min-height:450px;display:grid;grid-template-columns:150px 1fr 150px;grid-template-rows:100px 1fr 145px;gap:10px;align-items:center;z-index:1}
+.uno-seat{display:flex;flex-direction:column;gap:7px;align-items:center;min-width:0}
+.uno-seat.top{grid-column:2;grid-row:1}.uno-seat.left{grid-column:1;grid-row:2}.uno-seat.right{grid-column:3;grid-row:2}.uno-seat.bottom{grid-column:2;grid-row:3;align-self:end}
+.uno-avatar{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#0c2b43,#163e59);border:1px solid rgba(117,189,239,.25);box-shadow:0 8px 18px rgba(0,0,0,.22);font:800 13px "Syne";color:#bde6ff;position:relative}
+.uno-seat.active .uno-avatar{box-shadow:0 0 0 2px rgba(76,168,255,.4),0 0 25px rgba(76,168,255,.24);animation:seatPulse 1.1s ease-in-out infinite alternate}
+.uno-seat .seat-name{font:700 11px "DM Sans";color:#d9ecff}.uno-seat .seat-count{font:10px "DM Sans";color:#6f879d}
+.uno-fan{display:flex;justify-content:center;min-height:60px}
+.uno-fan .uno-pro-card.mini{width:34px;height:50px;margin-left:-8px;border-radius:8px;padding:4px;font-size:9px;cursor:default}
+.uno-fan .uno-pro-card.mini:first-child{margin-left:0}
+.uno-center{grid-column:2;grid-row:2;display:flex;align-items:center;justify-content:center;gap:28px}
+.uno-pile{display:flex;flex-direction:column;align-items:center;gap:7px}.uno-pile-label{font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:rgba(204,232,250,.45)}
+.uno-pro-card.table-card{width:74px;height:108px;border-radius:13px;box-shadow:0 10px 26px rgba(0,0,0,.3),0 0 0 1px rgba(255,255,255,.05) inset;position:relative}
+.uno-pro-card.table-card.played{animation:cardPlay .42s cubic-bezier(.2,.9,.25,1)}
+.uno-discard-wrap{transform:rotate(-2deg)}
+.uno-deck-wrap{transform:rotate(3deg);position:relative}.uno-deck-wrap:after,.uno-deck-wrap:before{content:"";position:absolute;inset:4px;border-radius:12px;border:1px solid rgba(255,255,255,.08);z-index:-1}.uno-deck-wrap:after{transform:translate(4px,4px);opacity:.6}.uno-deck-wrap:before{transform:translate(8px,8px);opacity:.35}
+.uno-your-hand{border:1px solid rgba(111,184,231,.10);background:rgba(4,18,29,.5);border-radius:18px;padding:12px 10px 8px;backdrop-filter:blur(4px)}
+.uno-hand-pro{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.uno-hand-pro .uno-pro-card{transition:transform .18s ease,box-shadow .18s ease;animation:handDeal .38s both}
+.uno-hand-pro .uno-pro-card:hover{transform:translateY(-14px);box-shadow:0 18px 28px rgba(0,0,0,.34)}
+.uno-hand-pro .uno-pro-card.uno-disabled{opacity:.38;cursor:not-allowed;filter:saturate(.7)}
+.uno-action-row{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:8px}.uno-status-strip{display:flex;gap:7px;justify-content:center;flex-wrap:wrap}
+.uno-mini-stat{font-size:10px;color:#8aa4bb;border:1px solid rgba(111,184,231,.1);background:rgba(7,20,33,.6);padding:7px 9px;border-radius:9px}
+.uno-banner{min-height:18px;text-align:center;color:#cfe9ff;font-size:12px}.uno-color-picker.pro{max-width:300px;margin:0 auto;background:rgba(5,18,29,.84);padding:8px;border-radius:13px;border:1px solid rgba(119,198,244,.16);box-shadow:0 14px 25px rgba(0,0,0,.24)}
+.uno-color-picker.pro button{height:42px;box-shadow:inset 0 0 0 2px rgba(255,255,255,.1)}
+.blackjack-table{position:relative;overflow:hidden;border:1px solid rgba(99,176,235,.14);border-radius:28px;min-height:520px;padding:22px;background:
+ radial-gradient(circle at 50% 34%,rgba(89,224,255,.10),transparent 28%),
+ radial-gradient(circle at 50% 50%,rgba(19,110,68,.74),rgba(6,36,29,.98) 58%,#041c1c 100%);
+ box-shadow:inset 0 0 0 1px rgba(255,255,255,.02),inset 0 24px 60px rgba(0,0,0,.22),0 22px 60px rgba(0,0,0,.25)}
+.bj-rail{position:absolute;inset:14px;border:1px solid rgba(222,240,248,.07);border-radius:24px;pointer-events:none}.bj-arc{position:absolute;left:50%;top:52%;width:76%;height:42%;transform:translate(-50%,-50%);border:1px solid rgba(214,239,250,.06);border-radius:50%;pointer-events:none}
+.bj-zone{position:relative;z-index:1;display:grid;grid-template-rows:auto 1fr auto;gap:26px;min-height:474px}.bj-dealer-zone,.bj-player-zone{display:grid;gap:9px}.bj-zone-label{display:flex;justify-content:space-between;align-items:center;color:#d5ebfa;font:700 11px "DM Sans"}.bj-zone-label span{font-size:10px;color:#7693aa;font-weight:500}
+.bj-card-row{display:flex;justify-content:center;gap:9px;min-height:112px;align-items:center}.bj-card-row .touch-card{animation:dealCard .46s cubic-bezier(.2,.85,.2,1) both}.bj-card-row .touch-card:nth-child(2){animation-delay:.12s}.bj-card-row .touch-card:nth-child(3){animation-delay:.18s}.bj-card-row .touch-card:nth-child(4){animation-delay:.24s}
+.bj-badge{text-align:center;color:rgba(216,239,252,.3);font:800 12px "Syne";letter-spacing:.22em}.bj-badge.win{color:#86e9bf;text-shadow:0 0 24px rgba(134,233,191,.26);animation:badgePop .35s ease-out}.bj-badge.lose{color:#ff9eaa}.bj-badge.push{color:#9dd5ff}
+.bj-hand-card{position:relative}.bj-chip-bet{display:inline-flex;align-items:center;gap:6px;padding:5px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.08);background:rgba(2,16,18,.45);font-size:9px;color:#9ab0bc}
+.bj-bottom-bar{display:flex;flex-direction:column;gap:9px}.bj-bet-controls{display:flex;justify-content:center;align-items:center;gap:7px}.bj-bet-chip{min-width:74px;text-align:center;padding:8px 10px;border-radius:10px;border:1px solid rgba(135,212,246,.18);background:rgba(4,17,27,.6);color:#dff4ff;font:700 13px "DM Sans"}.bj-bet-btn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:#0a1b2d;color:#c6e7fb;cursor:pointer}.bj-action-row{display:flex;justify-content:center;gap:7px;flex-wrap:wrap}
+.bj-chip-burst{animation:chipBurst .42s ease-out}.uno-table.flash,.blackjack-table.flash{box-shadow:inset 0 0 0 1px rgba(119,202,255,.12),inset 0 0 60px rgba(76,168,255,.08),0 0 34px rgba(76,168,255,.12)}
+@keyframes dealCard{from{opacity:0;transform:translateY(-35px) translateX(18px) rotate(5deg) scale(.88)}to{opacity:1;transform:none}}
+@keyframes handDeal{from{opacity:0;transform:translateY(18px) scale(.9) rotate(2deg)}to{opacity:1;transform:none}}
+@keyframes cardPlay{0%{transform:translateY(0) scale(1)}45%{transform:translateY(-18px) scale(1.03)}100%{transform:translateY(0) scale(1)}}
+@keyframes badgePop{from{transform:scale(.82);opacity:.2}to{transform:scale(1);opacity:1}}
+@keyframes seatPulse{from{transform:scale(1)}to{transform:scale(1.04)}}
+@keyframes chipBurst{from{transform:scale(.75);opacity:.4}to{transform:scale(1);opacity:1}}
+@media(max-width:900px){.uno-table{grid-template-columns:90px 1fr 90px}.uno-fan .uno-pro-card.mini{width:29px;height:44px}.uno-pro-card.table-card{width:65px;height:95px}.blackjack-table{min-height:480px}.bj-zone{min-height:430px}}
+@media(max-width:620px){.uno-table{grid-template-columns:62px 1fr 62px;grid-template-rows:88px 1fr 150px;min-height:460px}.uno-center{gap:12px}.uno-pro-card.table-card{width:58px;height:85px}.uno-hand-pro{gap:5px}.uno-hand-pro .uno-pro-card{width:48px;height:72px}.uno-seat .seat-name{font-size:10px}.uno-seat .seat-count{font-size:9px}.uno-avatar{width:40px;height:40px}.blackjack-table{border-radius:20px;padding:14px;min-height:500px}.bj-zone{gap:19px;min-height:458px}.bj-card-row{gap:6px}.bj-card-row .touch-card{width:58px;height:84px}.bj-bottom-bar{padding-bottom:2px}.bj-action-row .btn{padding:10px 11px}}
+
+/* Mobile */
+@media(max-width:900px){.arcade-grid{grid-template-columns:1fr 1fr}.mj-layout{grid-template-columns:1fr}.mj-side{order:-1}.sol-tableau-pro{grid-template-columns:repeat(4,minmax(0,1fr))}.arcade-modal{padding:9px!important}}
+.about-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.about-grid .featured{grid-column:span 2;min-height:250px}.about-card-main{display:block}.about-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}.about-tags span{font-size:10px;color:#a9d9ff;border:1px solid rgba(76,168,255,.18);background:rgba(76,168,255,.055);padding:7px 9px;border-radius:999px}.about-quote{margin-top:14px}@media(max-width:620px){.about-grid{grid-template-columns:1fr}.about-grid .featured{grid-column:span 1}}
+@media(max-width:620px){
+  .arcade-grid{grid-template-columns:1fr}.arcade-modal{padding:0!important}.arcade-modal .modal-box{width:100%!important;max-height:100vh!important;height:100dvh;border-radius:0!important;border-left:0!important;border-right:0!important}
+  .arcade-modal .modal-content{padding:10px}.arcade-shell{border-radius:13px;min-height:calc(100dvh - 150px)}.arcade-main{padding:10px;min-height:0}.arcade-topbar{padding:10px}.arcade-actionbar{margin-bottom:9px}
+  .arcade-stage{min-height:0}.touch-card{width:60px;height:87px}.uno-pro-card{width:53px;height:78px}.mj-board{min-height:350px;padding:10px}.mj-grid-pro{grid-template-columns:repeat(4,58px);gap:6px}.mj-tile-pro{width:58px;height:58px;font-size:21px}.sol-tableau-pro{grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}.sol-col-pro{min-height:235px}.sol-col-pro .touch-card{margin-top:-38px}.sol-top{grid-template-columns:repeat(4,1fr)}.sol-top .sol-slot:last-child{display:none}
+  .poker-center{min-height:125px}.bj-table{min-height:355px;padding:12px}.reaction-arena{min-height:calc(100dvh - 315px);min-height:390px}.score-chip{min-width:0;flex:1}.arcade-tabs{padding-bottom:2px}
+}
+
+
+/* ===== Arcade game upgrades: poker / blackjack / UNO ===== */
+.poker-pro-grid{display:grid;grid-template-columns:210px 1fr;gap:14px;align-items:stretch}
+.poker-seats{display:grid;gap:8px;align-content:start}
+.poker-seat{border:1px solid var(--line);border-radius:13px;padding:10px;background:#0a1828}
+.poker-seat.active{border-color:rgba(76,168,255,.55);box-shadow:0 0 0 1px rgba(76,168,255,.12)}
+.poker-seat.folded{opacity:.45}
+.poker-seat .pname{font:700 13px "Syne"}.poker-seat .psub{color:#7890a8;font-size:10px;margin-top:3px}
+.poker-seat .pcards{display:flex;gap:4px;margin-top:7px}
+.poker-seat .pcards .touch-card{width:34px;height:48px;font-size:8px;padding:4px;border-radius:6px}
+.poker-seat .pcards .touch-card .tc-center{font-size:15px}
+.poker-seat .pcards .touch-card small{font-size:7px}
+.poker-center .hold-label{margin:10px 0 6px}
+.bj-hand-block{display:grid;gap:8px}
+.bj-hand-chip{padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:#0a1929;color:#b9d2e8;font-size:10px}
+@media(max-width:700px){
+  .poker-pro-grid{grid-template-columns:1fr}
+  .poker-seats{grid-template-columns:1fr 1fr}
+  .poker-seat{min-height:80px}
+}
+
+
+/* ===== Premium arcade skins ===== */
+.table-felt,.uno-premium-table,.bj-casino,.mj-premium-board{position:relative}
+.uno-premium-table{min-height:590px;border-radius:28px;border:1px solid rgba(112,200,160,.22);background:radial-gradient(circle at 50% 46%,rgba(54,150,108,.26),transparent 44%),radial-gradient(circle at 50% 50%,#14583f 0%,#0d3a2c 47%,#08271f 100%);box-shadow:inset 0 0 80px rgba(0,0,0,.35),0 24px 55px rgba(0,0,0,.24);overflow:hidden}
+.uno-felt-ring{position:absolute;inset:20px;border:1px solid rgba(255,255,255,.12);border-radius:50%;pointer-events:none}
+.uno-seat.premium{position:absolute;display:grid;justify-items:center;gap:4px;z-index:5;transition:.35s ease}
+.uno-seat.premium.top{top:19px;left:50%;transform:translateX(-50%)}.uno-seat.premium.left{left:20px;top:50%;transform:translateY(-50%)}.uno-seat.premium.right{right:20px;top:50%;transform:translateY(-50%)}.uno-seat.premium.bottom{left:50%;bottom:14px;transform:translateX(-50%);width:92%}
+.uno-seat.active-seat{filter:drop-shadow(0 0 13px rgba(112,224,170,.55));transform:translateX(-50%) scale(1.035)}.uno-seat.left.active-seat,.uno-seat.right.active-seat{transform:translateY(-50%) scale(1.035)}
+.uno-avatar{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#dbeeff,#8ab7dc);color:#092033;font:800 12px "Syne";border:3px solid rgba(255,255,255,.3);box-shadow:0 8px 22px rgba(0,0,0,.25)}
+.seat-name{font:800 11px "DM Sans";letter-spacing:.09em}.seat-count{font-size:9px;color:#b4d2c6}
+.uno-fan{display:flex;justify-content:center;min-height:34px}.uno-fan .mini-card{width:26px!important;height:38px!important;margin-left:-8px!important;pointer-events:none}
+.uno-center-premium{position:absolute;top:50%;left:50%;transform:translate(-50%,-54%);display:flex;gap:24px;align-items:center;z-index:4}
+.uno-pile-pair{display:grid;justify-items:center;gap:7px}.uno-pile-label{font:700 8px "DM Sans";letter-spacing:.16em;color:#8fc8b4}
+.uno-deck{width:78px;height:112px;border-radius:14px;border:2px solid rgba(255,255,255,.36);background:linear-gradient(145deg,#132d44,#0a1726);box-shadow:0 11px 25px rgba(0,0,0,.35);color:#8ed0ff;font:800 31px "Syne";cursor:pointer;transition:.18s}.uno-deck:hover{transform:translateY(-5px) rotate(-2deg)}
+.uno-info-bar{position:absolute;left:50%;bottom:178px;transform:translateX(-50%);display:flex;gap:16px;padding:9px 14px;border-radius:999px;background:rgba(4,19,15,.55);border:1px solid rgba(255,255,255,.09);font-size:9px;color:#8bb5a7;z-index:6;white-space:nowrap}.uno-info-bar strong{color:#e4fff4}
+.uno-turn-tracker{position:absolute;top:-32px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;color:#83a99e;font-size:8px;white-space:nowrap}.uno-turn-tracker span.active{color:#fff}.uno-turn-tracker i{opacity:.4}
+.uno-your-hand{width:100%;padding-top:2px}.uno-hand-pro{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;min-height:84px}.uno-pro-card{position:relative}.uno-pro-card.playable{animation:unoFloat 1.25s ease-in-out infinite alternate}.uno-pro-card.playable:hover{transform:translateY(-11px) scale(1.03)}.discard-fly{animation:discardIn .35s cubic-bezier(.2,.8,.2,1)}
+@keyframes unoFloat{from{transform:translateY(0)}to{transform:translateY(-4px)}}@keyframes discardIn{from{opacity:0;transform:translateY(-28px) rotate(-8deg) scale(.92)}to{opacity:1;transform:none}}
+.uno-banner{text-align:center;margin-top:10px;padding:9px;border-radius:12px;background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.06);color:#cce8dd;font-size:11px}
+.uno-color-picker.pro{width:min(290px,92vw);margin:10px auto 0}.uno-color-picker.pro button{height:34px}
+
+.mj-premium{display:grid;gap:12px}.mj-hud{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.mj-controls{display:flex;gap:8px}.mj-premium-board{min-height:520px;border-radius:22px;border:1px solid rgba(122,178,229,.12);background:radial-gradient(circle at 50% 45%,rgba(76,168,255,.12),transparent 50%),linear-gradient(160deg,#0a2436,#061622);overflow:auto;padding:22px}
+.mj-premium-board #mjLayers{position:relative;width:780px;height:430px;margin:0 auto}.mj-table-mark{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font:800 34px "Syne";letter-spacing:.08em;text-align:center;color:rgba(151,209,244,.05);z-index:0}.mj-table-mark span{font-size:15px;letter-spacing:.22em}
+.mj-real-tile{position:absolute;width:56px;height:56px;border-radius:10px;border:1px solid #1b496c;background:linear-gradient(145deg,#174463,#0c273e);color:#b9dcf7;box-shadow:6px 7px 0 rgba(0,0,0,.18),0 9px 18px rgba(0,0,0,.22);cursor:default;transition:.16s}.mj-real-tile.free{cursor:pointer}.mj-real-tile.free:hover{transform:translateY(-4px);border-color:#4ca8ff}.mj-real-tile.selected{border-color:#fff;box-shadow:0 0 0 2px #4ca8ff,6px 7px 0 rgba(0,0,0,.16)}.mj-real-tile span{font-size:23px}.mj-real-tile small{font-size:7px;letter-spacing:.1em;color:#70a0bf}.mj-real-tile.match-pop{animation:matchPop .4s ease forwards}@keyframes matchPop{to{opacity:0;transform:scale(1.2) rotate(8deg)}}
+
+.bj-casino{min-height:610px;border-radius:34px;border:5px solid #132b45;background:radial-gradient(circle at 50% 46%,rgba(38,147,102,.2),transparent 45%),linear-gradient(160deg,#154f39 0%,#0d392a 46%,#08261e 100%);box-shadow:inset 0 0 90px rgba(0,0,0,.35),0 24px 60px rgba(0,0,0,.24);padding:18px;overflow:hidden}.bj-casino-rim{position:absolute;inset:14px;border:1px solid rgba(224,194,109,.22);border-radius:25px;pointer-events:none}.bj-bank-strip{position:absolute;top:22px;left:50%;transform:translateX(-50%);display:flex;gap:18px;padding:8px 13px;border-radius:999px;background:rgba(1,18,12,.45);border:1px solid rgba(255,255,255,.08);font-size:9px;color:#8fb7a5;z-index:5}.bj-bank-strip strong{color:#f4f7f9;font:700 13px "DM Sans"}.bj-casino-zone{position:absolute;inset:90px 30px 25px;display:grid;grid-template-rows:1fr auto 1fr;align-items:center}.bj-dealer-zone,.bj-player-zone{display:grid;justify-items:center;gap:9px}.bj-zone-label{width:min(430px,92%);display:flex;justify-content:space-between;font-size:9px;color:#91b6a8;letter-spacing:.15em}.bj-zone-label span:last-child{color:#effff6;font:700 16px "DM Sans"}.bj-card-row{display:flex;justify-content:center;gap:8px;min-height:115px}.bj-card-row .touch-card{animation:dealCard .34s cubic-bezier(.2,.8,.2,1)}@keyframes dealCard{from{opacity:0;transform:translateY(-40px) rotate(-9deg)}to{opacity:1;transform:none}}.bj-table-logo{text-align:center;font:800 34px "Syne";letter-spacing:.15em;color:rgba(226,244,237,.1)}.bj-table-logo span{font-size:11px;letter-spacing:.35em}.bj-controls-pro{display:grid;gap:10px;justify-items:center}.bj-bet-controls{display:flex;gap:7px;align-items:center}.bj-bet-btn{width:38px;height:34px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:#0b2437;color:#d0e8fa;cursor:pointer}.bj-bet-chip{padding:8px 13px;border-radius:999px;background:#e4c765;color:#15210f;font:800 11px "DM Sans";box-shadow:0 7px 18px rgba(0,0,0,.25)}.bj-result{position:absolute;left:50%;top:51%;transform:translate(-50%,-50%);padding:10px 18px;border-radius:999px;background:rgba(6,24,18,.74);border:1px solid rgba(226,199,101,.25);font:800 11px "DM Sans";letter-spacing:.14em;color:#e8f8f0;pointer-events:none;animation:bjPulse 1.8s ease-in-out infinite}@keyframes bjPulse{50%{box-shadow:0 0 25px rgba(223,201,110,.14)}}
+
+.jump-pro,.smoker-pro{display:grid;gap:10px}.jump-hud,.sm-hud{display:flex;justify-content:space-between;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:13px;background:#091725;font-size:9px;color:#738ca3;letter-spacing:.12em}.jump-hud strong,.sm-hud strong{color:#e6f4ff;font:700 17px "DM Sans"}.jump-canvas-wrap,.sm-canvas-wrap{position:relative;border:1px solid rgba(76,168,255,.16);border-radius:20px;overflow:hidden;background:#081522;box-shadow:inset 0 0 60px rgba(0,0,0,.25)}.jump-canvas-wrap canvas,.sm-canvas-wrap canvas{width:100%;height:auto;display:block}.jump-overlay,.sm-overlay{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:13px;background:linear-gradient(rgba(3,12,19,.6),rgba(3,12,19,.82));backdrop-filter:blur(4px);text-align:center}.jump-overlay strong,.sm-overlay strong{font:800 39px "Syne";letter-spacing:-.05em}.jump-overlay span,.sm-overlay span{font-size:11px;color:#9db0c1}.smoker-pro .sm-overlay strong{font-size:36px}
+
+@media(max-width:900px){.uno-premium-table{min-height:560px}.bj-casino{min-height:570px}.bj-casino-zone{inset:85px 18px 18px}.uno-info-bar{bottom:154px}.mj-premium-board #mjLayers{transform-origin:top left;transform:scale(.86);height:380px;width:700px}}
+@media(max-width:620px){.uno-premium-table{min-height:690px;border-radius:21px}.uno-seat.premium.top{top:13px}.uno-seat.premium.left{left:8px}.uno-seat.premium.right{right:8px}.uno-seat.premium.bottom{bottom:9px}.uno-center-premium{transform:translate(-50%,-58%);gap:10px}.uno-deck{width:62px;height:90px}.uno-info-bar{bottom:170px;gap:8px;font-size:7px}.uno-turn-tracker{top:-27px}.uno-hand-pro{gap:5px}.uno-pro-card{width:49px;height:72px}.mj-premium-board{min-height:450px;padding:10px}.mj-premium-board #mjLayers{transform:scale(.66);transform-origin:top left;width:780px;height:430px}.bj-casino{min-height:610px;padding:8px;border-width:3px}.bj-casino-zone{inset:82px 8px 16px}.bj-card-row{gap:4px;min-height:94px}.bj-card-row .touch-card{width:58px;height:84px}.bj-table-logo{font-size:24px}.bj-bank-strip{gap:8px;font-size:7px}.bj-action-row{justify-content:center}.bj-action-row .btn{min-width:74px;padding:10px 9px}.jump-overlay strong,.sm-overlay strong{font-size:28px}.jump-overlay span,.sm-overlay span{max-width:85%}}
+
+
+/* ===== Arcade V3 visual correction — only Arcade styles ===== */
+.arcade-modal .modal-box{background:#08131f!important}
+.arcade-modal .modal-content{background:#08131f}
+.arcade-tabs{scrollbar-width:none!important;align-items:center;gap:8px!important}
+.arcade-tabs::-webkit-scrollbar{display:none}
+.arcade-tabs .filter-btn{background:#0a1a2a!important;border:1px solid rgba(164,193,226,.14)!important;color:#8ea5bb!important}
+.arcade-tabs .filter-btn.active{background:#eaf6ff!important;color:#07111f!important;border-color:transparent!important}
+.arcade-card{min-height:145px!important}
+.jump-canvas-wrap,.sm-canvas-wrap{background:#06111c!important;box-shadow:inset 0 0 100px rgba(0,0,0,.42),0 16px 42px rgba(0,0,0,.22)!important}
+.jump-canvas-wrap canvas,.sm-canvas-wrap canvas{width:100%;height:auto;aspect-ratio:900/560;object-fit:cover}
+.jump-overlay,.sm-overlay{transition:opacity .22s ease,backdrop-filter .22s ease;background:linear-gradient(180deg,rgba(3,10,17,.36),rgba(3,10,17,.78))!important}
+.jump-overlay strong,.sm-overlay strong{text-shadow:0 8px 35px rgba(0,0,0,.55);letter-spacing:-.055em}
+@media(max-width:620px){.arcade-modal .modal-box{overflow:hidden!important}.arcade-modal .modal-content{overflow-y:auto;height:calc(100dvh - 76px)}.arcade-tabs{padding-right:4px!important}.jump-canvas-wrap,.sm-canvas-wrap{border-radius:15px}.jump-canvas-wrap canvas,.sm-canvas-wrap canvas{min-height:340px;object-fit:cover}}
+
+
+/* ===== Arcade refinements ===== */
+.flappy-dark-shell{background:#0b111b!important}
+.flappy-dark-shell #flappyCanvas{background:#0a1019}
+.flappy-dark-shell .jump-canvas-wrap{background:#0a1019;border-color:rgba(76,168,255,.16)}
+
+/* Hide arcade selection cards on the landing page: Arcade opens only from the small box. */
+section#games > .arcade-grid{display:none!important}
+
+@media(max-width:620px){
+  .arcade-shell .jump-canvas-wrap{border-radius:14px}
+}
+
+
+/* ===== Navigation menu + project presentation ===== */
+.nav-menu-btn{width:44px;height:42px;border:1px solid var(--line);border-radius:12px;background:rgba(13,28,48,.72);display:grid;place-content:center;gap:4px;cursor:pointer;margin-left:6px;padding:0}
+.nav-menu-btn span{display:block;width:18px;height:2px;border-radius:2px;background:var(--text);transition:.18s}
+.nav-menu-btn:hover{border-color:rgba(76,168,255,.45);background:rgba(23,108,255,.12)}
+.site-menu{position:fixed;inset:0;z-index:1200;background:rgba(2,8,16,.62);backdrop-filter:blur(10px);display:none;align-items:flex-start;justify-content:flex-end;padding:78px 22px 22px}
+.site-menu.open{display:flex}
+.site-menu-panel{width:min(390px,100%);border:1px solid rgba(164,193,226,.16);border-radius:22px;background:linear-gradient(180deg,#0e2035,#091727);box-shadow:0 30px 90px rgba(0,0,0,.5);overflow:hidden;animation:menuDrop .2s ease}
+@keyframes menuDrop{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+.site-menu-head{display:flex;align-items:center;justify-content:space-between;padding:20px 20px 16px;border-bottom:1px solid var(--line)}
+.menu-title{font:700 27px 'Syne';letter-spacing:-.04em;margin-top:5px}
+.menu-links{padding:10px}
+.menu-links button{width:100%;display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left;border:1px solid transparent;border-radius:15px;background:transparent;color:var(--text);padding:15px 14px;cursor:pointer}
+.menu-links button:hover{background:rgba(76,168,255,.08);border-color:rgba(76,168,255,.16)}
+.menu-links span{font-weight:800;font-size:14px}.menu-links small{color:var(--muted);font-size:11px}
+.projects-grid{display:grid;gap:16px}.project-card{width:100%;text-align:left;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:24px;border:1px solid var(--line);font:inherit;color:var(--text);transition:.2s}.project-card:hover{transform:translateY(-3px);border-color:rgba(76,168,255,.35);box-shadow:0 20px 50px rgba(0,0,0,.2)}
+.project-card-side{display:flex;flex-direction:column;align-items:flex-end;gap:7px;min-width:150px;color:var(--muted);font-size:11px}.project-card-side strong{color:var(--text);font-size:12px}.status-dot{width:9px;height:9px;border-radius:50%;display:inline-block;background:var(--good);box-shadow:0 0 0 5px rgba(102,227,164,.08)}
+.project-detail{display:grid;gap:18px}.project-detail h3{margin:0;font:700 25px 'Syne';letter-spacing:-.035em}.project-detail p{color:var(--muted);line-height:1.7}.project-status{display:flex;align-items:center;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:11px}.project-status strong{color:var(--good)}.project-detail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.project-detail-grid .result{display:grid;gap:7px}.project-detail-grid .result small{color:#70869d;letter-spacing:.11em;font-size:9px}.project-detail-grid .result strong{font-size:13px}.project-detail-grid .result span{font-size:11px;line-height:1.5;color:var(--muted)}.patchnotes{display:grid;gap:10px}.patch{display:grid;gap:5px;border-top:1px solid var(--line);padding-top:13px}.patch strong{font-size:13px}.patch span{color:var(--muted);font-size:11px;line-height:1.6}
+@media(max-width:760px){.project-card{flex-direction:column;align-items:flex-start}.project-card-side{align-items:flex-start;min-width:0}.project-detail-grid{grid-template-columns:1fr}.site-menu{padding:72px 12px 12px}.site-menu-panel{width:100%}}
+
+/* ===== V9 visual fixes: modal scrolling, ordered hub, equal game cards ===== */
+.hub-stats{grid-template-columns:repeat(2,minmax(0,1fr));}
+.hub-stats .stat-wide{grid-column:1 / -1;}
+.stat strong{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;font-weight:700!important;letter-spacing:-.03em;}
+.games-equal{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+.game-equal{min-height:320px!important;display:flex;flex-direction:column;align-items:flex-start;}
+.game-equal .arrow{margin-top:auto;}
+.game-icon{width:58px;height:58px;border:1px solid rgba(76,168,255,.2);border-radius:16px;background:rgba(76,168,255,.07);display:grid;place-items:center;color:#a9dbff;margin-bottom:22px;}
+.game-icon-block{grid-template-columns:repeat(2,9px);grid-template-rows:repeat(2,9px);gap:4px;}
+.game-icon-block span{display:block;width:9px;height:9px;border-radius:2px;background:#8fd0ff;}
+.game-icon-controller{font-size:39px;line-height:1;transform:rotate(-18deg);font-family:Arial,sans-serif;}
+/* Every modal stays fully inside the viewport; long content scrolls inside the box. */
+.modal{align-items:center!important;justify-content:center!important;padding:20px!important;overflow:hidden;}
+.modal:not(.arcade-modal) .modal-box{width:min(760px,100%);max-height:calc(100vh - 40px)!important;overflow:hidden!important;display:flex;flex-direction:column;}
+.modal:not(.arcade-modal) .modal-content{min-height:0;overflow-y:auto;overflow-x:hidden;}
+.modal:not(.arcade-modal) .modal-shell-top{flex:0 0 auto;}
+.arcade-modal .modal-box{max-height:calc(100vh - 40px)!important;overflow:hidden!important;display:flex;flex-direction:column;}
+.arcade-modal .modal-content{min-height:0;overflow-y:auto;overflow-x:hidden;}
+@media(max-width:620px){
+  .games-equal{grid-template-columns:1fr!important;}
+  .game-equal{min-height:260px!important;}
+  .modal{padding:10px!important;}
+  .modal:not(.arcade-modal) .modal-box,.arcade-modal .modal-box{max-height:calc(100dvh - 20px)!important;}
+}
+
+/* V10 precision fixes: navigation, hub ordering, equal game cards, numeric typography */
+.games.games-equal{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.games.games-equal .game-equal{min-width:0}
+.hub-index{display:inline-block;width:25px;margin-right:8px;font-family:"IBM Plex Mono","Courier New",monospace;font-size:11px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:0}
+.stat strong,.result .big,.score-chip strong{
+  font-family:"IBM Plex Mono","Courier New",monospace!important;
+  font-variant-numeric:tabular-nums;
+  font-feature-settings:"tnum" 1;
+}
+.clean-number{font-family:"Manrope",sans-serif!important;font-weight:800}
+.modal{overflow-y:auto;overscroll-behavior:contain}
+.modal .modal-box{max-height:calc(100dvh - 36px);overflow:hidden;display:flex;flex-direction:column}
+.modal .modal-content{min-height:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
+.arcade-modal .modal-box{max-height:calc(100dvh - 36px)!important;overflow:hidden!important}
+.arcade-modal .modal-content{min-height:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
+@media(max-width:760px){
+  .games.games-equal{grid-template-columns:1fr!important}
+}
+
+/* ===== V11 mobile layout: desktop remains unchanged ===== */
+html,body{max-width:100%;overflow-x:hidden}
+img,svg{max-width:100%;height:auto}
+@media(max-width:760px){
+  .wrap{width:calc(100% - 24px);max-width:100%}
+  header{overflow:hidden}
+  .nav{height:64px;gap:5px;min-width:0}
+  .brand{gap:7px;min-width:0;flex:0 1 auto}
+  .brand-mark{width:30px;height:30px;border-radius:9px;flex:0 0 30px}
+  .brand-name{font-size:12px;white-space:nowrap}
+  nav{gap:0;min-width:0;justify-content:flex-end;flex:1}
+  nav a{
+    font-size:9px!important;
+    padding:7px 4px!important;
+    border-radius:8px;
+    white-space:nowrap;
+    letter-spacing:-.01em
+  }
+  .nav-menu-btn{
+    width:36px;height:36px;min-width:36px;
+    border-radius:10px;margin-left:3px
+  }
+  .nav-menu-btn span{width:16px}
+  .hero{
+    min-height:auto;
+    grid-template-columns:1fr;
+    gap:34px;
+    padding-top:44px
+  }
+  h1{font-size:clamp(45px,14vw,70px)}
+  .hero-copy{font-size:15px}
+  .hero-panel{width:100%;min-width:0}
+  .hub-card{width:100%;max-width:100%}
+  .grid,.demo-grid,.about-grid,.projects-grid{grid-template-columns:1fr!important}
+  .featured,.about-grid .featured{grid-column:auto!important}
+  .tool-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tool{min-width:0;padding:14px}
+  .tool-name{font-size:14px}
+  .games.games-equal{grid-template-columns:1fr!important}
+  .game-equal{min-width:0;width:100%;min-height:260px!important}
+  .section-head{grid-template-columns:1fr!important;gap:10px}
+  .section-head h2{font-size:clamp(34px,10vw,52px)}
+  section{padding:68px 0}
+  .site-menu{padding:68px 10px 10px}
+  .site-menu-panel{width:min(420px,100%);max-height:calc(100dvh - 78px);overflow:hidden}
+  .menu-links{max-height:calc(100dvh - 150px);overflow-y:auto}
+  .menu-tools-list{max-height:42vh;overflow-y:auto}
+  .menu-tool-item{padding:11px 12px!important}
+  .menu-tool-item span{font-size:13px!important}
+  .menu-tool-item small{font-size:10px!important}
+}
+@media(max-width:390px){
+  .brand-name{font-size:11px}
+  nav a{font-size:8px!important;padding-left:3px!important;padding-right:3px!important}
+  .nav-menu-btn{width:34px;min-width:34px}
+  .tool-grid{grid-template-columns:1fr}
+}
+
+.menu-tools{display:block}
+.menu-tools-toggle{position:relative!important}
+.menu-chevron{position:absolute;right:14px;font-size:18px;font-weight:500;transition:transform .18s ease}
+.menu-tools-toggle[aria-expanded="true"] .menu-chevron{transform:rotate(180deg)}
+.menu-tools-list{
+  display:grid;gap:4px;margin:0 10px 8px;padding:6px;
+  border:1px solid rgba(164,193,226,.10);border-radius:15px;
+  background:rgba(2,10,20,.28)
+}
+.menu-tools-list[hidden]{display:none}
+.menu-tool-item{
+  width:100%;display:flex;flex-direction:column;align-items:flex-start;gap:3px;
+  text-align:left;border:1px solid transparent;border-radius:11px;
+  background:transparent;color:var(--text);padding:10px 11px;cursor:pointer
+}
+.menu-tool-item:hover{background:rgba(76,168,255,.08);border-color:rgba(76,168,255,.14)}
+.menu-tool-item span{font-weight:750;font-size:12px}
+.menu-tool-item small{color:var(--muted);font-size:10px}
+
+/* ===== V12 requested refinements ===== */
+.tools-demo-closed{display:none!important}
+.vat-mode{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:12px 0 16px}
+.vat-mode-btn{border:1px solid var(--line);background:rgba(255,255,255,.025);color:var(--muted);border-radius:11px;padding:10px 8px;font:700 11px "Syne";cursor:pointer}
+.vat-mode-btn.active{color:#fff;border-color:rgba(76,168,255,.45);background:rgba(76,168,255,.10)}
+.vat-results{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.vat-results .result{display:grid;gap:5px}
+.vat-results .result small{color:#70869d;font-size:9px;letter-spacing:.11em}
+.vat-results .result .big{font-size:clamp(17px,3vw,24px)}
+@media(max-width:620px){
+  .vat-results{grid-template-columns:1fr}
+  .vat-results .result .big{font-size:21px}
+}
+
+.site-menu-panel{max-height:calc(100dvh - 100px);display:flex;flex-direction:column}
+.site-menu-head{flex:0 0 auto}
+.menu-links{min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.menu-tools-list{max-height:none}
+
+.game-icon-block{position:relative;display:block}
+.game-icon-block .cube-face{position:absolute;width:28px;height:28px;left:14px;top:18px;border-radius:3px;border:2px solid #8fd0ff;background:rgba(143,208,255,.13);transform:skewY(-28deg)}
+.game-icon-block .cube-top{position:absolute;width:28px;height:13px;left:14px;top:10px;border:2px solid #8fd0ff;border-bottom:0;background:rgba(143,208,255,.08);transform:skewX(-55deg)}
+.game-icon-block .cube-side{position:absolute;width:13px;height:28px;left:39px;top:17px;border:2px solid #8fd0ff;border-left:0;background:rgba(143,208,255,.05);transform:skewY(28deg)}
+.game-icon-controller{position:relative!important;display:block!important;transform:none!important;font-size:0!important}
+.controller-body{position:absolute;width:38px;height:24px;left:9px;top:18px;border:2px solid #8fd0ff;border-radius:11px 11px 14px 14px;background:rgba(143,208,255,.10);transform:rotate(-3deg)}
+.controller-stick{position:absolute;width:10px;height:4px;left:17px;top:27px;border-radius:3px;background:#8fd0ff}
+.controller-stick:after{content:"";position:absolute;width:4px;height:10px;left:3px;top:-3px;border-radius:3px;background:#8fd0ff}
+.controller-dot{position:absolute;width:5px;height:5px;left:40px;top:24px;border-radius:50%;background:#8fd0ff;box-shadow:9px 5px 0 #8fd0ff}
+
+#legalBody h4{font:700 15px "Syne",sans-serif;margin:20px 0 7px;color:var(--text)}
+#legalBody .result{margin:10px 0}
+
+/* ===== V14 precision: fixed header + expanded practical toolset ===== */
+header{
+  position:fixed!important;
+  top:0;left:0;right:0;width:100%;
+}
+body{padding-top:76px;}
+.invoice-rows{display:grid;gap:8px}
+.invoice-row{display:grid;grid-template-columns:1.7fr .6fr 1fr auto;gap:7px;align-items:center}
+.invoice-row input{min-width:0}
+.invoice-head{font-size:9px;color:#71869d;text-transform:uppercase;letter-spacing:.1em;padding:0 3px}
+.invoice-row .btn{padding:8px 10px;min-width:38px}
+.invoice-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:12px}
+.invoice-summary .result{min-width:0}
+.invoice-summary .result .big{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:760px){
+  body{padding-top:64px}
+  header{z-index:1100}
+  .invoice-row{grid-template-columns:1.5fr .6fr 1fr 38px}
+  .invoice-head{display:grid}
+  .invoice-summary{grid-template-columns:1fr}
+}
+/* ===== V16: only requested hub/navigation refinement ===== */
+.hero-panel{min-height:520px}
+.hub-card{top:28px;left:32px;right:32px;padding:16px}
+.hub-top{margin-bottom:12px}
+.hub-stats{gap:8px}
+.stat{padding:13px}
+.stat strong{font-size:25px}
+.list-line{margin-top:9px;padding:10px 12px;font-size:11px}
+@media(max-width:760px){
+  .hero-panel{min-height:500px}
+  .hub-card{top:16px;left:12px;right:12px;width:auto;max-width:none;padding:13px}
+  .hub-title{font-size:13px}
+  .live{font-size:9px;padding:5px 7px}
+  .hub-stats{gap:7px}
+  .stat{padding:11px}
+  .stat strong{font-size:22px}
+  .list-line{margin-top:7px;padding:9px 10px;font-size:10px}
+  .hub-index{width:22px;margin-right:5px;font-size:10px}
+}
+@media(max-width:390px){
+  .hero-panel{min-height:480px}
+  .hub-card{left:10px;right:10px;padding:11px}
+  .hub-top{gap:8px}
+  .hub-title{font-size:11.5px}
+  .stat{padding:9px}
+  .stat small{font-size:8px}
+  .stat strong{font-size:20px}
+  .list-line{padding:8px;font-size:9px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#home">
+      <div class="brand-mark">B</div>
+      <div class="brand-name">Boketta <span>Intl.</span></div>
+    </a>
+    <nav aria-label="Hauptnavigation">
+      <a href="#about">Über diese Webseite</a>
+      <a href="#ai">AI</a>
+      <a href="#tools">Tools</a>
+      <a href="#games">Games</a>
+      <a href="#projects">Projects</a>
+      <button class="nav-menu-btn" id="menuOpen" aria-label="Menü öffnen" aria-expanded="false"><span></span><span></span><span></span></button>
+    </nav>
+  </div>
+</header>
+
+<main id="home">
+  <div class="wrap">
+    <section class="hero">
+      <div>
+        <div class="eyebrow"><i></i>Independent digital products</div>
+        <h1>Build ideas.<span>Make them real.</span></h1>
+        <p class="hero-copy">
+          Boketta Intl. bündelt digitale Tools, Games, AI-Produkte und eigene Experimente
+          an einem Ort — von kleinen Browser-Utilities bis zu größeren Software-Projekten.
+        </p>
+        <div class="actions">
+          <a class="btn primary" href="#tools">Tools entdecken ↗</a>
+        </div>
+        <div class="hero-note">Schnelle Tools · eigene Projekte · klare Interfaces</div>
+      </div>
+
+      <div class="hero-panel" aria-hidden="true">
+        <div class="orb one"></div><div class="orb two"></div>
+        <div class="hub-card">
+          <div class="hub-top"><div class="hub-title">BOKETTA / PRODUCT HUB</div><div class="live">● ONLINE</div></div>
+          <div class="hub-stats">
+            <div class="stat"><small>ABOUT</small><strong>01</strong></div>
+            <div class="stat"><small>AI</small><strong>02</strong></div>
+            <div class="stat"><small>TOOLS</small><strong>03</strong></div>
+            <div class="stat"><small>GAMES</small><strong>04</strong></div>
+            <div class="stat stat-wide"><small>PROJECTS</small><strong>05</strong></div>
+          </div>
+          <div class="list-line"><span><b class="hub-index">01</b> Central platform</span><span>ABOUT →</span></div>
+          <div class="list-line"><span><b class="hub-index">02</b> AI Dashboard</span><span>OPEN →</span></div>
+          <div class="list-line"><span><b class="hub-index">03</b> Practical tools</span><span>USE →</span></div>
+          <div class="list-line"><span><b class="hub-index">04</b> Games &amp; Arcade</span><span>PLAY →</span></div>
+          <div class="list-line"><span><b class="hub-index">05</b> Projects in development</span><span>BUILD →</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="section-head">
+        <div><div class="kicker">01 — Über diese Webseite</div><h2>Eine Plattform für digitale Ideen.</h2></div>
+        <p class="section-intro">Boketta Intl. bündelt digitale Tools, Games, AI-Produkte und eigene Projekte an einem Ort. Die Seite wächst mit jedem neuen Experiment und soll dabei übersichtlich, schnell und einfach zugänglich bleiben.</p>
+      </div>
+
+      <div class="about-grid">
+        <div class="card featured about-card-main">
+          <div class="card-meta"><div class="card-icon">B</div><div class="tag">BOKETTA INTL.</div></div>
+          <h3>Entdecken, ausprobieren und immer wieder erweitern.</h3>
+          <p>Diese Webseite ist der zentrale Einstiegspunkt für die digitalen Projekte von Boketta Intl. Hier finden sich eigene Tools, Browsergames, AI-Anwendungen und größere Projekte — von kleinen Experimenten bis zu aufwendigeren Entwicklungen.</p>
+          <div class="about-tags"><span>Digital Products</span><span>Tools</span><span>AI</span><span>Games</span><span>Projects</span><span>Experiments</span></div>
+        </div>
+
+        <div class="card">
+          <div class="card-meta"><div class="card-icon">01</div><div class="tag">TOOLS</div></div>
+          <h3>Schnelle Browser-Tools</h3>
+          <p>Praktische kleine Anwendungen für Berechnungen, Text, Marketing und andere alltägliche Aufgaben — direkt im Browser und ohne unnötige Umwege.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-meta"><div class="card-icon">02</div><div class="tag">GAMES</div></div>
+          <h3>Eigene Games & Arcade</h3>
+          <p>Von größeren Browsergames bis zu kleinen Arcade-Klassikern entstehen hier eigene spielbare Experimente. Neue Spiele werden Schritt für Schritt ergänzt.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-meta"><div class="card-icon">03</div><div class="tag">AI</div></div>
+          <h3>AI als eigener Produktbereich</h3>
+          <p>Das Boketta AI Dashboard und weitere AI-Ideen bekommen ihren eigenen Platz und können unabhängig von dieser zentralen Plattform weiterentwickelt werden.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-meta"><div class="card-icon">04</div><div class="tag">PROJECTS</div></div>
+          <h3>Größere Projekte kommen hierher</h3>
+          <p>Projects zeigt Entwicklungen, die über einen kleinen Browser-Utility hinausgehen — inklusive Status, geplanten nächsten Schritten und späteren Patchnotes.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-meta"><div class="card-icon">05</div><div class="tag">UPDATES</div></div>
+          <h3>Die Plattform bleibt in Bewegung</h3>
+          <p>Neue Features und Projekte werden ergänzt, ohne die bestehende Struktur jedes Mal neu bauen zu müssen. So kann Boketta Intl. langfristig weiter wachsen.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-meta"><div class="card-icon">06</div><div class="tag">VISION</div></div>
+          <h3>Ein Ort für neue Ideen</h3>
+          <p>Die Webseite soll nicht nur fertige Produkte zeigen, sondern auch sichtbar machen, was gerade entsteht und welche Ideen als Nächstes umgesetzt werden.</p>
+        </div>
+      </div>
+
+      <div class="project about-quote">
+        <div>
+          <div class="tag">CURRENT DIRECTION</div>
+          <h3>Von kleinen Experimenten zu echten digitalen Produkten.</h3>
+          <p>Wer weiter nach unten scrollt, findet Tools, Games und Projects — und kann sehen, was bereits verfügbar ist und was als Nächstes entsteht.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="ai">
+      <div class="section-head">
+        <div><div class="kicker">02 — AI</div><h2>One serious platform.</h2></div>
+        <p class="section-intro">Das komplexere Produkt darf seine eigene Infrastruktur haben. Diese Hauptseite bleibt davon bewusst unabhängig.</p>
+      </div>
+      <div class="grid">
+        <a class="card featured" href="https://boketta-ki-dashboard.netlify.app" target="_blank" rel="noopener">
+          <div class="card-meta"><div class="card-icon">✦</div><div class="tag">Flagship</div></div>
+          <h3>Boketta AI Dashboard</h3>
+          <p>Dein zentrales KI-Produkt mit eigener Anwendung und künftig möglichen Account-, Daten- und Premium-Funktionen.</p>
+          <span class="arrow">Dashboard öffnen →</span>
+        </a>
+        <div class="card">
+          <div class="card-meta"><div class="card-icon">⌁</div><div class="tag">Lab</div></div>
+          <h3>Boketta Agents</h3>
+          <p>Spezialisierte AI-Workflows und kleine Agenten für konkrete Aufgaben.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="tools">
+      <div class="section-head">
+        <div><div class="kicker">03 — Tools</div><h2>Simple. Useful. Fast.</h2></div>
+        <p class="section-intro">Kostenlose Utility-Tools als große Produktbibliothek. Die Verarbeitung erfolgt bei diesen Tools möglichst direkt im Browser.</p>
+      </div>
+
+      <div class="tool-bar">
+        <button class="filter-btn active" data-filter="all">Alle</button>
+        <button class="filter-btn" data-filter="business">Business</button>
+        <button class="filter-btn" data-filter="marketing">Marketing</button>
+        <button class="filter-btn" data-filter="utility">Utility</button>
+        <button class="filter-btn" data-filter="media">Media</button>
+      </div>
+
+      <div class="tool-grid">
+        <div class="tool" data-cat="business" data-tool="vat"><div class="tool-name">VAT Calculator</div><small>Netto, USt. & Brutto</small></div>
+        <div class="tool" data-cat="business" data-tool="invoice"><div class="tool-name">Invoice Calculator</div><small>Positionen, USt. & Rechnungsbetrag</small></div>
+        <div class="tool" data-cat="business" data-tool="skonto"><div class="tool-name">Skonto Calculator</div><small>Skonto, Zahlungsziel & Ersparnis</small></div>
+        <div class="tool" data-cat="business" data-tool="margin"><div class="tool-name">Margin & Markup</div><small>Marge, Aufschlag & Gewinn</small></div>
+        <div class="tool" data-cat="business" data-tool="breakeven"><div class="tool-name">Break-even Calculator</div><small>Fixkosten, Preis & Gewinnschwelle</small></div>
+        <div class="tool" data-cat="business" data-tool="percentage"><div class="tool-name">Percentage</div><small>Prozentwerte & Veränderungen</small></div>
+        <div class="tool" data-cat="business" data-tool="discount"><div class="tool-name">Discount Calculator</div><small>Rabatt, Ersparnis & Endpreis</small></div>
+        <div class="tool" data-cat="marketing" data-tool="roas"><div class="tool-name">ROAS / ROI Calculator</div><small>Werbeeffizienz & Kampagnenrendite</small></div>
+        <div class="tool" data-cat="marketing" data-tool="admetrics"><div class="tool-name">Ad Metrics Calculator</div><small>CTR, CPC, CPM, CPA & ROAS</small></div>
+        <div class="tool" data-cat="marketing" data-tool="utm"><div class="tool-name">UTM Builder</div><small>Kampagnen-Links erstellen</small></div>
+        <div class="tool" data-cat="marketing" data-tool="seo"><div class="tool-name">SEO Preview</div><small>Google-Snippet simulieren</small></div>
+        <div class="tool" data-cat="marketing" data-tool="characters"><div class="tool-name">Character Counter</div><small>Texte, Zeichen & Wörter prüfen</small></div>
+        <div class="tool" data-cat="media" data-tool="compressor"><div class="tool-name">Image Compressor</div><small>Bilder lokal verkleinern</small></div>
+        <div class="tool" data-cat="utility" data-tool="unit"><div class="tool-name">Unit Converter</div><small>Länge, Gewicht & Temperatur</small></div>
+        <div class="tool" data-cat="utility" data-tool="date"><div class="tool-name">Date Difference</div><small>Tage zwischen Terminen berechnen</small></div>
+        <div class="tool" data-cat="utility" data-tool="worktime"><div class="tool-name">Working Time Calculator</div><small>Arbeitszeit, Pause & Dezimalstunden</small></div>
+      </div>
+
+      <div class="demo-grid tools-demo-closed <div class="demo-grid tools-demo-closed" aria-hidden="true">
+        <div class="panel">
+          <h3>VAT Calculator</h3>
+          <div class="field"><label>Netto-Betrag</label><input id="vatAmount" type="number" min="0" step="0.01" value="100"></div>
+          <div class="field"><label>USt.-Satz</label><select id="vatRate"><option value="0.19">19 %</option><option value="0.07">7 %</option><option value="0">0 %</option></select></div>
+          <button class="btn primary" style="width:100%" id="vatBtn">Berechnen</button>
+          <div class="result"><div class="big" id="vatGross">119,00 €</div><span id="vatInfo">100,00 € netto + 19,00 € USt.</span></div>
+        </div>
+
+        <div class="panel">
+          <h3>Character Counter</h3>
+          <div class="field"><label>Text</label><textarea id="charText" rows="7" placeholder="Text hier eingeben..."></textarea></div>
+          <div class="result"><div class="big" id="charCount">0</div><span>Zeichen · Wörter: <b id="wordCount">0</b></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="games">
+  <div class="section-head">
+    <div><div class="kicker">04 — Games</div><h2>Play the projects.</h2></div>
+    <p class="section-intro">Blockbuster bleibt dein großes Projekt. Die Arcade ist ein kleiner Teil der Plattform und öffnet sich ausschließlich über die Boketta-Arcade-Box.</p>
+  </div>
+
+  <div class="games games-equal">
+    <a class="game game-equal" href="https://boketta-games.netlify.app" target="_blank" rel="noopener">
+      <div class="game-icon game-icon-block" aria-hidden="true"><span class="cube-top"></span><span class="cube-face"></span><span class="cube-side"></span></div>
+      <small>MAIN GAME</small><h3>Blockbuster</h3>
+      <p>Das größere Browsergame mit eigenem Fortschrittssystem und eigener Spielwelt.</p>
+      <span class="arrow">Blockbuster spielen →</span>
+    </a>
+    <button class="game game-equal" style="text-align:left;cursor:pointer" id="arcadeOpen" type="button">
+      <div class="game-icon game-icon-controller" aria-hidden="true"><span class="controller-body"></span><i class="controller-stick"></i><i class="controller-dot"></i></div>
+      <small>BOKETTA ARCADE</small><h3>Classic games, redesigned.</h3>
+      <p>Mahjong, UNO, Poker, Blackjack, Boketta Jump und Flappy Red.</p>
+      <span class="arrow">Arcade öffnen →</span>
+    </button>
+  </div>
+</section>
+
+    <section id="projects">
+      <div class="section-head">
+        <div><div class="kicker">05 — Projects</div><h2>More than one idea.</h2></div>
+        <p class="section-intro">Hier landen größere Experimente, Software-Ideen und kommende Releases.</p>
+      </div>
+      <div class="projects-grid">
+        <button class="project project-card" id="horrorProjectOpen" type="button">
+          <div>
+            <div class="tag">COMING SOON · PC PROJECT</div>
+            <h3><span class="clean-number">3</span>D Horror Game</h3>
+            <p>Ein eigenständiges 3D-Horrorspiel befindet sich aktuell in Entwicklung. Klicke hier, um den aktuellen Stand und die geplanten nächsten Schritte zu sehen.</p>
+          </div>
+          <div class="project-card-side"><span class="status-dot"></span><strong>In Entwicklung</strong><span class="arrow">Projekt ansehen →</span></div>
+        </button>
+      </div>
+    </section>
+
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <strong style="font-family:'Syne';color:#b9dfff">Boketta Intl.</strong>
+    <div class="footer-nav">
+      <a href="#" data-legal="privacy">Datenschutz</a>
+      <a href="#" data-legal="imprint">Impressum</a>
+      <a href="#" data-legal="terms">AGB</a>
+      <a href="https://boketta-games.netlify.app" target="_blank" rel="noopener">Blockbuster</a>
+      <a href="https://boketta-ki-dashboard.netlify.app" target="_blank" rel="noopener">AI Dashboard</a>
+    </div>
+    <div style="margin-top:17px">© 2026 Boketta Intl. · Digital Products, Tools & Games</div>
+  </div>
+</footer>
+
+
+<div class="site-menu" id="siteMenu" aria-hidden="true">
+  <div class="site-menu-panel">
+    <div class="site-menu-head"><div><div class="modal-kicker">Boketta Intl.</div><div class="menu-title">Menu</div></div><button class="close" id="menuClose" aria-label="Menü schließen">×</button></div>
+    <div class="menu-links">
+      <button type="button" data-menu-view="about-personal"><span>Über mich</span><small>Persönliche Vorstellung</small></button>
+      <button type="button" data-menu-view="profile"><span>Profil</span><small>Creator · Builder · Marketing</small></button>
+      <div class="menu-tools">
+        <button type="button" class="menu-tools-toggle" id="menuToolsToggle" aria-expanded="false">
+          <span>Tools <b class="menu-chevron">⌄</b></span><small>Schnellzugriff auf alle Tools</small>
+        </button>
+        <div class="menu-tools-list" id="menuToolsList" hidden>
+          <button type="button" class="menu-tool-item" data-tool-jump="vat"><span>VAT Calculator</span><small>Netto, USt. & Brutto</small></button>
+          <button type="button" class="menu-tool-item" data-tool-jump="invoice"><span>Invoice Calculator</span><small>Positionen, USt. & Rechnungsbetrag</small></button>
+          <button type="button" class="menu-tool-item" data-tool-jump="skonto"><span>Skonto Calculator</span><small>Skonto & Zahlungsziel</small></button>
+          <button type="button" class="menu-tool-item" data-tool-jump="margin"><span>Margin & Markup</span><small>Marge, Aufschlag & Gewinn</small></button>
+          <button type="button" class="menu-tool-item" data-tool-jump="breakeven"><span>Break-even Calculator</span><small>Gewinnschwelle berechnen</small></button>
+          <button type="button" class="menu-tool-item" data-tool-jump="percentage"><span>Percentage</span><small>Prozentwerte & Veränderungen</small></button>
+          <button type="button" class="menu-tool-item" data-tool-jump="discount"><span>Discount Calculator</span><small>Rabatt & Endpreis</small></button>
+          <button type="button" class="menu-tool-item" data-tool-jump="roas"><span>ROAS / ROI Calculator</span><small>Werbeeffizienz</small></button>
+          <button type="button" class="menu-tool-item" data-tool-jump="admetrics"><span>Ad Metrics Calculator</span><small>CTR, CPC, CPM, CPA & ROAS</small></button>
+          <button type="button" class="menu-tool-item" data-tool-jump="utm"><span>UTM Builder</span><small>Kampagnen-Links</small></button>
+          <button type="button" class="menu-tool-item" data-tool-jump="seo"><span>SEO Preview</span><small>Google-Snippet</small></button>
+          <button type="button" class="menu-tool-item" data-tool-jump="characters"><span>Character Counter</span><small>Zeichen & Wörter</small></button>
+          <button type="button" class="menu-tool-item" data-tool-jump="compressor"><span>Image Compressor</span><small>Bilder verkleinern</small></button>
+          <button type="button" class="menu-tool-item" data-tool-jump="unit"><span>Unit Converter</span><small>Einheiten umrechnen</small></button>
+          <button type="button" class="menu-tool-item" data-tool-jump="date"><span>Date Difference</span><small>Datumsabstände</small></button>
+          <button type="button" class="menu-tool-item" data-tool-jump="worktime"><span>Working Time Calculator</span><small>Arbeitszeit & Pausen</small></button>
+        </div>
+      </div>
+      <button type="button" data-menu-view="settings"><span>Einstellungen</span><small>Darstellung und Präferenzen</small></button>
+      <button type="button" data-menu-view="privacy"><span>Datenschutzerklärung</span><small>Informationen zum Datenschutz</small></button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="projectModal">
+  <div class="modal-box">
+    <div class="modal-shell-top"><div><div class="modal-kicker">Boketta Intl. · Projects</div><div class="modal-title"><span class="clean-number">3</span>D Horror Game</div><div class="modal-subtitle">PC project · currently in development</div></div><button class="close" id="projectClose" aria-label="Schließen">×</button></div>
+    <div class="modal-content project-detail">
+      <div class="project-status"><span class="status-dot"></span><strong>In Entwicklung</strong><span>Release noch offen</span></div>
+      <h3>Ein eigenes 3D-Horrorspiel für PC.</h3>
+      <p>Das Projekt befindet sich noch in der Entwicklung. Gameplay-Systeme, Atmosphäre, Level und technische Grundlagen werden Schritt für Schritt aufgebaut und getestet.</p>
+      <div class="project-detail-grid">
+        <div class="result"><small>AKTUELL</small><strong>Gameplay & Systeme</strong><span>Die grundlegenden Spielmechaniken werden weiterentwickelt und miteinander verbunden.</span></div>
+        <div class="result"><small>ALS NÄCHSTES</small><strong>Weitere Inhalte</strong><span>Neue Bereiche, Gegner, Interaktionen und Feinschliff für die Spielwelt.</span></div>
+        <div class="result"><small>RELEASE</small><strong>Noch offen</strong><span>Ein Termin wird erst genannt, wenn der Entwicklungsstand dafür bereit ist.</span></div>
+      </div>
+      <div class="patchnotes">
+        <div class="tag">PATCHNOTES · DEVELOPMENT</div>
+        <div class="patch"><strong>Aktueller Stand · <span class="clean-number">3</span>D Horror Game</strong><span>Das Projekt befindet sich in Entwicklung. Neue Systeme, Gameplay-Funktionen und weitere Fortschritte werden hier später als einzelne Patchnotes ergänzt.</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal arcade-modal" id="arcadeModal">
+  <div class="modal-box">
+    <div class="modal-shell-top">
+      <div><div class="modal-kicker">Boketta Arcade</div><div class="modal-title" id="arcadeTitle">Arcade</div><div class="modal-subtitle">Mobile-style classics · touch first · no account</div></div>
+      <button class="close" id="arcadeClose" aria-label="Schließen">×</button>
+    </div>
+    <div class="modal-content">
+      <div class="arcade-tabs" id="arcadeTabs">
+        <button class="filter-btn active" data-arc="arcade">Arcade</button>
+        <button class="filter-btn" data-arc="mahjong">Mahjong</button>
+        <button class="filter-btn" data-arc="uno">UNO</button>
+        <button class="filter-btn" data-arc="poker">Poker</button>
+        <button class="filter-btn" data-arc="blackjack">Blackjack</button>
+        <button class="filter-btn" data-arc="jump">Boketta Jump</button>
+        <button class="filter-btn" data-arc="flappy">Flappy Red</button>
+      </div>
+      <div id="arcadeBody"></div>
+    </div>
+  </div>
+</div>
+<div class="modal" id="legalModal">
+  <div class="modal-box">
+    <div class="modal-shell-top"><div><div class="modal-kicker">Boketta Intl.</div><div id="legalTitle" class="modal-title">Information</div></div><button class="close" id="legalClose" aria-label="Schließen">×</button></div>
+    <div class="modal-content" id="legalBody"></div>
+  </div>
+</div>
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <div class="modal-shell-top">
+      <div>
+        <div class="modal-kicker"><span class="modal-kicker-dot"></span><span id="modalKicker">Boketta Utility</span></div>
+        <div id="modalTitle" style="font:700 29px 'Syne';letter-spacing:-.04em;margin-top:6px">Tool</div>
+        <div class="modal-subtitle" id="modalSubtitle">Fast utility · runs in your browser</div>
+      </div>
+      <button class="close" id="modalClose" aria-label="Schließen">×</button>
+    </div>
+    <div class="modal-content" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+  // Kein Notification-Code, kein Notification-Permission-Request.
+  const euro = n => new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR'}).format(n);
+  const modal = document.getElementById('modal');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalBody = document.getElementById('modalBody');
+
+  function vatCalc(amount, rate){
+    const tax = amount * rate;
+    return {tax, gross:amount+tax};
+  }
+  function renderVat(){
+    const a = Number(document.getElementById('vatAmount').value)||0;
+    const r = Number(document.getElementById('vatRate').value)||0;
+    const {tax,gross}=vatCalc(a,r);
+    document.getElementById('vatGross').textContent=euro(gross);
+    document.getElementById('vatInfo').textContent=`${euro(a)} netto + ${euro(tax)} USt.`;
+  }
+  document.getElementById('vatBtn').addEventListener('click',renderVat); renderVat();
+
+  function updateChars(){
+    const t=document.getElementById('charText').value;
+    document.getElementById('charCount').textContent=t.length.toLocaleString('de-DE');
+    document.getElementById('wordCount').textContent=(t.trim()?t.trim().split(/\s+/).length:0).toLocaleString('de-DE');
+  }
+  document.getElementById('charText').addEventListener('input',updateChars);
+
+  document.querySelectorAll('.filter-btn').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('active')); b.classList.add('active');
+    const f=b.dataset.filter;
+    document.querySelectorAll('.tool').forEach(t=>t.style.display=(f==='all'||t.dataset.cat===f)?'':'none');
+  }));
+
+  const UIs = {
+    vat:()=>`
+      <p class="modal-tool-intro">Gib wahlweise Netto, Umsatzsteuer oder Brutto vor. Der Rechner ermittelt die beiden anderen Werte automatisch.</p>
+      <div class="vat-mode" role="tablist" aria-label="Ausgangswert">
+        <button type="button" class="vat-mode-btn active" data-vat-mode="net">Netto</button>
+        <button type="button" class="vat-mode-btn" data-vat-mode="tax">USt.</button>
+        <button type="button" class="vat-mode-btn" data-vat-mode="gross">Brutto</button>
+      </div>
+      <div class="split-fields">
+        <div class="field"><label id="mVatInputLabel">Netto-Betrag (€)</label><input id="mVatA" type="number" min="0" step="0.01" value="100"></div>
+        <div class="field"><label>USt.-Satz</label><select id="mVatR"><option value=".19">19 %</option><option value=".07">7 %</option><option value="0">0 %</option></select></div>
+      </div>
+      <div class="tool-actions"><button class="btn primary" onclick="mVAT()">Berechnen</button></div>
+      <div class="vat-results">
+        <div class="result"><small>NETTO</small><div class="big" id="mVatNet">100,00 €</div></div>
+        <div class="result"><small>UST.</small><div class="big" id="mVatTax">19,00 €</div></div>
+        <div class="result"><small>BRUTTO</small><div class="big" id="mVatGross">119,00 €</div></div>
+      </div>`,
+
+    percentage:()=>`
+      <p class="modal-tool-intro">Berechne Prozentwerte, ohne erst einen Taschenrechner öffnen zu müssen.</p>
+      <div class="split-fields">
+        <div class="field"><label>Prozent</label><input id="pPct" type="number" value="19"></div>
+        <div class="field"><label>Grundwert</label><input id="pBase" type="number" value="100"></div>
+      </div>
+      <div class="tool-actions"><button class="btn primary" onclick="mPct()">Berechnen</button></div>
+      <div class="result"><div class="big" id="pOut">19,00</div><span>Prozentwert</span></div>`,
+
+    discount:()=>`
+      <p class="modal-tool-intro">Ideal für Angebote, Aktionen oder schnelle Preisvergleiche.</p>
+      <div class="split-fields">
+        <div class="field"><label>Originalpreis (€)</label><input id="dPrice" type="number" min="0" step=".01" value="100"></div>
+        <div class="field"><label>Rabatt (%)</label><input id="dRate" type="number" min="0" max="100" step=".1" value="20"></div>
+      </div>
+      <div class="tool-actions"><button class="btn primary" onclick="mDiscount()">Berechnen</button></div>
+      <div class="result"><div class="big" id="dOut">80,00 €</div><span id="dSub">Du sparst 20,00 €</span></div>`,
+
+    utm:()=>`
+      <p class="modal-tool-intro">Erstelle saubere Tracking-URLs für Google Ads, Meta, Instagram oder andere Kampagnen.</p>
+      <div class="field"><label>Website URL</label><input id="uBase" placeholder="https://example.com"></div>
+      <div class="split-fields">
+        <div class="field"><label>Source</label><input id="uSource" placeholder="instagram"></div>
+        <div class="field"><label>Medium</label><input id="uMedium" placeholder="social"></div>
+      </div>
+      <div class="field"><label>Campaign</label><input id="uCampaign" placeholder="summer-sale"></div>
+      <div class="tool-actions"><button class="btn primary" onclick="mUTM()">UTM-Link erstellen</button><button class="btn" onclick="copyValue('uOut')">Kopieren</button></div>
+      <div class="result"><div id="uOut" style="word-break:break-word;font-size:12px">Noch kein Link.</div></div>`,
+
+    seo:()=>`
+      <p class="modal-tool-intro">Simuliere einen Suchmaschinen-Snippet und kontrolliere Länge und Darstellung deiner Meta-Daten.</p>
+      <div class="field"><label>SEO Title</label><input id="sTitle" maxlength="70" placeholder="Meine Website | Boketta Intl."></div>
+      <div class="field"><label>Meta Description</label><textarea id="sDesc" maxlength="170" rows="4" placeholder="Kurze Beschreibung..."></textarea></div>
+      <div class="result"><div style="color:#67aef5;font-size:11px">example.com</div><div id="sPrevTitle" style="font-weight:700;margin-top:5px">Seitentitel</div><div id="sPrevDesc" style="color:#8699ad;font-size:11px;margin-top:4px">Beschreibung...</div></div>`,
+
+    characters:()=>`
+      <p class="modal-tool-intro">Praktisch für Social Posts, Anzeigen, Meta Descriptions und kurze Texte mit Zeichenlimits.</p>
+      <div class="field"><label>Text</label><textarea id="mText" rows="9" placeholder="Text hier eingeben..."></textarea></div>
+      <div class="result"><div class="big" id="mChars">0</div><span>Zeichen · Wörter: <b id="mWords">0</b> · ohne Leerzeichen: <b id="mNoSpace">0</b></span></div>`,
+
+    password:()=>`
+      <p class="modal-tool-intro">Erzeuge ein zufälliges Passwort direkt im Browser. Es wird nicht an einen Server gesendet.</p>
+      <div class="split-fields">
+        <div class="field"><label>Länge</label><input id="pwLen" type="number" value="20" min="6" max="128"></div>
+        <div class="field"><label>Zeichen</label><select id="pwPreset"><option value="all">Buchstaben + Zahlen + Symbole</option><option value="letters">Nur Buchstaben</option><option value="safe">Buchstaben + Zahlen</option></select></div>
+      </div>
+      <div class="tool-actions"><button class="btn primary" onclick="mPassword()">Passwort erzeugen</button></div>
+      <div class="result"><div class="copyrow"><input id="pwOut" readonly><button class="btn" onclick="copyValue('pwOut')">Kopieren</button></div></div>
+      <div class="notice">Lokale Browser-Verarbeitung · kein Upload</div>`,
+
+    color:()=>`
+      <p class="modal-tool-intro">Ein einfacher Farbhelfer für Websites, Logos und UI-Designs.</p>
+      <div class="field"><label>Farbe auswählen</label><input id="cPick" type="color" value="#4ca8ff" style="height:58px;padding:4px"></div>
+      <div class="color-output" id="cBox" style="background:#4ca8ff">#4CA8FF</div>
+      <div class="result"><div class="big" id="cHex">#4CA8FF</div><span>Hex-Wert</span></div>`,
+
+    compressor:()=>`
+      <p class="modal-tool-intro">Verkleinere ein Bild direkt in deinem Browser. Die Datei muss nicht auf einen Server hochgeladen werden.</p>
+      <div class="drop"><strong>Bild auswählen</strong><div>JPG, PNG oder WebP</div><input id="imgInput" type="file" accept="image/*"></div>
+      <div class="image-result" id="imgResult">
+        <img class="image-preview" id="imgPreview">
+        <div class="field"><label>Qualität: <b id="qualityValue">80</b>%</label><input id="quality" type="range" min="20" max="100" value="80"></div>
+        <div class="tool-actions"><button class="btn primary" onclick="compressImage()">Komprimieren & Download</button></div>
+        <div class="result"><div id="imgInfo">Noch nicht verarbeitet.</div></div>
+      </div>`,
+
+    unit:()=>`
+      <p class="modal-tool-intro">Schnelle Umrechnung für die gängigsten Größen — alles direkt im Browser.</p>
+      <div class="split-fields">
+        <div class="field"><label>Wert</label><input id="unitValue" type="number" value="1"></div>
+        <div class="field"><label>Kategorie</label><select id="unitType"><option value="length">Länge</option><option value="weight">Gewicht</option><option value="temp">Temperatur</option><option value="data">Daten</option></select></div>
+      </div>
+      <div class="split-fields">
+        <div class="field"><label>Von</label><select id="unitFrom"></select></div>
+        <div class="field"><label>Nach</label><select id="unitTo"></select></div>
+      </div>
+      <div class="tool-actions"><button class="btn primary" onclick="mUnit()">Umrechnen</button></div>
+      <div class="result"><div class="big" id="unitOut">1</div><span id="unitSub"></span></div>`,
+
+    date:()=>`
+      <p class="modal-tool-intro">Wie viele Tage liegen zwischen zwei Terminen? Nützlich für Projekte, Fristen und Planung.</p>
+      <div class="split-fields">
+        <div class="field"><label>Startdatum</label><input id="dateA" type="date"></div>
+        <div class="field"><label>Enddatum</label><input id="dateB" type="date"></div>
+      </div>
+      <div class="tool-actions"><button class="btn primary" onclick="mDateDiff()">Berechnen</button></div>
+      <div class="result"><div class="big" id="dateOut">0 Tage</div><span id="dateSub">Differenz zwischen den Daten</span></div>`,
+
+    slug:()=>`
+      <p class="modal-tool-intro">Aus „Meine neue Produktseite!“ wird eine saubere URL wie <b>meine-neue-produktseite</b>.</p>
+      <div class="field"><label>Text</label><input id="slugText" placeholder="Meine neue Produktseite"></div>
+      <div class="tool-actions"><button class="btn primary" onclick="mSlug()">Slug erzeugen</button><button class="btn" onclick="copyValue('slugOut')">Kopieren</button></div>
+      <div class="result"><div class="copyrow"><input id="slugOut" readonly placeholder="deine-url"></div></div>`,
+
+    case:()=>`
+      <p class="modal-tool-intro">Wandle Texte sofort in verschiedene Schreibweisen um.</p>
+      <div class="field"><label>Text</label><textarea id="caseText" rows="7" placeholder="Dein Text..."></textarea></div>
+      <div class="tool-actions">
+        <button class="btn" onclick="mCase('upper')">UPPERCASE</button>
+        <button class="btn" onclick="mCase('lower')">lowercase</button>
+        <button class="btn" onclick="mCase('title')">Title Case</button>
+      </div>
+      <div class="result"><div id="caseOut" style="white-space:pre-wrap;line-height:1.55"></div></div>`,
+
+    timestamp:()=>`
+      <p class="modal-tool-intro">Konvertiere ein Datum in Unix-Zeit oder einen Unix-Timestamp zurück in ein Datum.</p>
+      <div class="field"><label>Datum & Uhrzeit</label><input id="tsDate" type="datetime-local"></div>
+      <div class="tool-actions"><button class="btn primary" onclick="mTimestamp()">Unix-Timestamp</button><button class="btn" onclick="tsNow()">Jetzt</button></div>
+      <div class="result"><div class="big" id="tsOut">—</div><span id="tsSub">Sekunden seit 1.1.1970</span></div>
+      <div class="modal-divider"></div>
+      <div class="field"><label>Timestamp zurückrechnen</label><input id="tsInput" type="number" placeholder="1750000000"></div>
+      <button class="btn" onclick="mFromTimestamp()">Datum anzeigen</button>
+      <div class="result"><div id="tsBack">—</div></div>`,
+
+    contrast:()=>`
+      <p class="modal-tool-intro">Prüfe, ob zwei Farben ausreichend Kontrast für Text haben. Die Prüfung basiert auf dem üblichen WCAG-Kontrastverhältnis.</p>
+      <div class="split-fields">
+        <div class="field"><label>Hintergrund</label><input id="bgColor" type="color" value="#07111f" style="height:56px;padding:4px"></div>
+        <div class="field"><label>Text</label><input id="fgColor" type="color" value="#ffffff" style="height:56px;padding:4px"></div>
+      </div>
+      <button class="btn primary" style="margin-top:4px" onclick="mContrast()">Prüfen</button>
+      <div class="result" style="text-align:center"><div class="score-badge" id="contrastScore">—</div><div id="contrastResult" style="font-weight:700">Noch nicht geprüft</div><span id="contrastSub"></span></div>`,
+
+    json:()=>`
+      <p class="modal-tool-intro">Formatieren, prüfen und kopieren — ohne JSON-Datei hochzuladen.</p>
+      <div class="field"><label>JSON</label><textarea id="jsonText" rows="9" placeholder='{"name":"Boketta","type":"tool"}'></textarea></div>
+      <div class="tool-actions"><button class="btn primary" onclick="mJSON()">Formatieren</button><button class="btn" onclick="mJSONMin()">Minifizieren</button><button class="btn" onclick="copyText('jsonOut')">Kopieren</button></div>
+      <div class="format-output" id="jsonOut">Hier erscheint das formatierte JSON.</div>`,
+
+    bmi:()=>`
+      <p class="modal-tool-intro">Einfache BMI-Berechnung als allgemeiner Orientierungswert.</p>
+      <div class="split-fields">
+        <div class="field"><label>Gewicht (kg)</label><input id="bmiWeight" type="number" min="1" step=".1" value="70"></div>
+        <div class="field"><label>Größe (cm)</label><input id="bmiHeight" type="number" min="50" step="1" value="175"></div>
+      </div>
+      <button class="btn primary" style="margin-top:4px" onclick="mBMI()">Berechnen</button>
+      <div class="result"><div class="big" id="bmiOut">22,9</div><span id="bmiSub">Normalbereich</span></div>`,
+
+    invoice:()=>`
+      <p class="modal-tool-intro">Erstelle schnell eine übersichtliche Rechnungssumme. Mehrere Positionen, Mengen, Einzelpreise und USt. werden direkt zusammengerechnet.</p>
+      <div id="invRows" class="invoice-rows">
+        <div class="invoice-row invoice-head"><span>Position</span><span>Menge</span><span>Einzelpreis</span><span></span></div>
+        <div class="invoice-row"><input class="inv-name" placeholder="z. B. Beratung"><input class="inv-qty" type="number" min="0" step=".01" value="1"><input class="inv-price" type="number" min="0" step=".01" value="100"><button class="btn inv-remove" type="button" aria-label="Position entfernen">×</button></div>
+        <div class="invoice-row"><input class="inv-name" placeholder="Weitere Position"><input class="inv-qty" type="number" min="0" step=".01" value="1"><input class="inv-price" type="number" min="0" step=".01" value="0"><button class="btn inv-remove" type="button" aria-label="Position entfernen">×</button></div>
+      </div>
+      <div class="tool-actions"><button class="btn" type="button" onclick="addInvoiceRow()">+ Position</button><button class="btn primary" type="button" onclick="mInvoice()">Berechnen</button></div>
+      <div class="field"><label>USt.-Satz</label><select id="invRate"><option value=".19">19 %</option><option value=".07">7 %</option><option value="0">0 %</option></select></div>
+      <div class="invoice-summary">
+        <div class="result"><small>NETTO</small><div class="big" id="invNet">100,00 €</div></div>
+        <div class="result"><small>UST.</small><div class="big" id="invTax">19,00 €</div></div>
+        <div class="result"><small>BRUTTO</small><div class="big" id="invGross">119,00 €</div></div>
+      </div>`,
+
+    skonto:()=>`
+      <p class="modal-tool-intro">Berechne sofort, wie viel du mit Skonto sparst und wie hoch der zu zahlende Betrag ist. Zusätzlich kannst du das Zahlungsziel einordnen.</p>
+      <div class="split-fields">
+        <div class="field"><label>Rechnungsbetrag (€)</label><input id="skAmount" type="number" min="0" step=".01" value="1000"></div>
+        <div class="field"><label>Skonto (%)</label><input id="skRate" type="number" min="0" max="100" step=".1" value="2"></div>
+      </div>
+      <div class="split-fields">
+        <div class="field"><label>Skonto-Frist (Tage)</label><input id="skDays" type="number" min="0" step="1" value="10"></div>
+        <div class="field"><label>Reguläres Zahlungsziel (Tage)</label><input id="skTerm" type="number" min="0" step="1" value="30"></div>
+      </div>
+      <button class="btn primary" type="button" onclick="mSkonto()">Berechnen</button>
+      <div class="invoice-summary">
+        <div class="result"><small>SKONTO</small><div class="big" id="skSave">20,00 €</div></div>
+        <div class="result"><small>ZAHLUNG MIT SKONTO</small><div class="big" id="skPay">980,00 €</div></div>
+        <div class="result"><small>SPARRATE</small><div class="big" id="skRateOut">2,00 %</div></div>
+      </div>
+      <div class="notice" id="skInfo">2 % Skonto innerhalb von 10 Tagen statt regulär innerhalb von 30 Tagen.</div>`,
+
+    margin:()=>`
+      <p class="modal-tool-intro">Für Einkauf, Verkauf und Angebote: berechne Gewinn, Marge und Aufschlag aus deinen Preisangaben.</p>
+      <div class="split-fields">
+        <div class="field"><label>Verkaufspreis (€)</label><input id="mgSale" type="number" min="0" step=".01" value="150"></div>
+        <div class="field"><label>Einstandskosten (€)</label><input id="mgCost" type="number" min="0" step=".01" value="100"></div>
+      </div>
+      <button class="btn primary" type="button" onclick="mMargin()">Berechnen</button>
+      <div class="invoice-summary">
+        <div class="result"><small>GEWINN</small><div class="big" id="mgProfit">50,00 €</div></div>
+        <div class="result"><small>MARGE</small><div class="big" id="mgMargin">33,33 %</div></div>
+        <div class="result"><small>AUFSCHLAG</small><div class="big" id="mgMarkup">50,00 %</div></div>
+      </div>
+      <div class="notice">Marge = Gewinn im Verhältnis zum Verkaufspreis. Aufschlag = Gewinn im Verhältnis zu den Kosten.</div>`,
+
+    breakeven:()=>`
+      <p class="modal-tool-intro">Finde heraus, wie viele Einheiten verkauft werden müssen, bis Fixkosten gedeckt sind und Gewinn entsteht.</p>
+      <div class="split-fields">
+        <div class="field"><label>Fixkosten (€)</label><input id="beFixed" type="number" min="0" step=".01" value="5000"></div>
+        <div class="field"><label>Verkaufspreis je Einheit (€)</label><input id="bePrice" type="number" min="0" step=".01" value="100"></div>
+      </div>
+      <div class="split-fields">
+        <div class="field"><label>Variable Kosten je Einheit (€)</label><input id="beVar" type="number" min="0" step=".01" value="40"></div>
+        <div class="field"><label>Zielgewinn (€)</label><input id="beTarget" type="number" min="0" step=".01" value="0"></div>
+      </div>
+      <button class="btn primary" type="button" onclick="mBreakeven()">Berechnen</button>
+      <div class="invoice-summary">
+        <div class="result"><small>BREAK-EVEN</small><div class="big" id="beUnits">84 Einheiten</div></div>
+        <div class="result"><small>UMSATZ BIS ZIEL</small><div class="big" id="beRevenue">8.400,00 €</div></div>
+        <div class="result"><small>DECKUNGSBEITRAG</small><div class="big" id="beContribution">60,00 €</div></div>
+      </div>`,
+
+    roas:()=>`
+      <p class="modal-tool-intro">Bewerte eine Werbekampagne nicht nur mit ROAS, sondern zusätzlich mit dem tatsächlichen ROI nach Produkt- oder Leistungskosten.</p>
+      <div class="split-fields">
+        <div class="field"><label>Werbekosten (€)</label><input id="roasSpend" type="number" min="0" step=".01" value="1000"></div>
+        <div class="field"><label>Umsatz (€)</label><input id="roasRevenue" type="number" min="0" step=".01" value="4000"></div>
+      </div>
+      <div class="field"><label>Weitere variable Kosten (€)</label><input id="roasCost" type="number" min="0" step=".01" value="1400"></div>
+      <button class="btn primary" type="button" onclick="mRoas()">Berechnen</button>
+      <div class="invoice-summary">
+        <div class="result"><small>ROAS</small><div class="big" id="roasOut">4,00×</div></div>
+        <div class="result"><small>GEWINN NACH KOSTEN</small><div class="big" id="roasProfit">1.600,00 €</div></div>
+        <div class="result"><small>ROI</small><div class="big" id="roiOut">66,67 %</div></div>
+      </div>`,
+
+    admetrics:()=>`
+      <p class="modal-tool-intro">Ein kompakter Marketing-Rechner für die wichtigsten Kennzahlen einer Kampagne: CTR, CPC, CPM, Conversion Rate, CPA und ROAS.</p>
+      <div class="split-fields">
+        <div class="field"><label>Impressionen</label><input id="amImp" type="number" min="0" step="1" value="100000"></div>
+        <div class="field"><label>Klicks</label><input id="amClicks" type="number" min="0" step="1" value="2000"></div>
+      </div>
+      <div class="split-fields">
+        <div class="field"><label>Werbekosten (€)</label><input id="amSpend" type="number" min="0" step=".01" value="800"></div>
+        <div class="field"><label>Conversions</label><input id="amConv" type="number" min="0" step="1" value="80"></div>
+      </div>
+      <div class="field"><label>Umsatz (€)</label><input id="amRevenue" type="number" min="0" step=".01" value="3200"></div>
+      <button class="btn primary" type="button" onclick="mAdMetrics()">Berechnen</button>
+      <div class="invoice-summary">
+        <div class="result"><small>CTR</small><div class="big" id="amCtr">2,00 %</div></div>
+        <div class="result"><small>CPC</small><div class="big" id="amCpc">0,40 €</div></div>
+        <div class="result"><small>CPM</small><div class="big" id="amCpm">8,00 €</div></div>
+        <div class="result"><small>CONVERSION RATE</small><div class="big" id="amCr">4,00 %</div></div>
+        <div class="result"><small>CPA</small><div class="big" id="amCpa">10,00 €</div></div>
+        <div class="result"><small>ROAS</small><div class="big" id="amRoas">4,00×</div></div>
+      </div>`,
+
+    worktime:()=>`
+      <p class="modal-tool-intro">Berechne deine effektive Arbeitszeit aus Beginn, Ende und Pause – inklusive Dezimalstunden für Zeiterfassung oder Abrechnung.</p>
+      <div class="split-fields">
+        <div class="field"><label>Arbeitsbeginn</label><input id="wtStart" type="time" value="08:00"></div>
+        <div class="field"><label>Arbeitsende</label><input id="wtEnd" type="time" value="16:30"></div>
+      </div>
+      <div class="split-fields">
+        <div class="field"><label>Pause (Minuten)</label><input id="wtBreak" type="number" min="0" step="5" value="30"></div>
+        <div class="field"><label>Zweiter Zeitraum</label><select id="wtOvernight"><option value="0">Gleicher Tag</option><option value="1">Über Mitternacht</option></select></div>
+      </div>
+      <button class="btn primary" type="button" onclick="mWorktime()">Berechnen</button>
+      <div class="invoice-summary">
+        <div class="result"><small>NETTO-ARBEITSZEIT</small><div class="big" id="wtHours">8:00 h</div></div>
+        <div class="result"><small>DEZIMAL</small><div class="big" id="wtDecimal">8,00 h</div></div>
+        <div class="result"><small>GESAMTSPANNE</small><div class="big" id="wtSpan">8:30 h</div></div>
+      </div>`
+
+  };
+
+  const toolDescriptions = {
+    vat:"Finance & Business",
+    invoice:"Finance & Accounting",
+    skonto:"Finance & Accounting",
+    margin:"Finance & Business",
+    breakeven:"Finance & Business",
+    percentage:"Business",
+    discount:"Business",
+    roas:"Marketing",
+    admetrics:"Marketing",
+    utm:"Marketing",
+    seo:"Marketing",
+    characters:"Writing & Marketing",
+    compressor:"Media",
+    unit:"Utility",
+    date:"Planning",
+    worktime:"Office"
+  };
+
+  function openTool(type,title){
+    modalTitle.textContent=title;
+    document.getElementById('modalKicker').textContent=toolDescriptions[type]||'Boketta Utility';
+    document.getElementById('modalSubtitle').textContent='Fast utility · runs in your browser';
+    modalBody.innerHTML=(UIs[type]||(()=>`<p style="color:var(--muted)">Tool wird vorbereitet.</p>`))();
+    modal.classList.add('open');
+
+    if(type==='invoice')initInvoice();
+    if(type==='skonto')mSkonto();
+    if(type==='margin')mMargin();
+    if(type==='breakeven')mBreakeven();
+    if(type==='roas')mRoas();
+    if(type==='admetrics')mAdMetrics();
+    if(type==='worktime')mWorktime();
+
+    if(type==='vat'){
+      vatInputMode='net';
+      const vatLabel=document.getElementById('mVatInputLabel');
+      const vatInput=document.getElementById('mVatA');
+      document.querySelectorAll('.vat-mode-btn').forEach(btn=>btn.onclick=()=>{
+        vatInputMode=btn.dataset.vatMode;
+        document.querySelectorAll('.vat-mode-btn').forEach(b=>b.classList.toggle('active',b===btn));
+        const labels={net:'Netto-Betrag (€)',tax:'USt.-Betrag (€)',gross:'Brutto-Betrag (€)'};
+        if(vatLabel)vatLabel.textContent=labels[vatInputMode];
+        if(vatInput)vatInput.value=vatInputMode==='net'?'100':vatInputMode==='tax'?'19':'119';
+        mVAT();
+      });
+      document.getElementById('mVatR')?.addEventListener('change',mVAT);
+      document.getElementById('mVatA')?.addEventListener('input',mVAT);
+      mVAT();
+    }
+
+
+    const bindCalc=(ids,fn)=>ids.forEach(id=>document.getElementById(id)?.addEventListener('input',fn));
+    bindCalc(['skAmount','skRate','skDays','skTerm'],mSkonto);
+    bindCalc(['mgSale','mgCost'],mMargin);
+    bindCalc(['beFixed','bePrice','beVar','beTarget'],mBreakeven);
+    bindCalc(['roasSpend','roasRevenue','roasCost'],mRoas);
+    bindCalc(['amImp','amClicks','amSpend','amConv','amRevenue'],mAdMetrics);
+    bindCalc(['wtStart','wtEnd','wtBreak','wtOvernight'],mWorktime);
+
+    const mText=document.getElementById('mText');
+    if(mText)mText.addEventListener('input',()=>{
+      document.getElementById('mChars').textContent=mText.value.length.toLocaleString('de-DE');
+      document.getElementById('mWords').textContent=(mText.value.trim()?mText.value.trim().split(/\s+/).length:0).toLocaleString('de-DE');
+      document.getElementById('mNoSpace').textContent=mText.value.replace(/\s/g,'').length.toLocaleString('de-DE');
+    });
+
+    const sTitle=document.getElementById('sTitle'),sDesc=document.getElementById('sDesc');
+    if(sTitle)sTitle.addEventListener('input',()=>document.getElementById('sPrevTitle').textContent=sTitle.value||'Seitentitel');
+    if(sDesc)sDesc.addEventListener('input',()=>document.getElementById('sPrevDesc').textContent=sDesc.value||'Beschreibung...');
+
+    const cPick=document.getElementById('cPick');
+    if(cPick)cPick.addEventListener('input',()=>{document.getElementById('cHex').textContent=cPick.value.toUpperCase();document.getElementById('cBox').style.background=cPick.value;document.getElementById('cBox').textContent=cPick.value.toUpperCase()});
+
+    const q=document.getElementById('quality'),qi=document.getElementById('qualityValue');
+    if(q)q.addEventListener('input',()=>qi.textContent=q.value);
+
+    const img=document.getElementById('imgInput');
+    if(img)img.addEventListener('change',previewImage);
+
+    if(type==='unit')initUnit();
+    if(type==='date'){const now=new Date();const iso=x=>new Date(x.getTime()-x.getTimezoneOffset()*60000).toISOString().slice(0,10);document.getElementById('dateA').value=iso(now);document.getElementById('dateB').value=iso(new Date(now.getTime()+7*86400000));}
+    if(type==='timestamp'){const d=new Date();d.setSeconds(0,0);document.getElementById('tsDate').value=new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,16);}
+    if(type==='bmi'){}
+    if(type==='data')mData();
+  }
+
+  document.querySelectorAll('.tool').forEach(t=>t.addEventListener('click',()=>openTool(t.dataset.tool,t.querySelector('.tool-name').textContent)));
+  document.getElementById('modalClose').addEventListener('click',()=>modal.classList.remove('open'));
+  modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('open')});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')modal.classList.remove('open')});
+
+  let vatInputMode='net';
+  function mVAT(){
+    const input=Number(document.getElementById('mVatA')?.value)||0;
+    const rate=Number(document.getElementById('mVatR')?.value)||0;
+    let net=0,tax=0,gross=0;
+    if(vatInputMode==='net'){net=input;tax=net*rate;gross=net+tax}
+    else if(vatInputMode==='tax'){tax=input;net=rate?tax/rate:tax;gross=net+tax}
+    else {gross=input;net=rate?gross/(1+rate):gross;tax=gross-net}
+    document.getElementById('mVatNet').textContent=euro(net);
+    document.getElementById('mVatTax').textContent=euro(tax);
+    document.getElementById('mVatGross').textContent=euro(gross);
+  }
+  function mPct(){const p=Number(document.getElementById('pPct').value)||0,b=Number(document.getElementById('pBase').value)||0;document.getElementById('pOut').textContent=(p*b/100).toLocaleString('de-DE',{maximumFractionDigits:4})}
+  function mDiscount(){const p=Number(document.getElementById('dPrice').value)||0,r=Math.min(100,Math.max(0,Number(document.getElementById('dRate').value)||0));const save=p*r/100;document.getElementById('dOut').textContent=euro(p-save);document.getElementById('dSub').textContent=`Du sparst ${euro(save)}`}
+  function mUTM(){const u=document.getElementById('uBase').value.trim()||'https://example.com';const params=new URLSearchParams();const vals=[['utm_source','uSource'],['utm_medium','uMedium'],['utm_campaign','uCampaign']];vals.forEach(([key,id])=>{const v=document.getElementById(id).value.trim();if(v)params.set(key,v)});document.getElementById('uOut').value=u+(params.toString()?((u.includes('?')?'&':'?')+params.toString()):'');document.getElementById('uOut').type='text'}
+
+  const money=n=>euro(Number.isFinite(n)?n:0);
+  function mInvoice(){
+    const rate=Number(document.getElementById('invRate')?.value)||0;
+    let net=0;
+    document.querySelectorAll('#invRows .invoice-row:not(.invoice-head)').forEach(row=>{
+      const q=Number(row.querySelector('.inv-qty')?.value)||0;
+      const p=Number(row.querySelector('.inv-price')?.value)||0;
+      net+=q*p;
+    });
+    const tax=net*rate,gross=net+tax;
+    document.getElementById('invNet').textContent=money(net);
+    document.getElementById('invTax').textContent=money(tax);
+    document.getElementById('invGross').textContent=money(gross);
+  }
+  function addInvoiceRow(){
+    const wrap=document.getElementById('invRows'); if(!wrap)return;
+    const row=document.createElement('div'); row.className='invoice-row';
+    row.innerHTML='<input class="inv-name" placeholder="Weitere Position"><input class="inv-qty" type="number" min="0" step=".01" value="1"><input class="inv-price" type="number" min="0" step=".01" value="0"><button class="btn inv-remove" type="button" aria-label="Position entfernen">×</button>';
+    wrap.appendChild(row);
+    row.querySelectorAll('input').forEach(i=>i.addEventListener('input',mInvoice));
+    row.querySelector('.inv-remove').onclick=()=>{row.remove();mInvoice()};
+    mInvoice();
+  }
+  function initInvoice(){
+    document.querySelectorAll('#invRows input').forEach(i=>i.addEventListener('input',mInvoice));
+    document.getElementById('invRate')?.addEventListener('change',mInvoice);
+    document.querySelectorAll('#invRows .inv-remove').forEach(btn=>btn.onclick=()=>{btn.closest('.invoice-row')?.remove();mInvoice()});
+    mInvoice();
+  }
+  function mSkonto(){
+    const amount=Number(document.getElementById('skAmount')?.value)||0;
+    const rate=Math.max(0,Math.min(100,Number(document.getElementById('skRate')?.value)||0));
+    const days=Number(document.getElementById('skDays')?.value)||0;
+    const term=Number(document.getElementById('skTerm')?.value)||0;
+    const save=amount*rate/100,pay=amount-save;
+    document.getElementById('skSave').textContent=money(save);
+    document.getElementById('skPay').textContent=money(pay);
+    document.getElementById('skRateOut').textContent=rate.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2})+' %';
+    document.getElementById('skInfo').textContent=`${rate.toLocaleString('de-DE',{maximumFractionDigits:2})} % Skonto innerhalb von ${days} Tagen statt regulär innerhalb von ${term} Tagen.`;
+  }
+  function mMargin(){
+    const sale=Number(document.getElementById('mgSale')?.value)||0,cost=Number(document.getElementById('mgCost')?.value)||0;
+    const profit=sale-cost,margin=sale?profit/sale*100:0,markup=cost?profit/cost*100:0;
+    document.getElementById('mgProfit').textContent=money(profit);
+    document.getElementById('mgMargin').textContent=margin.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2})+' %';
+    document.getElementById('mgMarkup').textContent=markup.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2})+' %';
+  }
+  function mBreakeven(){
+    const fixed=Number(document.getElementById('beFixed')?.value)||0,price=Number(document.getElementById('bePrice')?.value)||0,variable=Number(document.getElementById('beVar')?.value)||0,target=Number(document.getElementById('beTarget')?.value)||0;
+    const contribution=price-variable,units=contribution>0?Math.ceil((fixed+target)/contribution):0,revenue=units*price;
+    document.getElementById('beUnits').textContent=`${units.toLocaleString('de-DE')} Einheiten`;
+    document.getElementById('beRevenue').textContent=money(revenue);
+    document.getElementById('beContribution').textContent=money(contribution);
+  }
+  function mRoas(){
+    const spend=Number(document.getElementById('roasSpend')?.value)||0,revenue=Number(document.getElementById('roasRevenue')?.value)||0,cost=Number(document.getElementById('roasCost')?.value)||0;
+    const roas=spend?revenue/spend:0,profit=revenue-spend-cost,roi=(spend+cost)?profit/(spend+cost)*100:0;
+    document.getElementById('roasOut').textContent=roas.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2})+'×';
+    document.getElementById('roasProfit').textContent=money(profit);
+    document.getElementById('roiOut').textContent=roi.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2})+' %';
+  }
+  function mAdMetrics(){
+    const imp=Number(document.getElementById('amImp')?.value)||0,clicks=Number(document.getElementById('amClicks')?.value)||0,spend=Number(document.getElementById('amSpend')?.value)||0,conv=Number(document.getElementById('amConv')?.value)||0,revenue=Number(document.getElementById('amRevenue')?.value)||0;
+    const ctr=imp?clicks/imp*100:0,cpc=clicks?spend/clicks:0,cpm=imp?spend/imp*1000:0,cr=clicks?conv/clicks*100:0,cpa=conv?spend/conv:0,roas=spend?revenue/spend:0;
+    document.getElementById('amCtr').textContent=ctr.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2})+' %';
+    document.getElementById('amCpc').textContent=money(cpc);
+    document.getElementById('amCpm').textContent=money(cpm);
+    document.getElementById('amCr').textContent=cr.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2})+' %';
+    document.getElementById('amCpa').textContent=money(cpa);
+    document.getElementById('amRoas').textContent=roas.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2})+'×';
+  }
+  function mWorktime(){
+    const a=document.getElementById('wtStart')?.value||'08:00',b=document.getElementById('wtEnd')?.value||'16:30',br=Math.max(0,Number(document.getElementById('wtBreak')?.value)||0),overnight=Number(document.getElementById('wtOvernight')?.value)||0;
+    const mins=t=>{const [h,m]=t.split(':').map(Number);return h*60+m};
+    let span=mins(b)-mins(a);if(overnight&&span<=0)span+=1440;if(!overnight&&span<0)span+=1440;
+    const net=Math.max(0,span-br),fmt=x=>`${Math.floor(x/60)}:${String(Math.round(x%60)).padStart(2,'0')} h`;
+    document.getElementById('wtHours').textContent=fmt(net);
+    document.getElementById('wtDecimal').textContent=(net/60).toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2})+' h';
+    document.getElementById('wtSpan').textContent=fmt(span);
+  }
+
+  function mPassword(){const len=Math.min(128,Math.max(6,Number(document.getElementById('pwLen').value)||20));const preset=document.getElementById('pwPreset').value;let pool='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';if(preset!=='letters')pool+='0123456789';if(preset==='all')pool+='!@#$%^&*()-_=+[]{}?';const arr=new Uint32Array(len);crypto.getRandomValues(arr);let out='';for(let i=0;i<len;i++)out+=pool[arr[i]%pool.length];document.getElementById('pwOut').value=out}
+  async function copyValue(id){const el=document.getElementById(id);const value=el.value??el.textContent??'';try{await navigator.clipboard.writeText(value);const b=event.currentTarget;if(b){const old=b.textContent;b.textContent='Kopiert';setTimeout(()=>b.textContent=old,1000)}}catch{}}
+  async function copyText(id){const el=document.getElementById(id);try{await navigator.clipboard.writeText(el.textContent||'')}catch{}}
+  function previewImage(e){const file=e.target.files[0];if(!file)return;const url=URL.createObjectURL(file);document.getElementById('imgPreview').src=url;document.getElementById('imgResult').style.display='block';document.getElementById('imgInfo').textContent=`Original: ${(file.size/1024/1024).toFixed(2)} MB · ${file.type}`}
+  async function compressImage(){const input=document.getElementById('imgInput'),file=input.files[0];if(!file)return;const img=new Image();img.src=URL.createObjectURL(file);await img.decode();const max=2400,scale=Math.min(1,max/Math.max(img.width,img.height));const canvas=document.createElement('canvas');canvas.width=Math.round(img.width*scale);canvas.height=Math.round(img.height*scale);canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);const q=(Number(document.getElementById('quality').value)||80)/100;canvas.toBlob(blob=>{if(!blob)return;const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='boketta-compressed.jpg';a.click();document.getElementById('imgInfo').textContent=`Original ${(file.size/1024/1024).toFixed(2)} MB → ${(blob.size/1024/1024).toFixed(2)} MB · lokal verarbeitet`},'image/jpeg',q)}
+
+  const unitSets={
+    length:{m:1,km:1000,cm:.01,mm:.001,ft:.3048,in:.0254,mi:1609.344},
+    weight:{kg:1,g:.001,mg:.000001,lb:.45359237,oz:.028349523125},
+    temp:{C:'C',F:'F',K:'K'},
+    data:{B:1,KB:1024,MB:1024**2,GB:1024**3,TB:1024**4}
+  };
+  const unitLabels={m:'Meter',km:'Kilometer',cm:'Zentimeter',mm:'Millimeter',ft:'Fuß',in:'Zoll',mi:'Meilen',kg:'Kilogramm',g:'Gramm',mg:'Milligramm',lb:'Pfund',oz:'Unzen',C:'Celsius',F:'Fahrenheit',K:'Kelvin',B:'Bytes',KB:'KB',MB:'MB',GB:'GB',TB:'TB'};
+  function initUnit(){const type=document.getElementById('unitType');const fill=()=>{const set=unitSets[type.value];document.getElementById('unitFrom').innerHTML=Object.keys(set).map(k=>`<option value="${k}">${unitLabels[k]}</option>`).join('');document.getElementById('unitTo').innerHTML=Object.keys(set).map((k,i)=>`<option value="${k}" ${i===1?'selected':''}>${unitLabels[k]}</option>`).join('');};fill();type.addEventListener('change',fill)}
+  function unitConvert(v,type,from,to){if(type==='temp'){let c=from==='C'?v:from==='F'?(v-32)*5/9:v-273.15;return to==='C'?c:to==='F'?c*9/5+32:c+273.15}return v*unitSets[type][from]/unitSets[type][to]}
+  function mUnit(){const v=Number(document.getElementById('unitValue').value)||0,type=document.getElementById('unitType').value,from=document.getElementById('unitFrom').value,to=document.getElementById('unitTo').value;const out=unitConvert(v,type,from,to);document.getElementById('unitOut').textContent=out.toLocaleString('de-DE',{maximumFractionDigits:8});document.getElementById('unitSub').textContent=`${unitLabels[from]} → ${unitLabels[to]}`}
+  function mDateDiff(){const a=new Date(document.getElementById('dateA').value+'T00:00:00'),b=new Date(document.getElementById('dateB').value+'T00:00:00');if(Number.isNaN(a)||Number.isNaN(b))return;const days=Math.round(Math.abs(b-a)/86400000);document.getElementById('dateOut').textContent=`${days.toLocaleString('de-DE')} ${days===1?'Tag':'Tage'}`;document.getElementById('dateSub').textContent=b>=a?'Enddatum liegt nach dem Startdatum':'Startdatum liegt nach dem Enddatum'}
+  function slugify(s){return s.toString().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/ß/g,'ss').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'')}
+  function mSlug(){document.getElementById('slugOut').value=slugify(document.getElementById('slugText').value)}
+  function mCase(mode){const s=document.getElementById('caseText').value;let out=s;if(mode==='upper')out=s.toUpperCase();if(mode==='lower')out=s.toLowerCase();if(mode==='title')out=s.toLowerCase().replace(/\b\p{L}/gu,c=>c.toUpperCase());document.getElementById('caseOut').textContent=out}
+  function tsNow(){const now=new Date();document.getElementById('tsDate').value=new Date(now.getTime()-now.getTimezoneOffset()*60000).toISOString().slice(0,16);mTimestamp()}
+  function mTimestamp(){const value=document.getElementById('tsDate').value;if(!value)return;const d=new Date(value);const ts=Math.floor(d.getTime()/1000);document.getElementById('tsOut').textContent=ts.toLocaleString('de-DE');document.getElementById('tsSub').textContent=d.toLocaleString('de-DE')}
+  function mFromTimestamp(){const n=Number(document.getElementById('tsInput').value);if(!Number.isFinite(n))return;const d=new Date(n*1000);document.getElementById('tsBack').textContent=d.toLocaleString('de-DE',{dateStyle:'medium',timeStyle:'medium'})}
+  function hexRgb(hex){const h=hex.replace('#','');return [parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)]}
+  function luminance(rgb){const s=rgb.map(v=>v/255).map(v=>v<=.03928?v/12.92:((v+.055)/1.055)**2.4);return .2126*s[0]+.7152*s[1]+.0722*s[2]}
+  function mContrast(){const a=luminance(hexRgb(document.getElementById('bgColor').value)),b=luminance(hexRgb(document.getElementById('fgColor').value));const ratio=(Math.max(a,b)+.05)/(Math.min(a,b)+.05);document.getElementById('contrastScore').textContent=ratio.toFixed(2);const aaNormal=ratio>=4.5,aaLarge=ratio>=3;document.getElementById('contrastResult').textContent=aaNormal?'Strong contrast':'Needs improvement';document.getElementById('contrastSub').textContent=aaNormal?'WCAG AA für normalen Text erfüllt':aaLarge?'WCAG AA für großen Text erfüllt':'WCAG AA nicht erfüllt'}
+  function mJSON(){try{const o=JSON.parse(document.getElementById('jsonText').value);document.getElementById('jsonOut').textContent=JSON.stringify(o,null,2)}catch(e){document.getElementById('jsonOut').textContent='Ungültiges JSON: '+e.message}}
+  function mJSONMin(){try{const o=JSON.parse(document.getElementById('jsonText').value);document.getElementById('jsonOut').textContent=JSON.stringify(o)}catch(e){document.getElementById('jsonOut').textContent='Ungültiges JSON: '+e.message}}
+  function mBMI(){const kg=Number(document.getElementById('bmiWeight').value)||0,cm=Number(document.getElementById('bmiHeight').value)||0;if(!kg||!cm)return;const bmi=kg/((cm/100)**2);let label=bmi<18.5?'Unter 18,5':bmi<25?'Normalbereich':bmi<30?'Übergewicht':'Adipositas';document.getElementById('bmiOut').textContent=bmi.toLocaleString('de-DE',{minimumFractionDigits:1,maximumFractionDigits:1});document.getElementById('bmiSub').textContent=label}
+  function mData(){const v=Number(document.getElementById('dataValue').value)||0,from=document.getElementById('dataFrom').value,to=document.getElementById('dataTo').value,f={B:1,KB:1024,MB:1024**2,GB:1024**3,TB:1024**4};const out=v*f[from]/f[to];document.getElementById('dataOut').textContent=out.toLocaleString('de-DE',{maximumFractionDigits:8})+' '+to}
+  
+
+// Legal modal
+const legalModal=document.getElementById('legalModal');
+const legalTitle=document.getElementById('legalTitle');
+const legalBody=document.getElementById('legalBody');
+const legalPages={
+  privacy:`<h3 style="font-size:24px;margin:0 0 12px">Datenschutzerklärung</h3>
+    <p class="modal-tool-intro">Hinweise zum Umgang mit personenbezogenen Daten auf dieser Webseite.</p>
+    <h4>1. Verantwortlicher</h4>
+    <p style="color:var(--muted);line-height:1.65;font-size:13px">Verantwortlich für diese Webseite ist [Vor- und Nachname / Firmenname], [Anschrift]. Kontakt: [E-Mail-Adresse]. Diese Angaben sind vor Veröffentlichung vollständig zu ersetzen.</p>
+    <h4>2. Nutzung der Webseite</h4>
+    <p style="color:var(--muted);line-height:1.65;font-size:13px">Die Startseite kann grundsätzlich ohne Benutzerkonto genutzt werden. Die integrierten Utility-Tools verarbeiten Eingaben, soweit technisch vorgesehen, direkt im Browser. Eingaben werden nicht bewusst an einen eigenen Server übertragen, sofern das jeweilige Tool nichts anderes ausweist.</p>
+    <h4>3. Lokale Speicherung</h4>
+    <p style="color:var(--muted);line-height:1.65;font-size:13px">Einzelne Spiele können lokale Bestwerte oder Einstellungen im Browser speichern. Diese Speicherung erfolgt auf dem jeweiligen Endgerät und kann über die Browser-Einstellungen gelöscht werden.</p>
+    <h4>4. Externe Projekte und Links</h4>
+    <p style="color:var(--muted);line-height:1.65;font-size:13px">Blockbuster und das AI Dashboard werden separat betrieben. Beim Aufruf externer Angebote können deren eigene Datenschutzbestimmungen gelten. Vor Veröffentlichung sollten alle externen Dienste, Hosting-Anbieter, Schriftarten, Analysewerkzeuge und eingebundenen Inhalte vollständig geprüft und ergänzt werden.</p>
+    <h4>5. Rechte betroffener Personen</h4>
+    <p style="color:var(--muted);line-height:1.65;font-size:13px">Je nach konkreter Datenverarbeitung können insbesondere Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung und Widerspruch bestehen. Die endgültige Fassung sollte auf die tatsächlich eingesetzten Dienste und Datenverarbeitungen abgestimmt und rechtlich geprüft werden.</p>`,
+  imprint:`<h3 style="font-size:24px;margin:0 0 12px">Impressum</h3>
+    <p class="modal-tool-intro">Anbieterkennzeichnung für diese Webseite – aktuell noch mit Platzhaltern.</p>
+    <div class="result">
+      <p><strong>[Vor- und Nachname / Firmenname]</strong></p>
+      <p>[Straße und Hausnummer]</p>
+      <p>[PLZ Ort]</p>
+      <p>Deutschland</p>
+      <p>E-Mail: [deine E-Mail-Adresse]</p>
+      <p>Telefon: [optional]</p>
+    </div>
+    <h4>Vertretungsberechtigte Person</h4>
+    <p style="color:var(--muted);line-height:1.65;font-size:13px">[Vor- und Nachname, sofern erforderlich]</p>
+    <h4>Weitere Angaben</h4>
+    <p style="color:var(--muted);line-height:1.65;font-size:13px">[Registergericht / Registernummer, sofern vorhanden]<br>[Umsatzsteuer-ID, sofern vorhanden]<br>[Weitere gesetzlich erforderliche Angaben]</p>
+    <p style="color:var(--muted);line-height:1.65;font-size:13px">Die Platzhalter müssen vor einer Veröffentlichung durch die tatsächlichen Anbieterangaben ersetzt werden.</p>`,
+  terms:`<h3 style="font-size:24px;margin:0 0 12px">AGB</h3>
+    <p class="modal-tool-intro">Vorläufige Beispielstruktur für die Nutzung der kostenlosen Tools und Inhalte.</p>
+    <h4>1. Geltungsbereich</h4>
+    <p style="color:var(--muted);line-height:1.65;font-size:13px">Diese Bedingungen sollen die Nutzung der auf Boketta Intl. bereitgestellten digitalen Inhalte, Browser-Tools und Spiele regeln. Die endgültige Fassung ist an das konkrete Angebot anzupassen.</p>
+    <h4>2. Nutzung der Tools</h4>
+    <p style="color:var(--muted);line-height:1.65;font-size:13px">Die kostenlosen Tools werden zur unverbindlichen Unterstützung bei alltäglichen Berechnungen, Text- und Marketingaufgaben bereitgestellt. Ergebnisse sollten vor einer geschäftlichen oder rechtlich relevanten Verwendung geprüft werden.</p>
+    <h4>3. Verfügbarkeit</h4>
+    <p style="color:var(--muted);line-height:1.65;font-size:13px">Es besteht kein Anspruch auf eine dauerhafte oder fehlerfreie Verfügbarkeit einzelner Tools, Spiele oder Projekte. Funktionen können technisch weiterentwickelt, geändert oder eingestellt werden.</p>
+    <h4>4. Externe Angebote</h4>
+    <p style="color:var(--muted);line-height:1.65;font-size:13px">Für separat betriebene Angebote und externe Webseiten können zusätzliche Bedingungen der jeweiligen Anbieter gelten.</p>
+    <h4>5. Haftung und Inhalte</h4>
+    <p style="color:var(--muted);line-height:1.65;font-size:13px">Die Tools dienen als praktische Hilfsmittel und ersetzen keine individuelle fachliche, steuerliche oder rechtliche Beratung. Die endgültigen Haftungsregelungen müssen an das tatsächliche Geschäftsmodell angepasst und rechtlich geprüft werden.</p>
+    <h4>6. Änderungen</h4>
+    <p style="color:var(--muted);line-height:1.65;font-size:13px">Diese vorläufigen Bedingungen können bei Weiterentwicklung der Webseite angepasst und um konkrete Angebote, Preise oder Nutzungsregeln ergänzt werden.</p>`
+};
+document.querySelectorAll('[data-legal]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const k=a.dataset.legal;legalTitle.textContent=k==='privacy'?'Datenschutzerklärung':k==='imprint'?'Impressum':'AGB';legalBody.innerHTML=legalPages[k];legalModal.classList.add('open')}));
+document.getElementById('legalClose').addEventListener('click',()=>legalModal.classList.remove('open'));
+legalModal.addEventListener('click',e=>{if(e.target===legalModal)legalModal.classList.remove('open')});
+
+
+
+
+/* ===== Boketta Arcade · premium table + arcade games ===== */
+const arcadeModal=document.getElementById("arcadeModal");
+const arcadeTimeout=(fn,ms)=>{const id=setTimeout(fn,ms);(window.__arcadeTimers||(window.__arcadeTimers=[])).push(id);return id};
+const arcadeInterval=(fn,ms)=>{const id=setInterval(fn,ms);(window.__arcadeTimers||(window.__arcadeTimers=[])).push(id);return id};
+
+const arcadeBody=document.getElementById("arcadeBody");
+const arcadeTitle=document.getElementById("arcadeTitle");
+const arcadeNames={arcade:"Arcade",mahjong:"Mahjong Solitaire",uno:"UNO Table",poker:"Texas Hold'em",blackjack:"Blackjack",jump:"Boketta Jump",flappy:"Flappy Red"};
+
+const arcadeViews={
+arcade:()=>`<div class="arcade-grid">
+<button class="arcade-card featured-arcade" data-inner-game="mahjong"><div class="game-icon">▦</div><strong>Mahjong Solitaire</strong><small>Layered board · freie Tiles · Undo · Match Animation</small></button>
+<button class="arcade-card" data-inner-game="uno"><div class="game-icon">◉</div><strong>UNO Table</strong><small>4 players · visible clockwise turn order</small></button>
+<button class="arcade-card" data-inner-game="poker"><div class="game-icon">♦</div><strong>Texas Hold'em</strong><small>Table · blinds · streets · bots</small></button>
+<button class="arcade-card" data-inner-game="blackjack"><div class="game-icon">21</div><strong>Blackjack</strong><small>Casino table · dealer · chips</small></button>
+<button class="arcade-card" data-inner-game="jump"><div class="game-icon">↑</div><strong>Boketta Jump</strong><small>Original endless jumper</small></button>
+<button class="arcade-card" data-inner-game="flappy"><div class="game-icon">↗</div><strong>Flappy Red</strong><small>Classic tap-to-flap endless arcade.</small></button>
+</div><div class="notice">Original Boketta implementations · touch friendly · no account · no Echtgeld.</div>`,
+mahjong:()=>`<div class="arcade-shell"><div class="arcade-topbar"><div class="left"><div class="arcade-title">Mahjong Solitaire</div><div class="arcade-caption">LAYERED BOARD · FREE TILES · MATCH</div></div><div class="right"><button class="arcade-icon-btn" id="mjUndo">↶</button><button class="arcade-icon-btn" id="mjReset">↻</button></div></div><div class="arcade-main"><div class="mj-premium"><div class="mj-hud"><div class="score-panel"><div class="score-chip"><small>Pairs</small><strong id="mjPairs">0/36</strong></div><div class="score-chip"><small>Moves</small><strong id="mjMoves">0</strong></div><div class="score-chip"><small>Time</small><strong id="mjTime">0:00</strong></div><div class="score-chip"><small>Tiles</small><strong id="mjLeft">72</strong></div></div><div class="mj-controls"><button class="btn arcade-primary" id="mjHint">Hint</button><button class="btn arcade-secondary" id="mjNew">New Board</button></div></div><div class="mj-premium-board"><div class="mj-table-mark">BOKETTA<br><span>MAHJONG</span></div><div id="mjLayers"></div></div><div class="arcade-message" id="mjMsg">Nur freie Tiles können gespielt werden. Finde identische Paare.</div></div></div>`,
+uno:()=>`<div class="arcade-shell"><div class="arcade-topbar"><div class="left"><div class="arcade-title">UNO Table</div><div class="arcade-caption">4 PLAYERS · CLOCKWISE · 108 CARDS</div></div><div class="right"><button class="arcade-icon-btn" id="unoReset">↻</button></div></div><div class="arcade-main"><div class="uno-premium-table" id="unoTable"><div class="uno-felt-ring"></div><div class="uno-seat premium top" id="unoSeat1"><div class="uno-avatar">B1</div><div class="seat-name">BOT 1</div><div class="seat-count" id="unoSeat1Count">7 CARDS</div><div class="uno-fan" id="unoFan1"></div></div><div class="uno-seat premium left" id="unoSeat2"><div class="uno-avatar">B2</div><div class="seat-name">BOT 2</div><div class="seat-count" id="unoSeat2Count">7 CARDS</div><div class="uno-fan" id="unoFan2"></div></div><div class="uno-seat premium right" id="unoSeat3"><div class="uno-avatar">B3</div><div class="seat-name">BOT 3</div><div class="seat-count" id="unoSeat3Count">7 CARDS</div><div class="uno-fan" id="unoFan3"></div></div><div class="uno-center-premium"><div class="uno-turn-tracker" id="unoTurnTracker"></div><div class="uno-pile-pair"><div class="uno-pile-label">DRAW</div><button class="uno-deck" id="unoDrawDeck"><span>B</span></button></div><div class="uno-pile-pair"><div class="uno-pile-label">DISCARD</div><div id="unoDiscard"></div></div></div><div class="uno-seat premium bottom"><div class="uno-your-hand"><div class="seat-name">YOU · <span id="unoTopInfo">YOUR TURN</span></div><div class="uno-hand-pro" id="unoHand"></div><div class="uno-action-row"><button class="btn arcade-secondary" id="unoDraw">DRAW</button><button class="btn arcade-primary" id="unoUno" disabled>UNO!</button><button class="btn arcade-secondary" id="unoNew">NEW ROUND</button></div></div></div><div class="uno-info-bar"><span>DIRECTION <strong id="unoDir">↻</strong></span><span>COLOR <strong id="unoColor">—</strong></span><span>LAST PLAYED <strong id="unoLast">—</strong></span><span>TURN <strong id="unoTurnText">YOU</strong></span></div></div><div class="uno-banner" id="unoMsg">Dein Zug.</div><div class="uno-color-picker pro" id="unoColors" style="display:none"><button style="background:#c52a41" data-color="R" aria-label="Red"></button><button style="background:#198e5d" data-color="G" aria-label="Green"></button><button style="background:#286fda" data-color="B" aria-label="Blue"></button><button style="background:#d1a019" data-color="Y" aria-label="Yellow"></button></div></div></div>`,
+poker:()=>`<div class="arcade-shell"><div class="arcade-topbar"><div class="left"><div class="arcade-title">Texas Hold'em</div><div class="arcade-caption">4 PLAYERS · NO LIMIT · CASH TABLE</div></div><div class="right"><button class="arcade-icon-btn" id="pkReset">↻</button></div></div><div class="arcade-main poker-pro"><div class="score-panel"><div class="score-chip"><small>Pot</small><strong id="pkPot">0</strong></div><div class="score-chip"><small>Street</small><strong id="pkStreet">Preflop</strong></div><div class="score-chip"><small>To act</small><strong id="pkTurn">—</strong></div><div class="score-chip"><small>You</small><strong id="pkStack">1000</strong></div></div><div class="poker-pro-grid"><div class="poker-seats" id="pkSeats"></div><div class="poker-center"><div class="hold-label">BOARD</div><div class="card-stack" id="pkBoard"></div><div class="hold-label">YOUR HOLE CARDS</div><div class="card-stack" id="pkCards"></div></div></div><div class="tool-actions"><button class="btn arcade-secondary" id="pkFold">Fold</button><button class="btn arcade-secondary" id="pkCheckCall">Check / Call</button><button class="btn arcade-primary" id="pkRaise">Raise</button><button class="btn arcade-secondary" id="pkDeal">New Table</button></div><div class="arcade-message" id="pkMsg">Blinds werden gepostet. Danach beginnt die Action.</div></div></div>`,
+blackjack:()=>`<div class="arcade-shell"><div class="arcade-topbar"><div class="left"><div class="arcade-title">Blackjack</div><div class="arcade-caption">CASINO TABLE · 6-DECK SHOE · SOFT 17</div></div><div class="right"><button class="arcade-icon-btn" id="bjReset">↻</button></div></div><div class="arcade-main"><div class="bj-casino" id="bjTable"><div class="bj-casino-rim"></div><div class="bj-bank-strip"><span>BANK <strong id="bjBank">1000</strong></span><span>BET <strong id="bjBet">100</strong></span><span>SHOE <strong id="bjShoe">312</strong></span></div><div class="bj-casino-zone"><div class="bj-dealer-zone"><div class="bj-zone-label"><span>DEALER</span><span id="bjDealerScore">?</span></div><div class="bj-card-row" id="bjDealer"></div></div><div class="bj-table-logo">BOKETTA<br><span>BLACKJACK</span></div><div class="bj-player-zone"><div class="bj-zone-label"><span>PLAYER</span><span id="bjPlayerScore">0</span></div><div class="bj-card-row" id="bjPlayer"></div><div class="bj-controls-pro"><div class="bj-bet-controls"><button class="bj-bet-btn" id="bjBetMinus">−</button><div class="bj-bet-chip">BET <span id="bjBetValue">100</span></div><button class="bj-bet-btn" id="bjBetPlus">+</button></div><div class="bj-action-row"><button class="btn arcade-primary" id="bjDeal">DEAL</button><button class="btn arcade-secondary" id="bjHit">HIT</button><button class="btn arcade-secondary" id="bjStand">STAND</button><button class="btn arcade-secondary" id="bjDouble">DOUBLE</button><button class="btn arcade-secondary" id="bjSplit">SPLIT</button><button class="btn arcade-secondary" id="bjInsurance">INSURANCE</button></div></div></div></div><div class="bj-result" id="bjCenter">PLACE YOUR BET</div></div><div class="arcade-message" id="bjMsg">Blackjack pays 3:2 · Insurance pays 2:1 · Dealer stands on soft 17.</div></div></div>`,
+jump:()=>`<div class="arcade-shell"><div class="arcade-topbar"><div class="left"><div class="arcade-title">Boketta Jump</div><div class="arcade-caption">ORIGINAL ENDLESS JUMPER</div></div><div class="right"><button class="arcade-icon-btn" id="jumpReset">↻</button></div></div><div class="arcade-main jump-pro"><div class="jump-hud"><span>SCORE <strong id="jumpScore">0</strong></span><span>BEST <strong id="jumpBest">0</strong></span><span>HEIGHT <strong id="jumpHeight">0</strong></span></div><div class="jump-canvas-wrap"><canvas id="jumpCanvas" width="900" height="560"></canvas><div class="jump-overlay" id="jumpOverlay"><strong>BOKETTA JUMP</strong><span>← → / A D · TAP THE SIDES</span><button class="btn arcade-primary" id="jumpStart">START</button></div></div><div class="arcade-message" id="jumpMsg">Springe automatisch und lande auf den Plattformen.</div></div></div>`,
+flappy:()=>`<div class="arcade-shell flappy-dark-shell"><div class="arcade-topbar"><div class="left"><div class="arcade-title">Flappy Red</div><div class="arcade-caption">TAP · ENDLESS · CLASSIC ARCADE</div></div><div class="right"><button class="arcade-icon-btn" id="flappyReset">↻</button></div></div><div class="arcade-main jump-pro"><div class="jump-hud"><span>SCORE <strong id="flappyScore">0</strong></span><span>BEST <strong id="flappyBest">0</strong></span><span>MEDAL <strong id="flappyMedal">—</strong></span></div><div class="jump-canvas-wrap"><canvas id="flappyCanvas" width="900" height="560"></canvas><div class="jump-overlay" id="flappyOverlay"><strong>FLAPPY RED</strong><span>TAP / SPACE / CLICK TO FLAP</span><button class="btn arcade-primary" id="flappyStart">START</button></div></div><div class="arcade-message" id="flappyMsg">Tippe oder drücke Space. Flieg durch die Pipe-Gaps und halte den Vogel in der Luft.</div></div></div>`
+};
+
+function showArcade(game){
+  window.__arcadeSession=(window.__arcadeSession||0)+1;
+  if(typeof window.__arcadeCleanup === "function"){ window.__arcadeCleanup(); window.__arcadeCleanup=null; }
+  window.__arcadeTimers?.forEach(clearTimeout);
+  window.__arcadeTimers=[];
+  arcadeTitle.textContent=arcadeNames[game]||"Arcade";
+  arcadeBody.innerHTML=arcadeViews[game]();
+  document.querySelectorAll("[data-arc]").forEach(x=>{x.classList.toggle("active",x.dataset.arc===game)});
+  arcadeModal.classList.add("open");
+  if(game==="mahjong")setupMahjongPremium();
+  if(game==="uno")setupUnoPremium();
+  if(game==="poker")setupPokerPro();
+  if(game==="blackjack")setupBlackjackPro();
+  if(game==="jump")setupJump();
+  if(game==="flappy")setupFlappy();
+  arcadeBody.querySelectorAll("[data-inner-game]").forEach(b=>b.onclick=()=>showArcade(b.dataset.innerGame));
+  arcadeBody.querySelectorAll("[data-color]").forEach(b=>b.onclick=()=>window.__unoColor?.(b.dataset.color));
+}
+document.querySelectorAll("[data-arcade]").forEach(b=>b.addEventListener("click",()=>showArcade(b.dataset.arcade)));
+document.querySelectorAll("[data-arc]").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll("[data-arc]").forEach(x=>x.classList.remove("active"));b.classList.add("active");showArcade(b.dataset.arc);
+}));
+document.getElementById("arcadeOpen").onclick=()=>showArcade("arcade");
+document.getElementById("arcadeClose").onclick=()=>arcadeModal.classList.remove("open");
+arcadeModal.addEventListener("click",e=>{if(e.target===arcadeModal)arcadeModal.classList.remove("open")});
+
+function premiumCardHTML(c,hidden=false,extra=""){
+  if(hidden)return `<div class="touch-card back ${extra}"><div class="card-logo">B</div></div>`;
+  const red=c.s==="♥"||c.s==="♦";
+  return `<div class="touch-card ${red?"red":""} ${extra}" data-id="${c.id||""}"><small>${c.v}</small><div class="tc-center">${c.s}</div><small>${c.v}</small></div>`;
+}
+function mkDeck(){
+  const suits=["♠","♥","♦","♣"],vals=["A","2","3","4","5","6","7","8","9","10","J","Q","K"],d=[];
+  let id=0;for(const s of suits)for(const v of vals)d.push({s,v,id:id++});return d;
+}
+function shuf(a){return [...a].sort(()=>Math.random()-.5)}
+function sleep(ms){return new Promise(r=>arcadeTimeout(r,ms))}
+
+/* ===== Mahjong Premium: 72-tile layered free-tile game ===== */
+function setupMahjongPremium(){
+  const roots=[...Array(36)].map((_,i)=>`T${i}`);
+  let board=[],selected=null,moves=0,matches=0,start=Date.now(),history=[];
+  const pairs=36;
+  const layerOffsets=[{x:0,y:0},{x:12,y:10},{x:24,y:20}];
+  const symbols=["東","南","西","北","中","發","白","一","二","三","四","五","六","七","八","九","♣","♦","♥"];
+  function build(){
+    board=[]; selected=null;moves=0;matches=0;history=[];start=Date.now();
+    let idx=0;
+    // 4x18 base lattice with 3-layer overlap, 72 tiles total.
+    for(let i=0;i<36;i++){
+      const x=(i%12)*54 + (i>=24?28:0);
+      const y=Math.floor(i/12)*48 + (i%2?12:0);
+      board.push({id:`L0-${i}`,pair:i%18,x,y,layer:0,symbol:symbols[i%symbols.length],removed:false});
+    }
+    for(let i=0;i<18;i++){
+      board.push({id:`L1-${i}`,pair:i,x:72+(i%6)*72,y:55+Math.floor(i/6)*74,layer:1,symbol:symbols[(i+5)%symbols.length],removed:false});
+    }
+    for(let i=0;i<18;i++){
+      board.push({id:`L2-${i}`,pair:i,x:180+(i%6)*72,y:95+Math.floor(i/6)*78,layer:2,symbol:symbols[(i+9)%symbols.length],removed:false});
+    }
+    render();
+  }
+  function overlaps(a,b){return Math.abs((a.x+28)-(b.x+28))<47&&Math.abs((a.y+28)-(b.y+28))<47}
+  function isFree(t){
+    if(t.removed)return false;
+    const above=board.some(o=>!o.removed&&o.layer>t.layer&&overlaps(t,o));
+    if(above)return false;
+    const same=board.filter(o=>!o.removed&&o.layer===t.layer&&overlaps(t,o)&&o.id!==t.id);
+    return same.length===0 || !same.some(o=>o.x<t.x);
+  }
+  function canMatch(a,b){return a.pair===b.pair}
+  function snap(){return board.filter(t=>!t.removed)}
+  function render(){
+    const layer=document.getElementById("mjLayers");
+    layer.innerHTML=board.filter(t=>!t.removed).map(t=>{
+      const free=isFree(t),sel=selected?.id===t.id;
+      return `<button class="mj-real-tile ${free?"free":""} ${sel?"selected":""}" data-id="${t.id}" style="left:${t.x}px;top:${t.y}px;z-index:${t.layer*100+(free?20:0)}"><span>${t.symbol}</span><small>${free?"FREE":""}</small></button>`;
+    }).join("");
+    layer.querySelectorAll(".mj-real-tile").forEach(b=>b.onclick=()=>pick(b.dataset.id));
+    const sec=Math.floor((Date.now()-start)/1000),m=Math.floor(sec/60),ss=String(sec%60).padStart(2,"0");
+    mjPairs.textContent=`${matches}/${pairs}`;mjMoves.textContent=moves;mjTime.textContent=`${m}:${ss}`;mjLeft.textContent=snap().length;
+  }
+  function pick(id){
+    const t=board.find(x=>x.id===id);if(!t||!isFree(t))return;
+    if(!selected){selected=t;render();return}
+    if(selected.id===t.id){selected=null;render();return}
+    moves++;
+    if(canMatch(selected,t)){
+      const a=selected,b=t;history.push([a,b]);a.removed=b.removed=true;matches++;selected=null;render();
+      arcadeTimeout(()=>{const el=document.querySelectorAll(`[data-id="${a.id}"],[data-id="${b.id}"]`);el.forEach(x=>x.classList.add("match-pop"));},0);
+      mjMsg.textContent=matches===pairs?"Board cleared · perfect run.":"Match! The tiles disappear from the table.";
+    }else{mjMsg.textContent="Diese beiden Tiles gehören nicht zusammen.";selected=null;render()}
+    if(matches===pairs)mjMsg.textContent="Mahjong gelöst · stark gespielt.";
+  }
+  document.getElementById("mjReset").onclick=build;document.getElementById("mjNew").onclick=build;
+  document.getElementById("mjUndo").onclick=()=>{const last=history.pop();if(!last)return;moves=Math.max(0,moves-1);last.forEach(t=>t.removed=false);matches--;selected=null;render();mjMsg.textContent="Letztes Match zurückgenommen."};
+  document.getElementById("mjHint").onclick=()=>{
+    const free=board.filter(isFree),a=free.find(x=>free.some(y=>y.id!==x.id&&canMatch(x,y)));
+    if(a){selected=a;render();mjMsg.textContent="Hint: Dieser freie Stein hat ein Gegenstück.";arcadeTimeout(()=>{selected=null;render()},900)}else mjMsg.textContent="Kein freies Paar gefunden.";
+  };
+  build();arcadeInterval(()=>{if(document.getElementById("mjTime"))render()},1000);
+}
+
+/* ===== UNO Premium: clockwise table + visible sequence ===== */
+function setupUnoPremium(){
+  const names=["YOU","BOT 1","BOT 2","BOT 3"],seatMap=[3,0,1,2]; // visual bottom->top->right->left
+  let deck=[],hands=[],discard=[],turn=0,dir=1,color=null,unoCall=[false,false,false,false],finished=false,locked=false;
+  function makeUno(){
+    const d=[];let id=0;
+    for(const c of ["R","G","B","Y"]){d.push({c,v:"0",id:id++});for(let n=1;n<=2;n++)for(let k=0;k<2;k++)d.push({c,v:String(n),id:id++});for(const v of ["S","R","+2"])for(let k=0;k<2;k++)d.push({c,v,id:id++})}
+    for(let k=0;k<4;k++)d.push({c:"W",v:"W",id:id++},{c:"W",v:"+4",id:id++});return d;
+  }
+  const label=v=>v==="S"?"SKIP":v==="R"?"REV":v==="+2"?"+2":v==="W"?"WILD":v==="+4"?"+4":v;
+  const cls=c=>c.c==="R"?"red":c.c==="G"?"green":c.c==="B"?"blue":c.c==="Y"?"yellow":"wild";
+  function card(c,hidden=false,extra=""){return hidden?`<div class="uno-pro-card wild hidden-card ${extra}"><b>B</b></div>`:`<button class="uno-pro-card ${cls(c)} ${extra}" data-id="${c.id}"><small>${label(c.v)}</small><strong>${c.v==="W"?"WILD":c.v}</strong><small>${label(c.v)}</small></button>`}
+  function next(p){let n=(p+dir+4)%4;return n}
+  function activePlayers(){return names.map((_,i)=>i)}
+  function refill(){
+    if(deck.length)return;
+    const keep=discard.pop();deck=shuf(discard.splice(0));discard=[keep];
+  }
+  function top(){return discard[discard.length-1]}
+  function playable(c){return c.c==="W"||c.c===color||c.v===top().v}
+  function drawOne(p){if(!deck.length)refill();if(deck.length)hands[p].push(deck.pop())}
+  function updateTracker(){
+    const tracker=document.getElementById("unoTurnTracker");tracker.innerHTML=[0,1,2,3].map(i=>`<span class="${i===turn&&!finished?"active":""}">${names[i]}</span>`).join(`<i>›</i>`);
+    document.getElementById("unoTurnText").textContent=names[turn];
+  }
+  function render(){
+    const n=hands;
+    for(let i=1;i<=3;i++){document.getElementById(`unoSeat${i}`).classList.toggle("active-seat",turn===i&&!finished);document.getElementById(`unoSeat${i}Count`).textContent=`${hands[i].length} CARDS`;document.getElementById(`unoFan${i}`).innerHTML=hands[i].slice(0,8).map((_,k)=>card({},true,`mini-card c${k}`)).join("")}
+    unoSeat1.classList.toggle("active-seat",turn===1&&!finished);unoSeat2.classList.toggle("active-seat",turn===2&&!finished);unoSeat3.classList.toggle("active-seat",turn===3&&!finished);
+    unoHand.innerHTML=hands[0].map((c,i)=>card(c, false, playable(c)&&turn===0&&!finished?"playable":"")).join("");
+    unoHand.querySelectorAll("[data-id]").forEach(b=>b.onclick=()=>play(+b.dataset.id));
+    unoDiscard.innerHTML=card(top(),false,"discard-fly");
+    unoColor.textContent={R:"RED",G:"GREEN",B:"BLUE",Y:"YELLOW"}[color]||"—";unoLast.textContent=label(top()?.v||"—");unoDir.textContent=dir===1?"↻":"↺";
+    unoDraw.disabled=turn!==0||finished;unoUno.disabled=turn!==0||hands[0].length!==1||finished;
+    unoTopInfo.textContent=turn===0?"YOUR TURN":`${names[turn]}'S TURN`;
+    updateTracker();
+  }
+  function banner(t){unoMsg.textContent=t}
+  function start(){
+    deck=shuf(makeUno());hands=[[],[],[],[]];discard=[];turn=0;dir=1;color=null;unoCall=[false,false,false,false];finished=false;locked=false;
+    for(let r=0;r<7;r++)for(let p=0;p<4;p++)hands[p].push(deck.pop());
+    let c=deck.pop();while(c.c==="W"){deck.unshift(c);c=deck.pop()}discard=[c];color=c.c;render();banner("Dein Zug · du spielst im Uhrzeigersinn.");
+  }
+  function advance(actionCard){
+    let steps=1;
+    if(actionCard.v==="S")steps=2;
+    if(actionCard.v==="R"){dir*=-1;steps=1}
+    turn=(turn+dir*steps+4)%4;
+  }
+  function play(id){
+    if(turn!==0||finished||locked)return;
+    const i=hands[0].findIndex(c=>c.id===id);if(i<0)return;
+    const c=hands[0][i];if(!playable(c)){banner("Diese Karte ist aktuell nicht spielbar.");return}
+    hands[0].splice(i,1);discard.push(c);color=c.c==="W"?color:c.c;unoCall[0]=hands[0].length===1?false:unoCall[0];
+    if(hands[0].length===0){finished=true;banner("Du gewinnst die Runde!");render();return}
+    if(c.c==="W"){locked=true;document.getElementById("unoColors").style.display="grid";window.__unoColor=(co)=>{color=co;locked=false;document.getElementById("unoColors").style.display="none";afterCard(c)}}
+    else afterCard(c);
+  }
+  function afterCard(c){
+    if(c.v==="+2"){const n=next(0);drawOne(n);drawOne(n);banner(`${names[n]} zieht 2 Karten.`)}
+    if(c.v==="+4"){const n=next(0);drawOne(n);drawOne(n);drawOne(n);drawOne(n);banner(`${names[n]} zieht 4 Karten.`)}
+    advance(c);render();if(turn!==0)arcadeTimeout(botTurn,800);
+  }
+  function drawHuman(){if(turn!==0||finished)return;drawOne(0);banner("Du ziehst eine Karte.");render();arcadeTimeout(()=>{turn=next(0);render();arcadeTimeout(botTurn,850)},450)}
+  function botTurn(){
+    if(finished||turn===0||locked)return;
+    const p=turn;const possible=hands[p].filter(playable);let c=possible.sort((a,b)=>["W","+4","+2","S","R"].indexOf(b.v)-["W","+4","+2","S","R"].indexOf(a.v))[0];
+    if(!c){drawOne(p);banner(`${names[p]} draws a card.`);render();arcadeTimeout(()=>{const retry=hands[p].find(playable);if(retry){hands[p]=hands[p].filter(x=>x.id!==retry.id);discard.push(retry);if(retry.c!=="W")color=retry.c;applyBotAction(retry)}else{turn=next(p);render();arcadeTimeout(botTurn,650)}},550);return}
+    hands[p]=hands[p].filter(x=>x.id!==c.id);discard.push(c);if(c.c!=="W")color=c.c;banner(`${names[p]} plays ${label(c.v)}.`);applyBotAction(c)
+  }
+  function applyBotAction(c){
+    const p=turn;if(hands[p].length===1)unoCall[p]=true;
+    if(hands[p].length===0){finished=true;banner(`${names[p]} wins the round.`);render();return}
+    if(c.v==="+2"){const n=next(p);drawOne(n);drawOne(n)}
+    if(c.v==="+4"){const n=next(p);for(let k=0;k<4;k++)drawOne(n);color=["R","G","B","Y"][Math.floor(Math.random()*4)]}
+    advance(c);render();if(turn!==0)arcadeTimeout(botTurn,900)
+  }
+  unoDraw.onclick=drawHuman;unoDrawDeck.onclick=drawHuman;unoUno.onclick=()=>{if(turn===0&&hands[0].length===1)unoCall[0]=true;banner("UNO!");render()};unoNew.onclick=start;unoReset.onclick=start;
+  start();
+}
+
+/* ===== Jump/Runner originals ===== */
+function setupJump(){
+  const canvas=document.getElementById("jumpCanvas"); const ctx=canvas.getContext("2d");
+  const ov=document.getElementById("jumpOverlay"), scoreEl=document.getElementById("jumpScore"), bestEl=document.getElementById("jumpBest"), heightEl=document.getElementById("jumpHeight");
+  const startEl=document.getElementById("jumpStart"), resetEl=document.getElementById("jumpReset");
+  const W=900,H=560; const keys={l:false,r:false}; const clamp=(n,a,b)=>Math.max(a,Math.min(b,n)); const rand=(a,b)=>a+Math.random()*(b-a);
+  let running=false,last=0,player,platforms,powerups,enemies,shots,particles,camera=0,score=0,height=0,best=Number(localStorage.bokettaJumpBest||0),jumpIndex=0;
+  bestEl.textContent=best;
+  const types=['green','blue','brown','white','yellow','flash'];
+  function mkPlatform(x,y,type='green',w=100){return{x,y,type,w,h:13,phase:Math.random()*6.28,broken:false}};
+  function seed(){platforms=[mkPlatform(450,520,'green',180)];powerups=[];enemies=[];shots=[];particles=[];let y=455;for(let i=0;i<32;i++){const p=platforms[platforms.length-1];const x=clamp(p.x+rand(-180,180),70,830);const r=Math.random();const type=r<.60?'green':r<.73?'blue':r<.83?'brown':r<.90?'white':r<.96?'yellow':'flash';platforms.push(mkPlatform(x,y,type,rand(75,135)));if(Math.random()<.12)powerups.push({x,y:y-28,type:['spring','jetpack','propeller','shield'][Math.floor(Math.random()*4)],taken:false});if(Math.random()<.10)enemies.push({x:clamp(x+rand(-60,60),60,840),y:y-55,type:Math.random()<.55?'monster':'ufo',vx:rand(-45,45),alive:true});y-=rand(60,135);}}
+  function reset(){running=false;last=0;camera=0;score=0;height=0;player={x:450,y:478,vx:0,vy:-760,w:34,h:42,power:null,powerTime:0,shield:false,shootCD:0};seed();scoreEl.textContent='0';heightEl.textContent='0';ov.style.display='grid';ov.querySelector('strong').textContent='BOKETTA JUMP';ov.querySelector('span').textContent='← → / A D · TAP SIDES TO STEER · SPACE TO SHOOT';draw(performance.now())}
+  function start(){if(running)return;reset();running=true;ov.style.display='none';last=performance.now();requestAnimationFrame(loop)}
+  function burst(x,y,n=10){for(let i=0;i<n;i++)particles.push({x,y,vx:rand(-150,150),vy:rand(-210,-25),life:rand(.2,.7),r:rand(2,4)})}
+  function pxOf(p,t){return p.type==='blue'?p.x+Math.sin(t*.001+p.phase)*72:p.x}
+  function draw(t){ctx.clearRect(0,0,W,H);const bg=ctx.createLinearGradient(0,0,0,H);bg.addColorStop(0,'#07111f');bg.addColorStop(1,'#0d2940');ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);ctx.strokeStyle='rgba(125,205,255,.08)';for(let x=-W;x<2*W;x+=45){const xx=x+(camera*.22%45);ctx.beginPath();ctx.moveTo(xx,0);ctx.lineTo(xx,H);ctx.stroke()}for(let y=0;y<H;y+=45){const yy=y+(camera*.18%45);ctx.beginPath();ctx.moveTo(0,yy);ctx.lineTo(W,yy);ctx.stroke()}for(const p of platforms){const x=pxOf(p,t)-p.w/2,sy=p.y-camera;if(sy<-30||sy>H+30||p.broken)continue;ctx.fillStyle=p.type==='green'?'#45d08c':p.type==='blue'?'#4fb9e8':p.type==='brown'?'#a67a4d':p.type==='white'?'#effaff':p.type==='yellow'?'#e4b32f':'#cfe3f1';ctx.fillRect(x,sy,p.w,p.h);ctx.fillStyle='rgba(255,255,255,.28)';ctx.fillRect(x+3,sy+2,p.w-6,2);if(p.type==='yellow'){ctx.fillStyle='#ff6057';ctx.fillRect(x,sy+8,p.w,4)}}for(const p of powerups){if(p.taken)continue;const sy=p.y-camera;if(sy<-40||sy>H+40)continue;ctx.strokeStyle='#a9eaff';ctx.lineWidth=3;ctx.beginPath();ctx.arc(p.x,sy,16,0,Math.PI*2);ctx.stroke();ctx.fillStyle='#e5f9ff';ctx.font='800 10px Manrope';ctx.textAlign='center';ctx.fillText(p.type==='spring'?'S':p.type==='jetpack'?'J':p.type==='propeller'?'P':'★',p.x,sy+4)}for(const e of enemies){if(!e.alive)continue;const sy=e.y-camera;if(sy<-50||sy>H+50)continue;ctx.save();ctx.translate(e.x,sy);if(e.type==='ufo'){ctx.fillStyle='#8f78ff';ctx.beginPath();ctx.ellipse(0,5,28,10,0,0,Math.PI*2);ctx.fill();ctx.fillStyle='#c9f7ff';ctx.beginPath();ctx.arc(0,0,16,Math.PI,0);ctx.fill()}else{ctx.fillStyle='#ef5b75';ctx.beginPath();ctx.arc(0,0,19,0,Math.PI*2);ctx.fill();ctx.fillStyle='#081522';ctx.fillRect(-10,-5,6,6);ctx.fillRect(4,-5,6,6)}ctx.restore()}ctx.save();ctx.translate(player.x,player.y-camera);ctx.rotate(clamp(player.vx*.0007,-.18,.18));ctx.fillStyle='rgba(0,0,0,.3)';ctx.beginPath();ctx.ellipse(0,24,23,6,0,0,Math.PI*2);ctx.fill();ctx.fillStyle='#63c8ff';ctx.beginPath();ctx.roundRect(-18,-22,36,44,12);ctx.fill();ctx.fillStyle='#07111f';ctx.beginPath();ctx.arc(0,-6,9,0,Math.PI*2);ctx.fill();ctx.fillStyle='#fff';ctx.font='800 11px Manrope';ctx.textAlign='center';ctx.fillText('B',0,-3);ctx.strokeStyle='#9fe4ff';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(-13,21);ctx.lineTo(-20,31);ctx.moveTo(13,21);ctx.lineTo(20,31);ctx.stroke();if(player.shield){ctx.strokeStyle='rgba(89,224,255,.85)';ctx.lineWidth=3;ctx.beginPath();ctx.arc(0,0,31,0,Math.PI*2);ctx.stroke()}ctx.restore();for(const s of shots){ctx.fillStyle='#bceeff';ctx.fillRect(s.x-2,s.y-camera,4,13)}for(const p of particles){ctx.fillStyle=`rgba(130,220,255,${Math.max(0,p.life)})`;ctx.fillRect(p.x,p.y,3,3)}}
+  function over(){running=false;best=Math.max(best,Math.floor(score));localStorage.bokettaJumpBest=best;bestEl.textContent=best;ov.style.display='grid';ov.querySelector('strong').textContent='GAME OVER';ov.querySelector('span').textContent=`SCORE ${Math.floor(score)} · HEIGHT ${height}`;draw(performance.now())}
+  function loop(t){if(!running)return;const dt=Math.min(.032,(t-last)/1000);last=t;if(keys.l)player.vx-=4200*dt;if(keys.r)player.vx+=4200*dt;player.vx*=Math.pow(.012,dt);player.vx=clamp(player.vx,-760,760);player.x+=player.vx*dt;if(player.x<0)player.x=W;if(player.x>W)player.x=0;player.shootCD=Math.max(0,player.shootCD-dt);if(player.powerTime>0){player.powerTime-=dt;if(player.powerTime<=0){player.power=null;player.shield=false}}const prevY=player.y;player.vy+=(player.power==='jetpack'?-1650:1550)*dt;if(player.power==='jetpack')player.vy=-380;player.y+=player.vy*dt;const target=Math.max(0,player.y-215);camera+=(target-camera)*Math.min(1,dt*(target<camera?9:3));if(player.vy>0){for(const p of platforms){const x=pxOf(p,t);if(prevY+player.h/2<=p.y&&player.y+player.h/2>=p.y&&player.x>x-p.w/2&&player.x<x+p.w/2&&!p.broken){player.y=p.y-player.h/2;player.vy=-(p.type==='yellow'?940:780);score+=10;burst(player.x,p.y-camera,9);if(p.type==='brown'||p.type==='white')p.broken=true;break}}}for(const p of powerups){if(!p.taken&&Math.hypot(player.x-p.x,(player.y+camera)-p.y)<34){p.taken=true;player.power=p.type;player.powerTime=p.type==='jetpack'?4.2:p.type==='shield'?8:5;if(p.type==='shield')player.shield=true;if(p.type==='spring')player.vy=-1080;if(p.type==='propeller')player.vy=-920;burst(player.x,player.y-camera,15)}}for(const e of enemies){if(!e.alive)continue;e.x+=e.vx*dt;if(e.x<35||e.x>865)e.vx*=-1;if(Math.abs(player.x-e.x)<32&&Math.abs(player.y+camera-e.y)<45){if(player.shield){player.shield=false;player.power=null;e.alive=false;burst(e.x,e.y-camera,20)}else{return over()}}}for(const s of shots){s.y+=s.vy*dt;for(const e of enemies){if(e.alive&&Math.abs(s.x-e.x)<24&&Math.abs(s.y+camera-e.y)<28){e.alive=false;s.y=-999;score+=25;burst(e.x,e.y-camera,12)}}}shots=shots.filter(s=>s.y+camera>-80);let top=Math.min(...platforms.map(p=>p.y));while(top>camera-1800){let y=top;let prev=platforms.reduce((a,b)=>a.y<b.y?a:b);for(let i=0;i<12;i++){y-=rand(62,132);const p=mkPlatform(clamp(prev.x+rand(-240,240),55,845),y,Math.random()<.62?'green':types[1+Math.floor(Math.random()*5)],rand(78,145));platforms.push(p);prev=p;if(Math.random()<.12)powerups.push({x:p.x,y:y-28,type:['spring','jetpack','propeller','shield'][Math.floor(Math.random()*4)],taken:false});if(Math.random()<.08)enemies.push({x:clamp(p.x+rand(-70,70),55,845),y:y-55,type:Math.random()<.6?'monster':'ufo',vx:rand(-60,60),alive:true})}top=Math.min(...platforms.map(p=>p.y))}height=Math.max(height,Math.floor(camera/5));score=Math.max(score,height);scoreEl.textContent=Math.floor(score);heightEl.textContent=height;platforms=platforms.filter(p=>p.y-camera<H+180&&!p.broken);powerups=powerups.filter(p=>!p.taken&&p.y-camera<H+160);enemies=enemies.filter(e=>e.alive&&e.y-camera<H+150);particles=particles.filter(p=>p.life>0);for(const p of particles){p.life-=dt;p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=360*dt}if(player.y-camera>H+120)return over();draw(t);requestAnimationFrame(loop)}
+  function shoot(){if(running&&player.shootCD<=0){shots.push({x:player.x,y:player.y-25,vy:-800});player.shootCD=.28}}
+  canvas.addEventListener('pointerdown',e=>{const r=canvas.getBoundingClientRect(),x=e.clientX-r.left;if(x<r.width*.44){keys.l=true;player.vx=-1250}else if(x>r.width*.56){keys.r=true;player.vx=1250}else shoot()});canvas.addEventListener('pointerup',()=>{keys.l=keys.r=false});startEl.onclick=start;resetEl.onclick=reset;reset();
+  const onKeyDown=e=>{const k=e.key.toLowerCase();if(k==='arrowleft'||k==='a')keys.l=true;if(k==='arrowright'||k==='d')keys.r=true;if(e.code==='Space')shoot()};
+  const onKeyUp=e=>{const k=e.key.toLowerCase();if(k==='arrowleft'||k==='a')keys.l=false;if(k==='arrowright'||k==='d')keys.r=false};
+  window.removeEventListener('keydown',onKeyDown);
+  window.__arcadeCleanup=()=>{window.removeEventListener('keydown',onKeyDown);window.removeEventListener('keyup',onKeyUp);running=false};
+  window.addEventListener('keydown',onKeyDown);window.addEventListener('keyup',onKeyUp);
+}
+function setupFlappy(){
+  const canvas=document.getElementById("flappyCanvas");const ctx=canvas.getContext("2d");const ov=document.getElementById("flappyOverlay"),scoreEl=document.getElementById("flappyScore"),bestEl=document.getElementById("flappyBest"),medalEl=document.getElementById("flappyMedal"),startEl=document.getElementById("flappyStart"),resetEl=document.getElementById("flappyReset");const W=900,H=560,G=1550,FLAP=-470,PIPE_SPEED=305,PIPE_W=92,GAP=180;let running=false,last=0,score=0,best=Number(localStorage.flappyRedBest||0),bird,pipes,groundX=0,death=false;bestEl.textContent=best;
+  function medal(s){return s>=40?'PLATINUM':s>=30?'GOLD':s>=20?'SILVER':s>=10?'BRONZE':'—'}
+  function pipe(x){return{x,gapY:95+Math.random()*250,passed:false}}
+  function reset(){running=false;last=0;score=0;bird={x:255,y:275,vy:0,r:18,rot:0};pipes=[pipe(720),pipe(980),pipe(1240),pipe(1500)];scoreEl.textContent='0';medalEl.textContent='—';ov.style.display='grid';ov.querySelector('strong').textContent='FLAPPY RED';ov.querySelector('span').textContent='TAP / SPACE / CLICK TO FLAP';draw()}
+  function start(){if(running)return;reset();running=true;ov.style.display='none';last=performance.now();flap();requestAnimationFrame(loop)}
+  function flap(){bird.vy=FLAP;bird.rot=-.38}
+  function end(){running=false;best=Math.max(best,score);localStorage.flappyRedBest=best;bestEl.textContent=best;medalEl.textContent=medal(score);ov.style.display='grid';ov.querySelector('strong').textContent='GAME OVER';ov.querySelector('span').textContent=`SCORE ${score} · ${medal(score)==='—'?'NO MEDAL':medal(score)}`;draw()}
+  function draw(){ctx.clearRect(0,0,W,H);const sky=ctx.createLinearGradient(0,0,0,H);sky.addColorStop(0,'#0b1726');sky.addColorStop(.62,'#13283a');sky.addColorStop(1,'#1d3141');ctx.fillStyle=sky;ctx.fillRect(0,0,W,H);for(let i=0;i<10;i++){const cx=(i*150-(score*2.3)%150+W)%W,cy=85+(i%4)*45;ctx.fillStyle='rgba(170,208,236,.12)';ctx.beginPath();ctx.arc(cx,cy,22,0,Math.PI*2);ctx.arc(cx+24,cy+4,15,0,Math.PI*2);ctx.fill()}for(const p of pipes){ctx.fillStyle='#295f4a';ctx.fillRect(p.x,0,PIPE_W,p.gapY-GAP/2);ctx.fillRect(p.x,p.gapY+GAP/2,PIPE_W,512-p.gapY-GAP/2);ctx.fillStyle='#214a3a';ctx.fillRect(p.x-7,p.gapY-GAP/2-18,PIPE_W+14,18);ctx.fillRect(p.x-7,p.gapY+GAP/2,PIPE_W+14,18);ctx.fillStyle='rgba(180,230,210,.08)';ctx.fillRect(p.x+10,0,10,p.gapY-GAP/2);ctx.fillRect(p.x+10,p.gapY+GAP/2,10,512-p.gapY-GAP/2)}ctx.fillStyle='#315c46';ctx.fillRect(0,470,W,42);ctx.fillStyle='#4a4033';ctx.fillRect(0,512,W,48);for(let x=-20;x<W+40;x+=34){ctx.fillStyle=(Math.floor(x/34)%2)?'#3c342b':'#544838';ctx.fillRect(x+(groundX%34),512,18,48)}ctx.save();ctx.translate(bird.x,bird.y);ctx.rotate(Math.max(-.75,Math.min(1.2,bird.rot)));ctx.fillStyle='#e84442';ctx.beginPath();ctx.arc(0,0,bird.r,0,Math.PI*2);ctx.fill();ctx.fillStyle='#ffd84d';ctx.beginPath();ctx.moveTo(12,-2);ctx.lineTo(34,6);ctx.lineTo(12,12);ctx.closePath();ctx.fill();ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(7,-8,7,0,Math.PI*2);ctx.fill();ctx.fillStyle='#111';ctx.beginPath();ctx.arc(9,-8,3,0,Math.PI*2);ctx.fill();ctx.fillStyle='#ffeec5';ctx.beginPath();ctx.ellipse(-5,8,12,6,.25,0,Math.PI*2);ctx.fill();ctx.restore();ctx.fillStyle='rgba(255,255,255,.92)';ctx.font='800 43px Syne';ctx.textAlign='center';ctx.shadowColor='rgba(0,0,0,.25)';ctx.shadowBlur=8;ctx.fillText(String(score),W/2,78)}
+  function loop(t){if(!running)return;const dt=Math.min(.032,(t-last)/1000);last=t;bird.vy+=G*dt;bird.y+=bird.vy*dt;bird.rot+=(bird.vy>0?.9:-1.2)*dt;for(const p of pipes){p.x-=PIPE_SPEED*dt;if(!p.passed&&p.x+PIPE_W<bird.x){p.passed=true;score++;scoreEl.textContent=score}}if(pipes[0].x<-PIPE_W-30){pipes.shift();pipes.push(pipe(pipes[pipes.length-1].x+260))}groundX=(groundX+PIPE_SPEED*dt)%34;const bx={x:bird.x-bird.r,y:bird.y-bird.r,w:bird.r*2,h:bird.r*2};const hit=(a,b)=>a.x<b.x+b.w&&a.x+a.w>b.x&&a.y<b.y+b.h&&a.y+a.h>b.y;if(bird.y-bird.r<=0||bird.y+bird.r>=512){end();return}for(const p of pipes){const top={x:p.x,y:0,w:PIPE_W,h:p.gapY-GAP/2},bot={x:p.x,y:p.gapY+GAP/2,w:PIPE_W,h:512-(p.gapY+GAP/2)};if(hit(bx,top)||hit(bx,bot)){end();return}}draw();requestAnimationFrame(loop)}
+  const act=e=>{if(e)e.preventDefault();if(!running)start();else flap()};canvas.addEventListener('pointerdown',act);const onFlappyKey=e=>{if(e.code==='Space'||e.key==='ArrowUp'){if(document.activeElement!==canvas)act(e)}};window.addEventListener('keydown',onFlappyKey);startEl.onclick=start;resetEl.onclick=reset;reset();window.__arcadeCleanup=()=>{window.removeEventListener('keydown',onFlappyKey);running=false};;
+}
+
+/* ===== Site menu + project modal ===== */
+const siteMenu=document.getElementById("siteMenu");
+const menuOpen=document.getElementById("menuOpen");
+const menuClose=document.getElementById("menuClose");
+const projectModal=document.getElementById("projectModal");
+const projectClose=document.getElementById("projectClose");
+function openSiteMenu(){siteMenu.classList.add("open");siteMenu.setAttribute("aria-hidden","false");menuOpen?.setAttribute("aria-expanded","true")}
+function closeSiteMenu(){siteMenu.classList.remove("open");siteMenu.setAttribute("aria-hidden","true");menuOpen?.setAttribute("aria-expanded","false")}
+menuOpen?.addEventListener("click",openSiteMenu);menuClose?.addEventListener("click",closeSiteMenu);
+siteMenu?.addEventListener("click",e=>{if(e.target===siteMenu)closeSiteMenu()});
+
+const menuToolsToggle=document.getElementById("menuToolsToggle");
+const menuToolsList=document.getElementById("menuToolsList");
+menuToolsToggle?.addEventListener("click",()=>{
+  const open=menuToolsToggle.getAttribute("aria-expanded")==="true";
+  menuToolsToggle.setAttribute("aria-expanded",String(!open));
+  if(menuToolsList) menuToolsList.hidden=open;
+});
+document.querySelectorAll("[data-tool-jump]").forEach(btn=>btn.addEventListener("click",()=>{
+  const type=btn.dataset.toolJump;
+  const tool=document.querySelector(`.tool[data-tool="${type}"]`);
+  if(!tool) return;
+  const title=tool.querySelector(".tool-name")?.textContent||"Tool";
+  closeSiteMenu();
+  document.getElementById("tools")?.scrollIntoView({behavior:"smooth",block:"start"});
+  setTimeout(()=>openTool(type,title),180);
+}));
+
+document.querySelectorAll("[data-menu-view]").forEach(btn=>btn.addEventListener("click",()=>{
+  const v=btn.dataset.menuView; closeSiteMenu();
+  if(v==="privacy"){legalTitle.textContent="Datenschutzerklärung";legalBody.innerHTML=legalPages.privacy;legalModal.classList.add("open");return}
+  if(v==="settings"){legalTitle.textContent="Einstellungen";legalBody.innerHTML=`<p class="modal-tool-intro">Einfache Einstellungen für diese Webseite.</p><div class="result"><strong>Darstellung</strong><span>Die aktuelle Oberfläche ist für Desktop und mobile Nutzung optimiert. Deine Spiele speichern lokale Bestwerte nur dort, wo die jeweilige Funktion dies benötigt.</span></div>`;legalModal.classList.add("open");return}
+  if(v==="profile"||v==="about-personal"){
+    legalTitle.textContent="Über mich";
+    legalBody.innerHTML=`<div class="about-personal-modal"><p class="modal-tool-intro">Creator · Builder · Marketing</p><h3>Vom ersten Projekt bis zu Boketta Intl.</h3><p>Ich verbinde Wirtschaft, Marketing, Technologie und Kreativität. Daraus entstehen Websites, KI-Produkte, Browser-Tools, Games und eigene digitale Experimente.</p><div class="about-tags"><span>Wirtschaft & Verwaltung</span><span>Marketing</span><span>Web</span><span>AI</span><span>Games</span><span>Design</span></div><div class="result"><strong>Education</strong><span>Fachabitur im Bereich Wirtschaft & Verwaltung und Ausbildung im Büromanagement.</span></div><div class="result"><strong>Digitaler Stack</strong><span>Praxis mit SEO, Google Ads, Google Analytics, Meta Business Manager, WordPress, GitHub, Netlify, Supabase und KI-Tools.</span></div><div class="result"><strong>Eigene Projekte</strong><span>Boketta AI Dashboard, Blockbuster, Browser-Utilities, Arcade-Projekte und das kommende 3D-Horror-Projekt.</span></div></div>`;
+    legalModal.classList.add("open");
+  }
+}));
+projectClose?.addEventListener("click",()=>projectModal.classList.remove("open"));
+projectModal?.addEventListener("click",e=>{if(e.target===projectModal)projectModal.classList.remove("open")});
+document.getElementById("horrorProjectOpen")?.addEventListener("click",()=>projectModal.classList.add("open"));
+
+/* ===== Missing/disabled table-game controllers: functional browser implementations ===== */
+function setupPokerPro(){
+  const seats=document.getElementById("pkSeats"),boardEl=document.getElementById("pkBoard"),cardsEl=document.getElementById("pkCards");
+  const potEl=document.getElementById("pkPot"),streetEl=document.getElementById("pkStreet"),turnEl=document.getElementById("pkTurn"),stackEl=document.getElementById("pkStack"),msg=document.getElementById("pkMsg");
+  const fold=document.getElementById("pkFold"),check=document.getElementById("pkCheckCall"),raise=document.getElementById("pkRaise"),deal=document.getElementById("pkDeal"),reset=document.getElementById("pkReset");
+  let deck=[],hole=[],board=[],pot=0,stack=1000,street="Preflop",finished=false,turn="YOU",currentBet=0;
+  const names=["YOU","BOT 1","BOT 2","BOT 3"];
+  const rankValue=v=>({A:14,K:13,Q:12,J:11,10:10,9:9,8:8,7:7,6:6,5:5,4:4,3:3,2:2})[v];
+  function resetGame(){deck=shuf(mkDeck());hole=[deck.pop(),deck.pop()];board=[];pot=0;stack=1000;street="Preflop";finished=false;turn="YOU";currentBet=20;deal.disabled=true;render();msg.textContent="Blinds sind gepostet. Du bist dran."}
+  function card(c,h=false){return premiumCardHTML(c,h)}
+  function render(){
+    potEl.textContent=pot;stackEl.textContent=stack;streetEl.textContent=street;turnEl.textContent=finished?"—":turn;
+    boardEl.innerHTML=board.map(c=>card(c)).join("");cardsEl.innerHTML=hole.map(c=>card(c)).join("");
+    seats.innerHTML=names.map((n,i)=>`<div class="poker-seat ${turn===n&&!finished?"active-seat":""}"><div class="seat-name">${n}</div><div class="seat-stack">${i===0?stack:Math.max(0,1000-pot/4)|0}</div><div class="mini-hole">${i===0?"● ●":"▣ ▣"}</div></div>`).join("");
+    fold.disabled=finished;check.disabled=finished;raise.disabled=finished;
+  }
+  function handScore(cards){const vals=cards.map(c=>rankValue(c.v)).sort((a,b)=>b-a);let sum=vals.reduce((a,b)=>a+b,0);if(vals.includes(14)&&sum+1<=21)sum+=1;return sum}
+  function finishRound(text){finished=true;turn="—";render();msg.textContent=text;deal.disabled=false}
+  function progress(){
+    if(street==="Preflop"){street="Flop";board.push(deck.pop(),deck.pop(),deck.pop())}
+    else if(street==="Flop"){street="Turn";board.push(deck.pop())}
+    else if(street==="Turn"){street="River";board.push(deck.pop())}
+    else {const score=handScore([...hole,...board]);const bot=handScore([deck[0],deck[1],...board]);finishRound(score>=bot?`Du gewinnst mit ${score} gegen ${bot}.`:`Bot gewinnt mit ${bot} gegen ${score}.`);return}
+    turn="YOU";render();msg.textContent=`${street}: Du bist dran.`
+  }
+  function action(kind){if(finished)return;if(kind==="fold"){finishRound("Du foldest. BOT 1 gewinnt die Hand.");return}const amount=kind==="raise"?40:20;if(stack<amount){msg.textContent="Nicht genug Chips.";return}stack-=amount;pot+=amount;currentBet=amount;render();msg.textContent=kind==="raise"?"Du erhöhst. Die Bots reagieren …":"Du callst. Die Bots reagieren …";arcadeTimeout(()=>{if(finished)return;pot+=Math.min(20,Math.max(0,1000-pot));progress()},500)}
+  fold.onclick=()=>action("fold");check.onclick=()=>action("check");raise.onclick=()=>action("raise");deal.onclick=resetGame;reset.onclick=resetGame;resetGame();
+}
+function setupBlackjackPro(){
+  const dealerEl=document.getElementById("bjDealer"),playerEl=document.getElementById("bjPlayer"),dealerScore=document.getElementById("bjDealerScore"),playerScore=document.getElementById("bjPlayerScore"),bankEl=document.getElementById("bjBank"),betEl=document.getElementById("bjBet"),betValue=document.getElementById("bjBetValue"),shoeEl=document.getElementById("bjShoe"),center=document.getElementById("bjCenter"),msg=document.getElementById("bjMsg");
+  const minus=document.getElementById("bjBetMinus"),plus=document.getElementById("bjBetPlus"),deal=document.getElementById("bjDeal"),hit=document.getElementById("bjHit"),stand=document.getElementById("bjStand"),dbl=document.getElementById("bjDouble"),split=document.getElementById("bjSplit"),insurance=document.getElementById("bjInsurance"),reset=document.getElementById("bjReset");
+  let deck=[],player=[],dealer=[],bank=1000,bet=100,active=false,doubled=false;
+  const val=v=>v==="A"?11:["K","Q","J"].includes(v)?10:Number(v);
+  function score(hand){let s=hand.reduce((a,c)=>a+val(c.v),0),aces=hand.filter(c=>c.v==="A").length;while(s>21&&aces--)s-=10;return s}
+  function newShoe(){deck=[];for(let i=0;i<6;i++)deck.push(...mkDeck());deck=shuf(deck)}
+  function render(){dealerEl.innerHTML=dealer.map((c,i)=>premiumCardHTML(c,active&&i===1)).join("");playerEl.innerHTML=player.map(c=>premiumCardHTML(c)).join("");const ps=score(player);playerScore.textContent=ps;dealerScore.textContent=active?"?":score(dealer);bankEl.textContent=bank;betEl.textContent=bet;betValue.textContent=bet;shoeEl.textContent=deck.length;deal.disabled=active||bank<bet;hit.disabled=!active;stand.disabled=!active;dbl.disabled=!active||player.length!==2||bank<bet;split.disabled=true;insurance.disabled=true}
+  function settle(){active=false;const ps=score(player),ds=score(dealer);let result;if(ps>21)result="Du hast dich überkauft.";else {while(score(dealer)<17)dealer.push(deck.pop());const finalD=score(dealer);if(finalD>21||ps>finalD){bank+=doubled?bet*2:bet;result=ps===21&&player.length===2?"Blackjack! Du gewinnst 3:2.":"Du gewinnst."}else if(ps===finalD){result="Push – Einsatz zurück."}else {bank-=doubled?bet*2:bet;result="Dealer gewinnt."}}center.textContent=result;msg.textContent=`${result} · Neuer Einsatz: ${bet} · Bank: ${bank}`;render()}
+  function start(){if(bank<bet)return;newShoeIfNeeded();bank-=bet;player=[deck.pop(),deck.pop()];dealer=[deck.pop(),deck.pop()];active=true;doubled=false;center.textContent="YOUR TURN";msg.textContent="HIT, STAND oder DOUBLE.";if(score(player)===21)setTimeout(settle,250);render()}
+  function newShoeIfNeeded(){if(deck.length<20)newShoe()}
+  deal.onclick=start;hit.onclick=()=>{if(!active)return;player.push(deck.pop());if(score(player)>21)settle();else render()};stand.onclick=settle;dbl.onclick=()=>{if(!active||player.length!==2||bank<bet)return;bank-=bet;bet*=2;doubled=true;player.push(deck.pop());if(score(player)>21)settle();else settle()};minus.onclick=()=>{if(active)return;bet=Math.max(10,bet-10);render()};plus.onclick=()=>{if(active)return;bet=Math.min(Math.max(10,bank),bet+10);render()};split.onclick=()=>{};insurance.onclick=()=>{};reset.onclick=()=>{bank=1000;bet=100;newShoe();player=[];dealer=[];active=false;center.textContent="PLACE YOUR BET";msg.textContent="Blackjack pays 3:2 · Dealer stands on soft 17.";render()};reset.onclick();
+}
+
+/* escape */
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){toolModal.classList.remove("open");legalModal.classList.remove("open");arcadeModal.classList.remove("open");projectModal?.classList.remove("open");closeSiteMenu?.()}});
+
+
+/* Scroll reveal — plays again when entering the viewport from either direction */
+const revealObserver2=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("is-visible");
+    }else{
+      entry.target.classList.remove("is-visible");
+    }
+  });
+},{threshold:.12,rootMargin:"-6% 0px -8% 0px"});
+document.querySelectorAll("section,.card,.tool,.game,.project,.panel").forEach((el,i)=>{
+  if(!el.classList.contains("reveal"))el.classList.add("reveal");
+  el.classList.add("delay-"+(i%4));
+  revealObserver2.observe(el);
+});
+
+</script>
+</body>
+</html>
